@@ -146,23 +146,23 @@ class Category extends MX_Controller
 	
 	// ------------------------------------------------------------------------
 	
-	function add_category_form()
+	function get_form($id_content = NULL)
 	{
-		$data = array(
-						'id_category'	=> 0,
-						'id_parent'		=> 0,
-						'name'			=> '',
-						'description'	=> '',
-						'is_enable'		=> 1
-					 );
-		$this->load->view('category_form', $data);	
-	}
-	
-	// ------------------------------------------------------------------------
-	
-	function get_category_form($id_category)
-	{
-		$data = $this->category_model->get_detail($id_category);	
+		if($id_content != NULL)
+		{
+			$data = $this->category_model->get_detail($id_content);	
+		} 
+		else
+		{
+			$data = array(
+							'id_category'	=> 0,
+							'id_parent'		=> 0,
+							'name'			=> '',
+							'description'	=> '',
+							'is_enable'		=> 1
+					 	 );	
+		}
+		
 		$this->load->view('category_form', $data);	
 	}
 	

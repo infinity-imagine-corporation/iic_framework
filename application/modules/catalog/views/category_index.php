@@ -1,5 +1,5 @@
 <div id="content_top">
-	<button class="button_create">New Category</button>
+	<button class="button_create" rel="catalog/category/get_form">New Category</button>
 	<div id="search_section">
 		<label class="inline" for="quick_access">Category:</label>
 		<select name="quick_access" id="quick_access"></select>

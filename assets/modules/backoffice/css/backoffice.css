@@ -165,13 +165,16 @@ body#Category .menu_main li#Category a
 
 #navigator
 {
-	border: 1px dotted #999;
-	padding: 5px 10px;
+	border: 1px dotted #999; 
+	color: 666; 
 	font-size: 10px;
+	padding: 5px 10px;
 	margin: 0px 15px	
 }
 
-#user_info { float: right; }
+#user_info { float: right;}
+
+#user_info > b { color: #444;  }
 
 /*------------------------------------------------------------*/
 /* Content */

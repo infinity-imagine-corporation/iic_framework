@@ -91,16 +91,17 @@ $(function() {
 		}
 		
 	});
-		
-	
-	
 });	
 		
-/*------------------------------------------------------------*/
-/* Content */
-/*------------------------------------------------------------*/
+// ------------------------------------------------------------------------
+// Content
+// ------------------------------------------------------------------------
 
-/* List content */
+/**
+ * List content
+ * 
+ * get new content via ajax and replace in <tbody>
+ */	
 
 function list_content(id_parent, id_checked)
 {
@@ -158,31 +159,31 @@ function list_content(id_parent, id_checked)
 	.success(function() { $('#preload').slideUp('fast'); })
 	.error(function() { alert('Error: Can\'t load ' + url); });
 }
+	
 
+// ------------------------------------------------------------------------
 /* Load create form */
 
-function get_create_form()
+function get_create_form(url)
 {
-	var url = URL_SERVER + 'catalog/category/add_category_form';
-	
 	$.post(url, function(response){
 		$('#dialog_create').html(response).dialog('open').find('#id_parent').val($('#quick_access').val())
 	})
 	.error(function() { alert('Error: ' + url); });
 }
 
+// ------------------------------------------------------------------------
 /* Load update form */
 
-function get_update_form(id_category)
+function get_update_form(url)
 {
-	var url = URL_SERVER + 'catalog/category/get_category_form/' + id_category;
-	
 	$.post(url, function(response){
 		$('#dialog_update').html(response).dialog('open');
 	})
 	.error(function() { alert('Error'); });
 }
 
+// ------------------------------------------------------------------------
 /* Create content */
 
 function create_content()
@@ -202,6 +203,7 @@ function create_content()
 	.error(function() { alert('Error'); });	
 }
 
+// ------------------------------------------------------------------------
 /* Update content */
 
 function update_content()
@@ -224,6 +226,7 @@ function update_content()
 	.error(function() { alert('Error'); });
 }
 
+// ------------------------------------------------------------------------
 /* Delete content */
 
 function delete_content()
@@ -245,6 +248,7 @@ function delete_content()
 	.error(function() { alert('Error'); });	
 }
 
+// ------------------------------------------------------------------------
 /* Get quick access content */
 
 function get_category_selectbox_option(id_parent)

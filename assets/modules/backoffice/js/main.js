@@ -1,10 +1,12 @@
 $(function() {	
-		
-	/*------------------------------------------------------------*/
-	/* Checkbox */
-	/*------------------------------------------------------------*/
 	
-	/* Select all */
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Checkbox
+	 */	
+	
+	// Select all
 	$('#select_all').live('click', function(){
 		if($(this).attr('checked') == 'checked')
 		{
@@ -16,18 +18,18 @@ $(function() {
 		}
 	});
 	
-	/* Hilite selected row */
-	$('tbody').find('input[type=checkbox]').live('click', function()
-	{
+	// Hilite selected row
+	$('tbody').find('input[type=checkbox]').live('click', function(){
 		$(this).parent().parent().toggleClass('checked');	
 	});	
 	
-	/*------------------------------------------------------------*/
-	/* Button */
-	/*------------------------------------------------------------*/
+	// ------------------------------------------------------------------------
 	
-	/* Setup button */
+	/**
+	 * Buttion
+	 */	
 	
+	// Setup button
 	$('.button_create').button({
 		icons: {
 			primary: "ui-icon-plusthick"
@@ -40,23 +42,27 @@ $(function() {
 		}
 	})
 	
-	/* Button create */
+	// ------------------------------------------------------------------------
 	
+	// Button create
 	$('.button_create').click(function(){
-		get_create_form();
-	});
-	
-	/* Button update */
+		var form_uri = $(this).attr('rel');
+		var url = URL_SERVER + form_uri;
 		
-	$('.table td:not(td:has(input))').live('click', function(){
-		var id_category = $(this).parent().attr('rel');
-		get_update_form(id_category);
+		get_create_form(url);
 	});
 	
-	/* Button delete */
+	// Button update
+	$('.table td:not(td:has(input[type=checkbox]))').live('click', function(){
+		var form_uri = $('.button_create').attr('rel');
+		var id_content = $(this).parent().attr('rel');
+		var url = URL_SERVER + form_uri + '/' + id_content;
+		
+		get_update_form(url);
+	});
 	
+	// Button delete
 	$('.button_delete').click(function(){
-		
 		var checked = $('tbody').find('input[type=checkbox]:checked').length;
 		
 		if(checked > 0)
@@ -71,9 +77,9 @@ $(function() {
 		}
 	});
 	
-	/*------------------------------------------------------------*/
+	// ------------------------------------------------------------------------
 	/* Dialog */
-	/*------------------------------------------------------------*/
+	// ------------------------------------------------------------------------
 	
 	$('#dialog_alert').dialog({
 		title		: 'Alert',
@@ -134,9 +140,7 @@ $(function() {
 						}
 					  }
 	});	
-	
-	/*------------------------------------------------------------*/
-	/* End */
-	/*------------------------------------------------------------*/
-	
 });
+
+/* End of file main.js */
+/* Location: assets/modules/backoffice/main.js */
