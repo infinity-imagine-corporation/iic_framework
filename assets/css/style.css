@@ -1,0 +1,11 @@
+/* CSS Document */
+
+form input[type=text], form input[type=password], form textarea, form select 
+{
+	width: 100%; 
+}
+
+form input[type=text], form input[type=password], form textarea
+{
+	width: 440px;
+}
