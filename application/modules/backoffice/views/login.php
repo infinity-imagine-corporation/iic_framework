@@ -8,7 +8,7 @@
 <?php echo css_asset('iic_style.css', 'iic_tools'); ?>
 <?php echo css_asset('backoffice_theme.css', 'backoffice'); ?>
 <style type="text/css">
-.center_box > div.gadget { padding: 2px; width: 350px; }
+.center_box > div.gadget { padding: 1px; width: 350px; }
 
 #form_section { padding: 20px; }
 
@@ -34,7 +34,7 @@ input[type=text], input[type=password] { width: 300px; }
 				<div class="center">
 					<input name="Submit" type="submit" value="Login" />
 				</div>
-			</form>
+			<?php echo form_close() ?>
 		</div>
 		<div id="foot_section"><?php echo $theme['foot_text'] ?></div>
 	</div>

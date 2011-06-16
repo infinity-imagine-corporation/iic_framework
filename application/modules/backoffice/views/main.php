@@ -20,7 +20,7 @@
 			<li class="active"><a href="#">Home</a></li>
 			<!-- system -->
 			<li class="float_r"><a href="backoffice/login/logout">Logout</a></li>
-			<li class="float_r"><a href="#">Option&nbsp;&nbsp;<span class="text_9">▼</span></a>
+			<li class="float_r"><a href="#">Option&nbsp;&nbsp;<span class="text_8">▼</span></a>
 				<ul>
 					<li><a href="#">User</a></li>
 					<li><a href="#">Theme</a></li>

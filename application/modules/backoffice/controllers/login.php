@@ -22,6 +22,12 @@ class Login extends MX_Controller
 	
 	// ------------------------------------------------------------------------
 	
+	/**
+	  * Validating login
+	  *
+	  * @access	public
+	  */
+	  
 	function validate()
 	{
 		$this->load->model('user_model');
@@ -50,23 +56,43 @@ class Login extends MX_Controller
 	
 	// ------------------------------------------------------------------------
 	
+	/**
+	  * Check access permission 
+	  *
+	  * @access	public
+	  */
+	  
 	function check_permission()
 	{
 		$login_status = $this->session->userdata('login_status');
 		if(!isset($login_status) || $login_status != TRUE)
 		{
-			echo 'You don\'t have permission to access this page.';
-			echo anchor('backoffice/login', 'Login');
-			die();		
+			$data['title'] = 'Access denied';
+			$data['message'] = '<li class="red">You don\'t have permission to access this page.</li>';
+			$data['url_target'] = 'backoffice/login';
+			$data['button_text'] = '';
+			$this->load->view('iic_report.php', $data);	
+			exit();
 		}
 	}
 	
 	// ------------------------------------------------------------------------
 	
+	/**
+	  * Logout 
+	  *
+	  * @access	public
+	  */
+	  
 	function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('backoffice/login');
+		
+		$data['title'] = '';
+		$data['message'] = '<li class="green">Logout success</li>';
+		$data['url_target'] = 'backoffice/login';
+		$data['button_text'] = '';
+		$this->load->view('iic_report.php', $data);	
 	}
 	
 	// ------------------------------------------------------------------------

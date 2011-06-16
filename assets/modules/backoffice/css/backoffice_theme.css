@@ -125,7 +125,7 @@ body { background-color: #666; }
 	-webkit-box-shadow: 0px 0px 2px #666 inset;
 }
 
-.menu_main > li.active a { background: #777; }
+.menu_main > li.active a, .menu_main > li:hover a:active { background: #777; }
 
 .menu_main > li > ul
 {
@@ -182,6 +182,10 @@ body { background-color: #666; }
 	box-shadow: 0px 0px 1px #CCC;
 	-moz-box-shadow: 0px 0px 1px #CCC;
 	-webkit-box-shadow: 0px 0px 1px #CCC;
+	
+	box-shadow: 0px 0px 3px #666 inset;
+	-moz-box-shadow: 0px 0px 3px #666 inset;
+	-webkit-box-shadow: 0px 0px 3px #666 inset;
 }
 
 /*------------------------------------------------------------*/
