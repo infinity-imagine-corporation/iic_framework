@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'asset', 'form');
+$autoload['helper'] = array('url', 'form', 'asset', 'iic_tools');
 
 
 /*

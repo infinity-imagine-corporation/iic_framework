@@ -5,10 +5,9 @@ class User_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Login page
-	  *
-	  * @access	public
-	  */
+	 * Setup database
+	 *
+	 */
 	  
 	var $fields = array();
 	var $table;
@@ -27,10 +26,10 @@ class User_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Login page
-	  *
-	  * @access	public
-	  */
+	 * Login page
+	 *
+	 * @access	public
+	 */
 	  
 	function validate()
 	{
@@ -45,32 +44,10 @@ class User_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Login page
-	  *
-	  * @access	public
-	  */
-	  
-/*	function create_member()
-	{
-		$new_member_insert_data = array(
-			'first_name' 	=> $this->input->post('first_name'),
-			'last_name' 	=> $this->input->post('last_name'),
-			'email_address' => $this->input->post('email_address'),			
-			'username' 		=> $this->input->post('username'),
-			'password' 		=> $this->input->post('password')						
-		);
-		
-		$insert = $this->db->insert($this->table, $new_member_insert_data);
-		return $insert;
-	}*/
-	
-	// ------------------------------------------------------------------------
-	
-	/**
-	  * Login page
-	  *
-	  * @access	public
-	  */
+	 * Login page
+	 *
+	 * @access	public
+	 */
 	  
 	function get_detail($id = NULL)  
 	{  
@@ -90,12 +67,12 @@ class User_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Get user detail by username
-	  *
-	  * @access	public
-	  * @param 	sting	$username
-	  * @return	array
-	  */
+	 * Get user detail by username
+	 *
+	 * @access	public
+	 * @param 	sting	$username
+	 * @return	array
+	 */
 	  
 	function get_detail_by_username($username)  
 	{  
@@ -104,6 +81,28 @@ class User_model extends CI_Model
 		
 		return $query->row_array();  
 	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Create user
+	 *
+	 * @access	public
+	 */
+	  
+	/*function create_member()
+	{
+		$new_member_insert_data = array(
+			'first_name' 	=> $this->input->post('first_name'),
+			'last_name' 	=> $this->input->post('last_name'),
+			'email_address' => $this->input->post('email_address'),			
+			'username' 		=> $this->input->post('username'),
+			'password' 		=> $this->input->post('password')						
+		);
+		
+		$insert = $this->db->insert($this->table, $new_member_insert_data);
+		return $insert;
+	}*/
 	
 	// ------------------------------------------------------------------------
 }

@@ -2,20 +2,20 @@
 
 class Theme_model extends CI_Model
 {
-	function get_theme()
-	{	
-		$theme = array();
-		$theme['head_bg_color'] = '#79C342';
-		$theme['head_text1'] = 'Member Login';
-		$theme['head_text2'] = 'IIC Framework';
-		$theme['head_text_color'] = '#FFF';
-		$theme['head_text_size'] = '24';
-		$theme['foot_bg_color'] = '#79C342';
-		$theme['foot_text'] = 'All support and powered by NextGen Sulution Co.,Ltd.';
-		$theme['foot_text_color'] = '#FFF';
-		$theme['foot_text_size'] = '10';
+	// ------------------------------------------------------------------------
 	
-		return $theme;
+	/**
+	 * Setup database
+	 *
+	 */
+	  
+	var $table = 'backoffice_theme';
+	
+	function get_theme($id = 1)
+	{	
+		$query = $this->db->get_where($this->table, array('id_theme' => $id));
+	
+		return $query->row_array();
 	}
 	
 	function gen_css()

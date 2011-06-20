@@ -13,6 +13,7 @@ class Login extends MX_Controller
 	{	
 		$this->load->model('theme_model');
 		$data['theme'] = $this->theme_model->get_theme();
+		$data['theme']['header_text1'] = 'Member Login';
 		
 		$data['title'] = 'Login';
 		$data['error_msg'] = $error_msg;

@@ -4,9 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $title ?></title>
 <link rel="shortcut icon" href="../favicon.ico" />
+<?php echo css_asset('aristo/jquery-ui-1.8.7.custom.css', 'iic_tools'); ?>
 <?php echo css_asset('iic_layout.css', 'iic_tools'); ?>
 <?php echo css_asset('iic_style.css', 'iic_tools'); ?>
-<?php echo css_asset('backoffice_theme.css', 'backoffice'); ?>
+<?php echo css_asset('backoffice.css', 'backoffice'); ?>
+
+<?php echo js_asset('jquery-1.5.1.min.js'); ?>
+<?php echo js_asset('jquery-ui-1.8.10.custom.min.js'); ?>
+
+<script type="text/javascript">
+$(function() {
+	$("input[type=submit],a.button").button();
+});
+</script>
 <style type="text/css">
 li { list-style: circle; }
 hr { border-top-style: dashed; }

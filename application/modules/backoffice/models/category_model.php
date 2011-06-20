@@ -2,11 +2,24 @@
 	
 class Category_model extends CI_Model
 {
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Setup database
+	 *
+	 */
+	  
+	var $table = 'category';
+	
+	// ------------------------------------------------------------------------
+	
 	function add_category($data)
 	{
 		$this->db->insert('category', $data);
 		return TRUE;
 	}
+	
+	// ------------------------------------------------------------------------
 	
 	function edit_category($id_category, $data)
 	{
@@ -15,11 +28,15 @@ class Category_model extends CI_Model
 		return TRUE;
 	}
 	
+	// ------------------------------------------------------------------------
+	
 	function add_category_item($data)
 	{
 		$this->db->insert('category_item', $data);
 		return TRUE;
 	}
+	
+	// ------------------------------------------------------------------------
 	
 	function edit_category_item($old_category, $new_category)
 	{
@@ -31,12 +48,12 @@ class Category_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Get category detail
-	  *
-	  * @access	public
-	  * @param 	int		$id_category		
-	  * @return	array
-	  */
+	 * Get category detail
+	 *
+	 * @access	public
+	 * @param 	int		$id_category		
+	 * @return	array
+	 */
 	
 	function get_detail($id_category)
 	{
@@ -48,13 +65,13 @@ class Category_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Get category detail by id_item
-	  *
-	  * @access	public
-	  * @param 	int		$id_item		
-	  * @param 	int		$id_item_type	
-	  * @return	array
-	  */
+	 * Get category detail by id_item
+	 *
+	 * @access	public
+	 * @param 	int		$id_item		
+	 * @param 	int		$id_item_type	
+	 * @return	array
+	 */
 	
 	function get_detail_by_item($id_item, $id_item_type)
 	{
@@ -72,12 +89,12 @@ class Category_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Get full list of category with subcategory and item
-	  *
-	  * @access	public
-	  * @param 	int		$id_parent		id of parent category
-	  * @return	array
-	  */
+	 * Get full list of category with subcategory and item
+	 *
+	 * @access	public
+	 * @param 	int		$id_parent		id of parent category
+	 * @return	array
+	 */
 	
 	function get_category_and_item($id_parent = 0)
 	{
@@ -120,14 +137,14 @@ class Category_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Get list of category
-	  *
-	  * @access	public
-	  * @param 	int		$id_parent		id of parent category
-	  * @return	array
-	  */
+	 * Get list of all child category (all level)
+	 *
+	 * @access	public
+	 * @param 	int		$id_parent		id of parent category
+	 * @return	array
+	 */
 	
-	function get_category($id_parent = 0)
+	function get_all_category($id_parent = 0)
 	{
 		$_sql = 'SELECT *
 				 FROM category 
@@ -140,23 +157,61 @@ class Category_model extends CI_Model
 		{
 			foreach($_result->result_array() as $_data)
 			{
-				$_data['category'] = $this->get_category($_data['id_category']);
+				$_data['category'] = $this->get_all_category($_data['id_category']);
 				array_push($_category_list, $_data);
 			}
 			
 			return $_category_list;
+		}
+		else
+		{
+			return FALSE;
 		}
 	}
 	
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Get list of item in category
-	  *
-	  * @access	public
-	  * @param 	int		$id_parent		id of parent category
-	  * @return	array
-	  */
+	 * Get child category (single level)
+	 *
+	 * @access	public
+	 * @param 	int		$id_parent		id of parent category
+	 * @return	array
+	 */
+	
+	function get_category($id_parent = 0)
+	{
+		$_sql = 'SELECT *
+				 FROM '.$this->table.' 
+				 WHERE id_parent = ' . $id_parent;
+		$_query = $this->db->query($_sql);
+		
+		$_category_list = array();
+		
+		if($_query->num_rows() > 0)
+		{
+			foreach($_query->result_array() as $_data)
+			{
+				array_push($_category_list, $_data);
+			}
+			
+			return $_category_list;
+		}
+		else
+		{
+			return FALSE;
+		}
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get list of item in category
+	 *
+	 * @access	public
+	 * @param 	int		$id_parent		id of parent category
+	 * @return	array
+	 */
 	
 	function get_category_item($id_category)
 	{
@@ -177,6 +232,7 @@ class Category_model extends CI_Model
 	
 	// ------------------------------------------------------------------------
 }
+
 
 /* End of file category_model.php */
 /* Location: ./application/modules/category/model/category_model.php */

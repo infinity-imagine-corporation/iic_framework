@@ -6,9 +6,22 @@
 <link rel="shortcut icon" href="../favicon.ico" />
 <?php echo css_asset('iic_layout.css', 'iic_tools'); ?>
 <?php echo css_asset('iic_style.css', 'iic_tools'); ?>
+<?php echo css_asset('aristo/jquery-ui-1.8.7.custom.css', 'iic_tools'); ?>
+
+<?php echo css_asset('backoffice.css', 'backoffice'); ?>
 <?php echo css_asset('backoffice_theme.css', 'backoffice'); ?>
+
+<?php echo js_asset('jquery-1.5.1.min.js'); ?>
+<?php echo js_asset('jquery-ui-1.8.10.custom.min.js'); ?>
+
+<script type="text/javascript">
+$(function() {
+	$("input[type=submit]").button();
+});
+</script>
+
 <style type="text/css">
-.center_box > div.gadget { padding: 1px; width: 350px; }
+.center_box > div.gadget { padding: 0px; width: 350px; }
 
 #form_section { padding: 20px; }
 
@@ -19,10 +32,10 @@ input[type=text], input[type=password] { width: 300px; }
 <body onload="document.getElementById('username').focus();">
 <div class="center_box">
 	<div class="gadget">
-		<div id="head_section">
-			<h2><?php echo $theme['head_text1'] ?></h2>
+		<div id="header">
+			<h2><?php echo $theme['header_text_1'] ?></h2>
 			<?php echo image_asset('line_gradient_300px.png', 'backoffice', array('alt'=>'line', 'width'=>'100%', 'height'=>'1')); ?>
-			<h3><?php echo $theme['head_text2'] ?></h3>
+			<h3><?php echo $theme['header_text_2'] ?></h3>
 		</div>
 		<div id="form_section">
 			<p id="error_msg" class="center red text_12 bold"><?php echo $error_msg ?></p>
@@ -36,7 +49,7 @@ input[type=text], input[type=password] { width: 300px; }
 				</div>
 			<?php echo form_close() ?>
 		</div>
-		<div id="foot_section"><?php echo $theme['foot_text'] ?></div>
+		<div id="footer"><?php echo $theme['footer_text'] ?></div>
 	</div>
 </div>
 </body>

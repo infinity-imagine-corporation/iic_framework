@@ -1,25 +1,17 @@
-body { background-color: #666; }
-
-#container
-{
-	background-color: #FFF; 
-	min-width: 800px; 
-}
-
 /*------------------------------------------------------------*/
 /* Header */
 /*------------------------------------------------------------*/
 
-#head_section
+#header
 {
-	background: #79C342 url() no-repeat ;	
+	background: #79C342 url() no-repeat;
 	color: #FFF;
 	height: 80px;
 	text-align: right;
 	padding: 10px;
 }
 
-#head_section h1
+#header h1
 {
 	font-size: 28px;
 	margin: 0px 0px 0px 10px;
@@ -29,198 +21,97 @@ body { background-color: #666; }
 	float:left;
 	
 	/* CSS3 */
+	
 	text-shadow: 1px 1px 2px #666;
 }
 
-#head_section h2
+#header h2
 {
 	font-size: 24px;
 	margin: 0px;
 	font-weight: normal;
 }
 
-#head_section h3
+#header h3
 {
 	font-size: 18px;
 	margin: 0px;
 	font-weight: normal;
 }
 
-#head_section img
-{
-	margin: 5px 0px;
-}
+#header img { margin: 5px 0px; }
 
 /*------------------------------------------------------------*/
-/* Back Office Main Menu */
+/* Table */
 /*------------------------------------------------------------*/
 
-.menu_main
+.table
 {
-	background: url(../img/bg_menu_main.png) repeat-x;
-	position: relative;
-	height: 40px;
-	padding: 0px 15px;
-	
-	/* CSS3 */
-	
-	box-shadow: 0px 1px 5px #333;
-	-moz-box-shadow: 0px 1px 5px #333;
-	-webkit-box-shadow: 0px 1px 5px #333;
+	clear: both;
+	width: 100%;
+	margin-bottom: 15px;
+	border: 0px solid #669900;
+	border-collapse: collapse;
+	color: #666666;
+	font-size: 12px;
 }
 
-.menu_main > li
+.tr_bgcolor1 { background-color: #FFFFFF; }
+
+.tr_bgcolor2 { background-color: #F0F0F0; }
+
+.tr_rollover_color { background-color: #E4EEFF; }
+
+.table th
 {
-	float: left;	
-	height: 45px;
-	list-style: none;
-	position: relative;
-	margin: 0px 15px 0px 0px;
+	cursor: pointer;
+	padding: 2px 5px;
+	color: #333;
+	font-size: 12px;
+	font-weight: normal;
+	white-space: nowrap;
+	background-color: #CCC;
+	border: 1px solid #AAA;
 }
 
-.menu_main > li.float_r
+/*.table th:hover	{ background-color: #36AAFF; border: 1px solid #36AAFF; }*/
+
+.table th img { margin: 1px 5px; }
+
+.table td
 {
-	float: right;
-	margin: 0px 0px 0px 15px;
-}
-
-.menu_main > li a
-{
-	/*background: url(../image/bg_mainMenu_button.png) top repeat-x;*/
-	border: 1px solid #BFBFBF;
-	color: #555;
-	display: block;
-	line-height: 26px;
-	padding: 0px 15px;
-	margin: 6px 0px 0px 0px;
-	text-align: center;
-	text-shadow: 0px 0px 2px #FFF;
-	
-	/* CSS3 */
-	
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	
-	box-shadow: 0px 0px 5px #EEE inset;
-	-moz-box-shadow: 0px 0px 5px #EEE inset;
-	-webkit-box-shadow: 0px 0px 5px #EEE inset;
-}
-
-
-.menu_main > li a:hover, .menu_main > li.active a, .menu_main > li:hover a
-{
-	background: #999;
-	border: 1px solid #949494;
-	color: #FFF;
-	text-shadow: 0px 0px 3px #333;
-	
-	/* CSS3 */
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	
-	box-shadow: 0px 0px 2px #666 inset;
-	-moz-box-shadow: 0px 0px 2px #666 inset;
-	-webkit-box-shadow: 0px 0px 2px #666 inset;
-}
-
-.menu_main > li.active a, .menu_main > li:hover a:active { background: #777; }
-
-.menu_main > li > ul
-{
-	background: #999;
-	display: none;
-	top: 41px;
- 	list-style: none;
-	min-width: 150px;
-	opacity: 0.9;
+	cursor: pointer;
+	border: 1px solid #AAAAAA;
 	padding: 5px;
-	position: absolute;
-	
-	/* CSS3 */
-	
-	box-shadow: 0px 1px 5px #333;
-	-moz-box-shadow: 0px 1px 5px #333;
-	-webkit-box-shadow: 0px 1px 5px #333;
+	vertical-align: top;
 }
 
-.menu_main > li:hover > ul { display: inherit; }
-
-.menu_main > li > ul > li
+.table td ul
 {
 	margin: 0px;
 	padding: 0px;
+	list-style: none;
 }
 
-.menu_main > li:hover > ul > li > a
-{
-	background: #999;
-	border: none;
-	color: #FFF;
-	padding: 0px 10px;
-	text-align: left;
-	text-shadow: 0px 0px 3px #333;
-	
-	/* CSS3 */
-	
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	
-	box-shadow: none;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-}
-
-.menu_main > li > ul > li > a:hover
-{
-	background: #AFAFAF;
-	
-	/* CSS3 */
-	
-	box-shadow: 0px 0px 1px #CCC;
-	-moz-box-shadow: 0px 0px 1px #CCC;
-	-webkit-box-shadow: 0px 0px 1px #CCC;
-	
-	box-shadow: 0px 0px 3px #666 inset;
-	-moz-box-shadow: 0px 0px 3px #666 inset;
-	-webkit-box-shadow: 0px 0px 3px #666 inset;
-}
-
-/*------------------------------------------------------------*/
-/* Navigation */
-/*------------------------------------------------------------*/
-
-#navigation
-{
-	border: 1px dotted #999;
-	padding: 5px 10px;
-	font-size: 10px;
-	margin: 0px 15px	
-}
-
-/*------------------------------------------------------------*/
-/* Content */
-/*------------------------------------------------------------*/
-
-#content_section
-{
-	margin: 15px	
-}
-
-#content_section h1 { text-shadow: 0px 0px 2px #999; }
+.table td .button_edit { color: #09f; }
 
 /*------------------------------------------------------------*/
 /* Footer */
 /*------------------------------------------------------------*/
-#foot_section
+
+#footer
 {
-	background: #79C342;	
-	color: #FFF;
+	background: url(../img/bg_menu_main.png) repeat-x;
+	background-size: contain;
+	color: #666;
 	font-size: 10px;
 	padding: 3px;
 	text-align: center;
+	/* CSS3 */
+	
+	box-shadow: 0px 0px 5px #333;
+	-moz-box-shadow: 0px 0px 5px #333;
+	-webkit-box-shadow: 0px 0px 5px #333;
 }
 
 /*------------------------------------------------------------*/

@@ -1,0 +1,5 @@
+*.bak
+*.lck
+*.LCK
+Thumbs.db
+_compareTemp/

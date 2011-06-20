@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/iic_framework/';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
