@@ -128,6 +128,7 @@ class Category extends MX_Controller
 	{
 		$this->load->model('category_model');
 		$data = $this->category_model->get_detail($id_category);	
+		
 		$this->load->view('category_form', $data);	
 	}
 	

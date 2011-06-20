@@ -23,21 +23,20 @@ $(function() {
 		}
 	})
 	
-	$('#button_add_category').click(function(){
-		if($('#dialog_add_category').html() == ' ')
+	$('.button_add').click(function(){
+		if($('#dialog').html() == '')
 		{
-			var url = URL_SERVER + 'index.php/category/add_category_form';
+			var url = URL_SERVER + '/category/add_category_form';
 			$.post(url, function(response){
-				clear_div();
-				$('#dialog_add_category').html(response);
+				$('#dialog').html('').html(response);
 			});
 		}
-		$('#dialog_add_category').dialog('open');
+		$('#dialog').dialog('open');
 	});
 	
 	/* Dialog */
 	
-	$('#dialog_add_category').dialog({
+	$('#dialog').dialog({
 		title		: 'Add Category',
 		autoOpen	: false,
 		resizable	: false,
@@ -46,7 +45,7 @@ $(function() {
 		modal		: false,
 		buttons		: {
 						Save: function() {
-							var url = URL_SERVER + 'index.php/category/add_category';
+							var url = URL_SERVER + '/category/add_category';
 							var data = {
 								'id_parent'		: $('#id_parent').val(),
 								'name' 			: $('#name').val(),
@@ -55,7 +54,7 @@ $(function() {
 							};
 							$.post(url, data, function(response){
 								$(this).dialog("close");
-								location.href = URL_SERVER + 'index.php/story/master_story_list';
+								location.href = URL_SERVER + '/story/master_story_list';
 							})
 							.error(function() { alert('Error'); });
 						}
@@ -65,7 +64,7 @@ $(function() {
 	$('i.edit_category').click(function(){
 		
 		id_category = $(this).attr('rel');
-		var url = URL_SERVER + 'index.php/category/get_category_form/' + id_category;
+		var url = URL_SERVER + 'category/get_category_form/' + id_category;
 		
 		$.post(url, function(response){
 			clear_div();

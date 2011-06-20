@@ -56,9 +56,9 @@ body { background-color: #666; }
 	
 	/* CSS3 */
 	
-	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 	
 	box-shadow: 0px 0px 5px #EEE inset;
 	-moz-box-shadow: 0px 0px 5px #EEE inset;
@@ -127,7 +127,7 @@ body#Category .menu_main li#Category a
 .menu_main > li:hover > ul > li > a
 {
 	background: #999;
-	border: 1px solid #949494;
+	border: 1px solid #999;
 	color: #FFF;
 	padding: 0px 10px;
 	text-align: left;
@@ -143,6 +143,7 @@ body#Category .menu_main li#Category a
 .menu_main > li > ul > li > a:hover
 {
 	background: #AFAFAF;
+	border: 1px solid #909090;
 	
 	/* CSS3 */
 	
@@ -183,8 +184,8 @@ body#Category .menu_main li#Category a
 #preload 
 {
 	position: absolute;
-	opacity: 0.5;
-	background: #000;
+	opacity: 0.8;
+	background: #333;
 	color: #FFF;
 	top: -5px;
 	right: 50%;
