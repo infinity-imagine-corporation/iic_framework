@@ -43,7 +43,7 @@ class Category extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Get all category select box
+	 * Get all category selectbox
 	 *
 	 * @access	public
 	 * @param 	int		$selected		selected value
@@ -53,7 +53,7 @@ class Category extends MX_Controller
 	function get_category_selectbox($selected = NULL)
 	{		
 		$this->load->model('category_model');
-		$_category_list = $this->category_model->get_category();
+		$_category_list = $this->category_model->get_all_category();
 		
 		$_selectbox = '<select id="id_category" name="id_category">';
 		$_selectbox .= $this->_get_category_select_option($_category_list, $selected);
@@ -65,7 +65,7 @@ class Category extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Get select box option
+	 * Get selectbox option
 	 *
 	 * @access	private
 	 * @param 	array	$category		id of category
@@ -97,7 +97,7 @@ class Category extends MX_Controller
 	function get_parent_selectbox($selected = NULL)
 	{
 		$this->load->model('category_model');
-		$_category_list = $this->category_model->get_category();
+		$_category_list = $this->category_model->get_all_category();
 		
 		$_selectbox = '<select id="id_parent" name="id_parent">';
 		$_select = ($selected == 0) ? 'selected' : '';

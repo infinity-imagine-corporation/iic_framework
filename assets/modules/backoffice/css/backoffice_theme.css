@@ -74,7 +74,7 @@
 	border: 1px solid #AAA;
 }
 
-.table th:first-child { width: 30px; }
+.table th:first-child { width: 20px; }
 
 /*.table th:hover	{ background-color: #36AAFF; border: 1px solid #36AAFF; }*/
 

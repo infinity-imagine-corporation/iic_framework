@@ -108,6 +108,7 @@ body#Category .menu_main li#Category a
 	opacity: 0.9;
 	padding: 5px;
 	position: absolute;
+	z-index: 1000;
 	
 	/* CSS3 */
 	
@@ -181,16 +182,23 @@ body#Category .menu_main li#Category a
 
 #content_top { margin-bottom: 15px; }
 
+#content_top  a { float: right; }
+
+#search_section
+{
+	line-height: 35px;
+}
+
 #preload 
 {
 	position: absolute;
-	opacity: 0.8;
+	opacity: 0.7;
 	background: #333;
 	color: #FFF;
 	top: -5px;
 	right: 50%;
-	width: 200px;
-	margin-right: -100px;
+	width: 100px;
+	margin-right: -50px;
 	z-index: 1000;
 	padding: 20px 15px 15px 15px;
 	text-align: center;
@@ -200,12 +208,6 @@ body#Category .menu_main li#Category a
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-}
-
-#search_section
-{
-	float: right;
-	line-height: 35px;
 }
 
 

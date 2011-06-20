@@ -31,6 +31,7 @@
 						<td><input type="checkbox" id="id_'.$loop.'" name="id[]" value="'.$data['id_category'].'"></td>
 						<td>'.$data['name'].'</td>
 						<td>'.$status.'</td>
+						<td>&nbsp;</td>
 					</tr>';
 			}
 		}
@@ -48,4 +49,5 @@
 	<?php echo anchor('backoffice/category/move_down', 'Move Down', 'class="button_move_down"') ?> 
 </div>
 
-<div id="dialog"></div>
+<div id="dialog_add" class="dialog"></div>
+<div id="dialog_edit" class="dialog"></div>

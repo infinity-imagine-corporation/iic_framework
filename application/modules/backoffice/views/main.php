@@ -12,7 +12,7 @@
 
 <?php echo css_asset($main_content.'.css', 'backoffice'); ?>
 
-<?php echo js_asset('jquery-1.5.1.min.js'); ?>
+<?php echo js_asset('jquery-1.6.1.min.js'); ?>
 <?php echo js_asset('jquery-ui-1.8.10.custom.min.js'); ?>
 <?php echo js_asset('ajax.config.js'); ?>
 

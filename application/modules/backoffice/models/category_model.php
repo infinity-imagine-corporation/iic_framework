@@ -149,13 +149,13 @@ class Category_model extends CI_Model
 		$_sql = 'SELECT *
 				 FROM category 
 				 WHERE id_parent = ' . $id_parent;
-		$_result = $this->db->query($_sql);
+		$_query = $this->db->query($_sql);
 		
 		$_category_list = array();
 		
-		if($_result->num_rows() > 0)
+		if($_query->num_rows() > 0)
 		{
-			foreach($_result->result_array() as $_data)
+			foreach($_query->result_array() as $_data)
 			{
 				$_data['category'] = $this->get_all_category($_data['id_category']);
 				array_push($_category_list, $_data);
