@@ -163,10 +163,6 @@ class Category_model extends CI_Model
 			
 			return $_category_list;
 		}
-		else
-		{
-			return FALSE;
-		}
 	}
 	
 	// ------------------------------------------------------------------------

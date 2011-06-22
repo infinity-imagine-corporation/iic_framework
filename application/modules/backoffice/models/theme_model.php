@@ -18,6 +18,8 @@ class Theme_model extends CI_Model
 		return $query->row_array();
 	}
 	
+	// ------------------------------------------------------------------------
+	
 	function gen_css()
 	{
 		$theme = $this->get_theme();
@@ -61,4 +63,10 @@ class Theme_model extends CI_Model
 				}	
 			';
 	}
+	
+	// ------------------------------------------------------------------------
 }
+
+
+/* End of file theme_model.php */
+/* Location: ./application/modules/category/model/theme_model.php */

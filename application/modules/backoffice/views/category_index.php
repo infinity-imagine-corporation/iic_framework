@@ -1,10 +1,9 @@
 <div id="preload">Loading...</div>
 <div id="content_top">
-	<?php //echo anchor('backoffice/category/add', 'New Category', 'class="button_add float_r"') ?>
 	<a href="#" class="button_add">New Category</a>
 	<div id="search_section">
-		<label class="inline" for="keyword">Quick access:</label>
-		<?php echo Modules::run('backoffice/category/get_category_selectbox'); ?>
+		<label class="inline" for="quick_access">Quick access:</label>
+		<select name="quick_access" id="quick_access"></select>
 	</div>
 	
 </div>
@@ -21,24 +20,7 @@
 	</thead>
 	<tbody>
 		<?php
-		if($category)
-		{
-			$loop = 1;
-			foreach($category as $data)
-			{
-				$status = ($data['is_enable']) ? 'Enable' : 'Disable';
-				echo '<tr>
-						<td><input type="checkbox" id="id_'.$loop.'" name="id[]" value="'.$data['id_category'].'"></td>
-						<td>'.$data['name'].'</td>
-						<td>'.$status.'</td>
-						<td>&nbsp;</td>
-					</tr>';
-			}
-		}
-		else
-		{
 			echo'<tr><td colspan="'.count($th).'" class="center">No result found.</td></tr>';
-		}
 	 	?>
 	</tbody>
 </table>

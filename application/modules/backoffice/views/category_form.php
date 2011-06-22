@@ -1,7 +1,7 @@
 <style type="text/css">
 .dialog form 
 { 
-	padding: 10px;
+	padding: 0px 10px;
 	margin-left: -10px;
 }
 .dialog input[type=text], .dialog select, .dialog textarea
@@ -12,8 +12,7 @@
 
 <form method="post">
 	<label for="id_parent">Parent : </label>
-	<?php echo Modules::run('backoffice/category/get_parent_select_box', $id_parent); ?>
-	<?php echo Modules::run('backoffice/category/get_category_selectbox'); ?>
+	<?php echo Modules::run('backoffice/category/get_parent_selectbox', $id_parent); ?>
 	<label for="name">Name : </label>
 	<input id="name" name="name" type="text" value="<?php echo $name ?>" />
 	<label for="description">Description : </label>
