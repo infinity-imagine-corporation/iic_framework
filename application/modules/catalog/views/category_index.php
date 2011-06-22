@@ -1,4 +1,3 @@
-<div id="preload">Loading...</div>
 <div id="content_top">
 	<a href="#" class="button_add">New Category</a>
 	<div id="search_section">

@@ -10,13 +10,13 @@
 <?php echo css_asset('backoffice.css', 'backoffice'); ?>
 <?php echo css_asset('backoffice_theme.css', 'backoffice'); ?>
 
-<?php echo css_asset($main_content.'.css', 'backoffice'); ?>
+<?php echo css_asset($page.'.css', $module); ?>
 
 <?php echo js_asset('jquery-1.6.1.min.js'); ?>
 <?php echo js_asset('jquery-ui-1.8.10.custom.min.js'); ?>
 <?php echo js_asset('ajax.config.js'); ?>
 
-<?php echo js_asset($main_content.'.js', 'backoffice'); ?>
+<?php echo js_asset($page.'.js', $module); ?>
 
 </head>
 <body id="<?php echo $title ?>">
@@ -28,11 +28,12 @@
 		<h3><?php echo $theme['header_text_2'] ?></h3>
 	</div>-->
 	<div id="menu">
-		<?php $this->load->view('menu_main'); ?>
+		<?php $this->load->view('backoffice/menu_main'); ?>
 	</div>
 	<div id="navigator">Home</div>
 	<div id="content">
-		<?php $this->load->view($main_content); ?>
+		<div id="preload">Loading...</div>
+		<?php $this->load->view($page); ?>
 	</div>
 	<div class="clear"></div>
 	<div id="footer"> <?php echo $theme['footer_text'] ?> </div>

@@ -32,13 +32,14 @@ class Category extends MX_Controller
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Status'));
 		array_push($data['th'], array('axis'=>'',			'label'=>'Action'));
 		
-		$this->load->model('theme_model');
+		$this->load->model('backoffice/theme_model');
 		$data['theme'] = $this->theme_model->get_theme();
 		
+		$data['module'] = 'catalog';
+		$data['page'] = 'category_index';
 		$data['title'] = 'Category';
-		$data['main_content'] = 'category_index';
 		
-		$this->load->view('main', $data);
+		$this->load->view('backoffice/main', $data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -183,32 +184,18 @@ class Category extends MX_Controller
 	
 	// ------------------------------------------------------------------------
 	
-	function edit_category($id_category)
+	function add_category()
 	{
-		$data = array(
-			'id_category' 	=> $this->input->post('id_category'),
-			'id_parent' 	=> $this->input->post('id_parent'),
-			'name' 			=> $this->input->post('name'),
-			'description' 	=> $this->input->post('description'),
-			'is_enable'		=> $this->input->post('is_enable')
-		);
-		
 		$this->load->model('category_model');
-		$this->category_model->edit_category($id_category, $data);
+		$this->category_model->add_category($this->input->post());
 	}
 	
 	// ------------------------------------------------------------------------
 	
-	function add_category()
+	function edit_category($id_category)
 	{
-		$data = array(
-			'id_parent' 	=> $this->input->post('id_parent'),
-			'name' 			=> $this->input->post('name'),
-			'description' 	=> $this->input->post('description'),
-			'is_enable'		=> $this->input->post('is_enable')
-		);
 		$this->load->model('category_model');
-		$this->category_model->add_category($data);
+		$this->category_model->edit_category($this->input->post());
 	}
 	
 	// ------------------------------------------------------------------------
@@ -216,4 +203,4 @@ class Category extends MX_Controller
 
 
 /* End of file category.php */
-/* Location: ./application/modules/category/controllers/category.php */
+/* Location: ./application/modules/catalog/controllers/category.php */

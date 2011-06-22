@@ -6,12 +6,20 @@ class Backoffice extends MX_Controller
 		Modules::run('backoffice/login/check_permission');
 		
 		$this->load->model('theme_model');
-		$data['theme'] = $this->theme_model->get_theme();
+		$data['theme']	= $this->theme_model->get_theme();
 		
-		$data['title'] = 'Home';
-		$data['main_content'] = 'dashboard';
+		$data['module']		= 'backoffice';
+		$data['controller']	= 'backoffice';
+		$data['page']		= 'dashboard';
+		$data['title']		= 'Home';
 		
 		$this->load->view('main', $data);
+	}
+	
+	function module($module, $controller, $page = '')
+	{	
+		Modules::run('backoffice/login/check_permission');
+		echo Modules::run($module.'/'.$controller.'/'.$page);
 	}
 	
 	function dashboard()

@@ -20,7 +20,7 @@ class User_model extends CI_Model
 		$this->fields['id'] = 'id_member';
 		$this->fields['username'] = 'username';
 		$this->fields['password'] = 'password';
-		$this->table = 'user';
+		$this->table = 'backoffice_user';
 	}
 	
 	// ------------------------------------------------------------------------

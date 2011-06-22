@@ -3,7 +3,7 @@
 # Server version:               5.5.8
 # Server OS:                    Win32
 # HeidiSQL version:             6.0.0.3881
-# Date/time:                    2011-06-20 13:02:00
+# Date/time:                    2011-06-22 23:26:53
 # --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -15,6 +15,21 @@
 DROP DATABASE IF EXISTS `iic_framework`;
 CREATE DATABASE IF NOT EXISTS `iic_framework` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `iic_framework`;
+
+
+# Dumping structure for table iic_framework.backoffice_module
+DROP TABLE IF EXISTS `backoffice_module`;
+CREATE TABLE IF NOT EXISTS `backoffice_module` (
+  `id_module` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `is_enable` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '0 = disable, 1 = enable',
+  PRIMARY KEY (`id_module`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+# Dumping data for table iic_framework.backoffice_module: ~0 rows (approximately)
+/*!40000 ALTER TABLE `backoffice_module` DISABLE KEYS */;
+/*!40000 ALTER TABLE `backoffice_module` ENABLE KEYS */;
 
 
 # Dumping structure for table iic_framework.backoffice_theme
@@ -55,57 +70,9 @@ INSERT INTO `backoffice_theme` (`id_theme`, `theme_name`, `header_bg_color`, `he
 /*!40000 ALTER TABLE `backoffice_theme` ENABLE KEYS */;
 
 
-# Dumping structure for table iic_framework.category
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE IF NOT EXISTS `category` (
-  `id_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_parent` int(10) unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `is_enable` tinyint(1) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-# Dumping data for table iic_framework.category: ~0 rows (approximately)
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
-
-
-# Dumping structure for table iic_framework.category_item
-DROP TABLE IF EXISTS `category_item`;
-CREATE TABLE IF NOT EXISTS `category_item` (
-  `id_category` int(10) unsigned NOT NULL,
-  `id_item` int(10) unsigned NOT NULL,
-  `id_item_type` tinyint(3) unsigned NOT NULL,
-  KEY `id_item_type` (`id_item_type`),
-  CONSTRAINT `category_item_ibfk_1` FOREIGN KEY (`id_item_type`) REFERENCES `category_item_type` (`id_item_type`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-# Dumping data for table iic_framework.category_item: ~0 rows (approximately)
-/*!40000 ALTER TABLE `category_item` DISABLE KEYS */;
-/*!40000 ALTER TABLE `category_item` ENABLE KEYS */;
-
-
-# Dumping structure for table iic_framework.category_item_type
-DROP TABLE IF EXISTS `category_item_type`;
-CREATE TABLE IF NOT EXISTS `category_item_type` (
-  `id_item_type` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `type_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id_item_type`),
-  KEY `id_item_type` (`id_item_type`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-# Dumping data for table iic_framework.category_item_type: ~2 rows (approximately)
-/*!40000 ALTER TABLE `category_item_type` DISABLE KEYS */;
-INSERT INTO `category_item_type` (`id_item_type`, `type_name`) VALUES
-	(1, 'story'),
-	(2, 'bug');
-/*!40000 ALTER TABLE `category_item_type` ENABLE KEYS */;
-
-
-# Dumping structure for table iic_framework.user
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
+# Dumping structure for table iic_framework.backoffice_user
+DROP TABLE IF EXISTS `backoffice_user`;
+CREATE TABLE IF NOT EXISTS `backoffice_user` (
   `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -113,11 +80,109 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-# Dumping data for table iic_framework.user: ~1 rows (approximately)
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id_user`, `name`, `username`, `password`) VALUES
+# Dumping data for table iic_framework.backoffice_user: ~1 rows (approximately)
+/*!40000 ALTER TABLE `backoffice_user` DISABLE KEYS */;
+INSERT INTO `backoffice_user` (`id_user`, `name`, `username`, `password`) VALUES
 	(1, 'Administrator', 'admin', 'admin');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+/*!40000 ALTER TABLE `backoffice_user` ENABLE KEYS */;
+
+
+# Dumping structure for table iic_framework.backoffice_user_permission
+DROP TABLE IF EXISTS `backoffice_user_permission`;
+CREATE TABLE IF NOT EXISTS `backoffice_user_permission` (
+  `id_user` int(10) unsigned NOT NULL,
+  `id_module` int(10) unsigned NOT NULL,
+  `read` tinyint(1) NOT NULL DEFAULT '1',
+  `create` tinyint(1) NOT NULL DEFAULT '1',
+  `update` tinyint(1) NOT NULL DEFAULT '1',
+  `delete` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_user`,`id_module`),
+  KEY `FK__backoffice_module` (`id_module`),
+  CONSTRAINT `FK__backoffice_user` FOREIGN KEY (`id_user`) REFERENCES `backoffice_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK__backoffice_module` FOREIGN KEY (`id_module`) REFERENCES `backoffice_module` (`id_module`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+# Dumping data for table iic_framework.backoffice_user_permission: ~0 rows (approximately)
+/*!40000 ALTER TABLE `backoffice_user_permission` DISABLE KEYS */;
+/*!40000 ALTER TABLE `backoffice_user_permission` ENABLE KEYS */;
+
+
+# Dumping structure for table iic_framework.catalog_category
+DROP TABLE IF EXISTS `catalog_category`;
+CREATE TABLE IF NOT EXISTS `catalog_category` (
+  `id_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_parent` int(10) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `is_enable` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `ordering` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`id_category`,`id_parent`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+# Dumping data for table iic_framework.catalog_category: ~9 rows (approximately)
+/*!40000 ALTER TABLE `catalog_category` DISABLE KEYS */;
+INSERT INTO `catalog_category` (`id_category`, `id_parent`, `name`, `description`, `is_enable`, `ordering`) VALUES
+	(1, 0, 'Category 1', '', 1, 1),
+	(13, 0, 'Category 2', 'naja อิอิ\n', 0, 2),
+	(14, 13, 'Cat 2-1', '', 1, 1),
+	(15, 0, 'Category 3', '', 1, 3),
+	(16, 0, '4', '', 0, 0),
+	(17, 0, '5', '', 1, 0),
+	(18, 0, '6', '', 1, 0),
+	(19, 0, '7', '', 0, 0),
+	(20, 1, '1.1', '', 1, 0);
+/*!40000 ALTER TABLE `catalog_category` ENABLE KEYS */;
+
+
+# Dumping structure for table iic_framework.catalog_category_item
+DROP TABLE IF EXISTS `catalog_category_item`;
+CREATE TABLE IF NOT EXISTS `catalog_category_item` (
+  `id_category` int(10) unsigned NOT NULL,
+  `id_item` int(10) unsigned NOT NULL,
+  `id_item_type` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`id_category`,`id_item`),
+  KEY `id_item_type` (`id_item_type`),
+  CONSTRAINT `FK_catalog_category_item_catalog_category_item_type` FOREIGN KEY (`id_item_type`) REFERENCES `catalog_category_item_type` (`id_item_type`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_catalog_category_item_catalog_category` FOREIGN KEY (`id_category`) REFERENCES `catalog_category` (`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+# Dumping data for table iic_framework.catalog_category_item: ~0 rows (approximately)
+/*!40000 ALTER TABLE `catalog_category_item` DISABLE KEYS */;
+/*!40000 ALTER TABLE `catalog_category_item` ENABLE KEYS */;
+
+
+# Dumping structure for table iic_framework.catalog_category_item_type
+DROP TABLE IF EXISTS `catalog_category_item_type`;
+CREATE TABLE IF NOT EXISTS `catalog_category_item_type` (
+  `id_item_type` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id_item_type`),
+  KEY `id_item_type` (`id_item_type`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+# Dumping data for table iic_framework.catalog_category_item_type: ~2 rows (approximately)
+/*!40000 ALTER TABLE `catalog_category_item_type` DISABLE KEYS */;
+INSERT INTO `catalog_category_item_type` (`id_item_type`, `type_name`) VALUES
+	(1, 'story'),
+	(2, 'bug');
+/*!40000 ALTER TABLE `catalog_category_item_type` ENABLE KEYS */;
+
+
+# Dumping structure for table iic_framework.catalog_item
+DROP TABLE IF EXISTS `catalog_item`;
+CREATE TABLE IF NOT EXISTS `catalog_item` (
+  `id_item` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `price` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_enable` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`id_item`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+# Dumping data for table iic_framework.catalog_item: ~0 rows (approximately)
+/*!40000 ALTER TABLE `catalog_item` DISABLE KEYS */;
+/*!40000 ALTER TABLE `catalog_item` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

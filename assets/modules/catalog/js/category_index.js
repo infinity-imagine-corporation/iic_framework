@@ -13,7 +13,7 @@ $('#quick_access').change(function(){
 function list_category(id_parent)
 {
 	$('#preload').slideDown('fast');
-	var url = URL_SERVER + 'backoffice/category/get_category_list/'+id_parent;
+	var url = URL_SERVER + 'catalog/category/get_category_list/'+id_parent;
 	var data = 'id_parent = ' + id_parent;
 	
 	$.post(url, data, function(response)
@@ -23,12 +23,16 @@ function list_category(id_parent)
 			 var list = '';
 
 			 $.each(response.data, function(i, data) {
+				 
+				 var status = (data['is_enable'] == 0) ? 'Disable' : 'Enable';
+				 var status_color = (data['is_enable'] == 0) ? 'red' : 'green';
+				 
 				list += '<tr rel="'+data['id_category']+'">'+
 							'<td><input type="checkbox" id="id_'+data['id_category']+'" name="id['+data['id_category']+']" value="'+data['category']+'" /></td>'+
-							'<td>'+data['name']+'</td>'+
-							'<td>'+data['description']+'</td>'+
-							'<td>'+data['is_enable']+'</td>'+
-							'<td></td>'+
+							'<td>' + data['name'] + '</td>' +
+							'<td>' + data['description']  +'</td>' +
+							'<td class="center ' + status_color + '">' + status + '</td>' +
+							'<td></td>' +
 						'</tr>';
 			  });
 				
@@ -46,7 +50,7 @@ function list_category(id_parent)
 
 function get_category_selectbox_option(id_parent)
 {
-	var url = URL_SERVER + 'backoffice/category/get_category_selectbox_option/' + id_parent;
+	var url = URL_SERVER + 'catalog/category/get_category_selectbox_option/' + id_parent;
 	
 	$.post(url, function(response)
 	{
@@ -85,23 +89,20 @@ $( ".button_move_down" ).button({
 /* Button Add */
 
 $('.button_add').click(function(){
-	if($('#dialog_add').html() == '')
-	{
-		var url = URL_SERVER + 'backoffice/category/add_category_form';
-		$.post(url, function(response){
-			$('#dialog_add').html('').html(response);
-		})
-		.error(function() { alert('Error: ' + url); });
-	}
-	$('#dialog_add').dialog('open');
+	
+	var url = URL_SERVER + 'catalog/category/add_category_form';
+	$.post(url, function(response){
+		$('#dialog_add').html(response).dialog('open');
+	})
+	.error(function() { alert('Error: ' + url); });
 });
 
 /* Button Edit */
 	
-$('.table tr').live('click', function(){
+$('.table td:not(td:has(input))').live('click', function(){
 	
-	id_category = $(this).attr('rel');
-	var url = URL_SERVER + 'backoffice/category/get_category_form/' + id_category;
+	id_category = $(this).parent().attr('rel');
+	var url = URL_SERVER + 'catalog/category/get_category_form/' + id_category;
 	
 	$.post(url, function(response){
 		$('#dialog_edit').html(response).dialog('open');
@@ -123,15 +124,17 @@ $('#dialog_add').dialog({
 	modal		: true,
 	buttons		: {
 					Save: function() {
-						var url = URL_SERVER + 'backoffice/category/add_category';
+						
+						var id_parent = $('#dialog_add').find('#id_parent').val();
+						var url = URL_SERVER + 'catalog/category/add_category';
 						var data = {
-							'id_parent'		: $('#id_category').val(),
-							'name' 			: $('#name').val(),
-							'description' 	: $('#description').val(),
-							'is_enable' 	: $('input:radio[name=is_enable]:checked').val()
+							'id_parent'		: id_parent,
+							'name' 			: $('#dialog_add').find('#name').val(),
+							'description' 	: $('#dialog_add').find('#description').val(),
+							'is_enable' 	: $('#dialog_add').find('input:radio[name=is_enable]:checked').val()
 						};
 						$.post(url, data, function(response){
-							list_category();
+							list_category(id_parent);
 						})
 						.success(function() { $('#dialog_add').dialog('close'); })
 						.error(function() { alert('Error'); });
@@ -145,22 +148,19 @@ $('#dialog_edit').dialog({
 	resizable	: false,
 	width		: 500,
 	height		: 425,
-	modal		: false,
+	modal		: true,
 	buttons		: {
 					Save: function() {
 						
-						var id_category = $('#id_category').val();
-						var url = URL_SERVER + 'backoffice/category/edit_category/' + id_category;
-						var id_parent = ($('#id_category').val() == $('#id_parent').val()) ? 0 : $('#id_parent').val();
+						var id_category = $('#dialog_edit').find('#id_category').val();
+						var url = URL_SERVER + 'catalog/category/edit_category/' + id_category;
 						var data = {
 							'id_category'	: id_category,
-							'id_parent'		: id_parent,
-							'name' 			: $('#name').val(),
-							'description' 	: $('#description').val(),
-							'is_enable' 	: $('input:radio[name=is_enable]:checked').val()
+							'id_parent'		: $('#dialog_edit').find('#id_parent').val(),
+							'name' 			: $('#dialog_edit').find('#name').val(),
+							'description' 	: $('#dialog_edit').find('#description').val(),
+							'is_enable' 	: $('#dialog_edit').find('input:radio[name=is_enable]:checked').val()
 						};
-						
-						//alert(data['id_category']);
 						
 						$.post(url, data, function(response){
 							list_category(data['id_parent']);
