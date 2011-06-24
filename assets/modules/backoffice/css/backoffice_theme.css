@@ -58,9 +58,10 @@
 
 .tr_bgcolor1 { background-color: #FFFFFF; }
 
-.tr_bgcolor2 { background-color: #F0F0F0; }
+.table tbody tr:nth-child(even) { background-color: #E8F4FB; }
 
-.tr_rollover_color { background-color: #E4EEFF; }
+.table tbody tr:hover { background-color: #FFFFCC; }
+.table tbody tr.checked { background-color: #B5DDF2; }
 
 .table th
 {
@@ -94,8 +95,6 @@
 	padding: 0px;
 	list-style: none;
 }
-
-.table td .button_edit { color: #09f; }
 
 /*------------------------------------------------------------*/
 /* Footer */

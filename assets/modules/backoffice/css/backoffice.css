@@ -182,7 +182,7 @@ body#Category .menu_main li#Category a
 
 #content_top { margin-bottom: 15px; }
 
-#content_top  a { float: right; }
+#content_top  a, #content_top  button { float: right; }
 
 #search_section
 {
@@ -211,6 +211,16 @@ body#Category .menu_main li#Category a
 	-webkit-border-radius: 5px;
 }
 
+.dialog form 
+{ 
+	padding: 0px 10px;
+	margin-left: -10px;
+}
+
+.dialog input[type=text], .dialog select, .dialog textarea
+{
+	width: 100%	
+}
 
 /*------------------------------------------------------------*/
 /* End */

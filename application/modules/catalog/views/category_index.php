@@ -1,5 +1,5 @@
 <div id="content_top">
-	<a href="#" class="button_add">New Category</a>
+	<button class="button_add">New Category</button>
 	<div id="search_section">
 		<label class="inline" for="quick_access">Quick access:</label>
 		<select name="quick_access" id="quick_access"></select>
@@ -24,11 +24,16 @@
 	</tbody>
 </table>
 <div id="content_bottom">
-	<?php echo anchor('backoffice/category/delete', 'Delete', 'class="button_delete"') ?>
+	<button class="button_delete">Delete</button>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<?php echo anchor('backoffice/category/move_up', 'Move Up', 'class="button_move_up"') ?> 
-	<?php echo anchor('backoffice/category/move_down', 'Move Down', 'class="button_move_down"') ?> 
+	<button class="button_move_up" rel="up">Move Up</button>
+	<button class="button_move_down" rel="down">Move Down</button>
 </div>
 
+<div id="dialog_alert" class="dialog"></div>
 <div id="dialog_add" class="dialog"></div>
 <div id="dialog_edit" class="dialog"></div>
+<div id="dialog_delete" class="dialog">
+	<p><span class="ui-icon ui-icon-alert"></span>
+	These items will be permanently deleted and cannot be recovered. Are you sure?</p>
+</div>

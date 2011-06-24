@@ -15,18 +15,58 @@ class Category_model extends CI_Model
 	
 	// ------------------------------------------------------------------------
 	
+	/**
+	 * Get last ordering + 1 in category
+	 *
+	 * @access	public
+	 * @param 	int		$id_parent		
+	 * @return	int
+	 */
+	
+	function get_new_ordering($id_parent)
+	{
+		$_sql = 'SELECT MAX(ordering)+1 as ordering
+				 FROM '.$this->table_category.'
+				 WHERE id_parent = '.$id_parent;
+		$_query = $this->db->query($_sql);
+		$_data = $_query->row_array();
+		$_ordering = ($_data['ordering'] == '') ? 1 : $_data['ordering'];
+		
+		return $_ordering;
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Create new category
+	 *
+	 * @access	public
+	 * @param 	array		$data		
+	 * @return	bool
+	 */
+	
 	function add_category($data)
 	{
 		$this->db->insert($this->table_category, $data);
+		
 		return TRUE;
 	}
 	
 	// ------------------------------------------------------------------------
 	
+	/**
+	 * Update category content
+	 *
+	 * @access	public
+	 * @param 	array		$data		
+	 * @return	bool
+	 */
+	
 	function edit_category($data)
-	{
+	{		
 		$this->db->where('id_category', $data['id_category']);
 		$this->db->update($this->table_category, $data);
+		
 		return TRUE;
 	}
 	
@@ -35,6 +75,7 @@ class Category_model extends CI_Model
 	function add_category_item($data)
 	{
 		$this->db->insert($this->table_category_item, $data);
+		
 		return TRUE;
 	}
 	
@@ -44,6 +85,7 @@ class Category_model extends CI_Model
 	{
 		$this->db->where($old_category);
 		$this->db->update($this->table_category_item, $new_category);
+		
 		return TRUE;
 	}
 	
@@ -59,9 +101,12 @@ class Category_model extends CI_Model
 	
 	function get_detail($id_category)
 	{
-		$_sql = 'SELECT * FROM '.$this->table_category.' WHERE id_category = "' . $id_category . '"';
-		$_result = $this->db->query($_sql);
-		return $_result->row_array();
+		$_sql = 'SELECT * 
+				 FROM '.$this->table_category.' 
+				 WHERE id_category = "' . $id_category . '"';
+		$_query = $this->db->query($_sql);
+		
+		return $_query->row_array();
 	}
 	
 	// ------------------------------------------------------------------------
@@ -84,8 +129,9 @@ class Category_model extends CI_Model
 				 ON '.$this->table_category.'.id_category = '.$this->table_category_item.'.id_category
 				 
 				 WHERE id_item = "' . $id_item . '" AND id_item_type = "' . $id_item_type . '"';
-		$_result = $this->db->query($_sql);
-		return $_result->row_array();
+		$_query = $this->db->query($_sql);
+		
+		return $_query->row_array();
 	}
 	
 	// ------------------------------------------------------------------------
@@ -103,27 +149,27 @@ class Category_model extends CI_Model
 		$_sql = 'SELECT *
 				 FROM '.$this->table_category.' 
 				 WHERE id_parent = ' . $id_parent;
-		$_result = $this->db->query($_sql);
+		$_query = $this->db->query($_sql);
 		
 		$_category_list = array();
 		
-		if($_result->num_rows() > 0)
+		if($_query->num_rows() > 0)
 		{
-			foreach($_result->result_array() as $_data)
+			foreach($_query->result_array() as $_data)
 			{
 				// count category
 				$_sql_category = 'SELECT *
 								  FROM '.$this->table_category.' 
 								  WHERE id_parent = ' . $_data['id_category'];
-				$_result_category = $this->db->query($_sql_category);
-				$_data['total_category'] = $_result_category->num_rows();
+				$_query_category = $this->db->query($_sql_category);
+				$_data['total_category'] = $_queryt_category->num_rows();
 				
 				// count item
 				$_sql_item = 'SELECT *
 							  FROM '.$this->table_category_item.'
 							  WHERE id_category = ' .$_data['id_category'];
-				$_result_item = $this->db->query($_sql_item);
-				$_data['total_item'] = $_result_item->num_rows();
+				$_query_item = $this->db->query($_sql_item);
+				$_data['total_item'] = $_query_item->num_rows();
 				
 				
 				$_data['category'] = $this->get_category_and_item($_data['id_category']);
@@ -150,7 +196,8 @@ class Category_model extends CI_Model
 	{
 		$_sql = 'SELECT *
 				 FROM '.$this->table_category.' 
-				 WHERE id_parent = ' . $id_parent;
+				 WHERE id_parent = ' . $id_parent .'
+				 ORDER BY ordering';
 		$_query = $this->db->query($_sql);
 		
 		$_category_list = array();
@@ -181,7 +228,8 @@ class Category_model extends CI_Model
 	{
 		$_sql = 'SELECT *
 				 FROM '.$this->table_category.' 
-				 WHERE id_parent = ' . $id_parent;
+				 WHERE id_parent = '.$id_parent.'
+				 ORDER BY ordering';
 		$_query = $this->db->query($_sql);
 		
 		$_category_list = array();
@@ -214,15 +262,15 @@ class Category_model extends CI_Model
 	function get_category_item($id_category)
 	{
 		$_sql = 'SELECT '.$this->table_category_item.'.id_item, name, priority, important, story.release_in_version, status_name
-				FROM '.$this->table_category_item.'
+				 FROM '.$this->table_category_item.'
 				
-			 	LEFT JOIN '.$this->table_item.' 
-				ON category_item.id_item = story.id_story
+			 	 LEFT JOIN '.$this->table_item.' 
+				 ON category_item.id_item = story.id_story
 				
-			 	WHERE id_category = ' . $id_category;
-		$_result = $this->db->query($_sql);
+			 	 WHERE id_category = ' . $id_category;
+		$_query = $this->db->query($_sql);
 				 
-		return $_result->result_array();
+		return $_query->result_array();
 	}
 	
 	// ------------------------------------------------------------------------

@@ -68,8 +68,9 @@ class Login extends MX_Controller
 		$login_status = $this->session->userdata('login_status');
 		if(!isset($login_status) || $login_status != TRUE)
 		{
-			$data['title'] = 'Access denied';
-			$data['message'] = '<li class="red">You don\'t have permission to access this page.</li>';
+			$data['title'] = 'Security System';
+			$data['message'] = '<li>You don\'t have permission to access this page.</li>
+								<li>or your session has expire, please login again.</li>';
 			$data['url_target'] = 'backoffice/login';
 			$data['button_text'] = '';
 			$this->load->view('iic_report.php', $data);	
@@ -89,8 +90,8 @@ class Login extends MX_Controller
 	{
 		$this->session->sess_destroy();
 		
-		$data['title'] = '';
-		$data['message'] = '<li class="green">Logout success</li>';
+		$data['title'] = 'Security System';
+		$data['message'] = '<li >Logout success</li>';
 		$data['url_target'] = 'backoffice/login';
 		$data['button_text'] = '';
 		$this->load->view('iic_report.php', $data);	

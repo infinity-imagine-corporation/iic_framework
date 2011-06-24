@@ -1,0 +1,10 @@
+.dialog > p
+{
+	margin: 10px 0 0 0;
+}
+
+.dialog > p > span
+{
+	float:left;
+	margin: 4px 10px 20px 0;
+}

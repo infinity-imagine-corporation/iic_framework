@@ -1,18 +1,7 @@
-<style type="text/css">
-.dialog form 
-{ 
-	padding: 0px 10px;
-	margin-left: -10px;
-}
-.dialog input[type=text], .dialog select, .dialog textarea
-{
-	width: 100%	
-}
-</style>
-
 <form>
 	<label for="id_parent">Parent : </label>
 	<?php echo Modules::run('catalog/category/get_parent_selectbox', $id_parent); ?>
+	<input id="id_parent_old" name="id_parent_old" type="hidden" value="<?php echo $id_parent ?>" />
 	<label for="name">Name : </label>
 	<input id="name" name="name" type="text" value="<?php echo $name ?>" />
 	<label for="description">Description : </label>

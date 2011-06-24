@@ -10,6 +10,9 @@ class Category extends MX_Controller
 		
 		// Check permission
 		Modules::run('backoffice/login/check_permission');
+		
+		// Load model
+		$this->load->model('category_model');
 	}
 	
 	// ------------------------------------------------------------------------
@@ -22,7 +25,6 @@ class Category extends MX_Controller
 	  
 	function index()
 	{
-		$this->load->model('category_model');
 		$data['category'] = $this->category_model->get_category();
 		
 		$data['th'] = array();
@@ -54,22 +56,7 @@ class Category extends MX_Controller
 	  
 	function get_category_list($id_parent = 0)
 	{		
-		$_result['status'] = 1;
-		
-		$this->load->model('category_model');
-		$_category_list = $this->category_model->get_category($id_parent);
-		
-		if($_category_list)
-		{	
-			$_result['data'] = $_category_list;
-			echo json_encode($_result);
-		}
-		else
-		{
-			$_result['status'] = 0;
-			echo json_encode($_result);	
-		}
-		
+		echo json_encode($this->category_model->get_category($id_parent));	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -88,18 +75,28 @@ class Category extends MX_Controller
 	{
 		$_option = '';
 		
-		//echo count($category);
-		
 		for($loop = 0; $loop < count($category); $loop++)
 		{
 			$_selected = ($category[$loop]['id_category'] == $selected) ? 'selected' : '';
-			$_option .= '<option value="' .  $category[$loop]['id_category'] . '" ' . $_selected . '>. . ' . $space . $category[$loop]['name'] . '</option>';
+			$_option .= '<option value="' .  $category[$loop]['id_category'] . '" ' . $_selected . '>' . $space . '- -&raquo; </span>' .$category[$loop]['name'] . '</option>';
 			
-			$_space_new = $space . '. . ';
+			$_space_new = $space . '- - ';
 			$_option .= $this->get_category_select_option($category[$loop]['category'], $selected, $_space_new);
 		}
 		
 		return $_option;
+	}
+	
+	// ------------------------------------------------------------------------
+	  
+	function get_category_selectbox_option($selected = NULL)
+	{		
+		$_category_list = $this->category_model->get_all_category();
+		
+		$_option = '<option value="0">Root</option>';
+		$_option .= $this->get_category_select_option($_category_list, $selected);
+		
+		echo $_option;
 	}
 	
 	// ------------------------------------------------------------------------
@@ -114,10 +111,7 @@ class Category extends MX_Controller
 	  
 	function get_category_selectbox($selected = NULL)
 	{		
-		$this->load->model('category_model');
 		$_category_list = $this->category_model->get_all_category();
-		
-		//$_category_list = array();
 		
 		$_selectbox = '<select id="id_category" name="id_category">';
 		$_selectbox .= '<option value="0">Root</option>';
@@ -127,25 +121,11 @@ class Category extends MX_Controller
 		return $_selectbox;
 	}
 	
-	// ------------------------------------------------------------------------
-	  
-	function get_category_selectbox_option($selected = NULL)
-	{		
-		$this->load->model('category_model');
-		$_category_list = $this->category_model->get_all_category();
-		
-		$_selectbox = '<option value="0">Root</option>';
-		$_selectbox .= $this->get_category_select_option($_category_list, $selected);
-		
-		echo $_selectbox;
-	}
-	
 	
 	// ------------------------------------------------------------------------
 	
 	function get_parent_selectbox($selected = NULL)
 	{
-		$this->load->model('category_model');
 		$_category_list = $this->category_model->get_all_category();
 		
 		$_select = ($selected == 0) ? 'selected' : '';
@@ -176,28 +156,60 @@ class Category extends MX_Controller
 	
 	function get_category_form($id_category)
 	{
-		$this->load->model('category_model');
 		$data = $this->category_model->get_detail($id_category);	
-		
 		$this->load->view('category_form', $data);	
 	}
 	
 	// ------------------------------------------------------------------------
 	
 	function add_category()
-	{
-		$this->load->model('category_model');
-		$this->category_model->add_category($this->input->post());
+	{		
+		$data = $this->input->post();
+		
+		// Get lastet ordering
+		$data['ordering'] = $this->category_model->get_new_ordering($data['id_parent']);
+				 
+		$this->category_model->add_category($data);
 	}
 	
 	// ------------------------------------------------------------------------
 	
-	function edit_category($id_category)
+	function edit_category()
 	{
-		$this->load->model('category_model');
-		$this->category_model->edit_category($this->input->post());
+		$data = $this->input->post();
+		if($data['id_parent_old'] != $data['id_parent'])
+		{
+			// Get lastet ordering
+			$data['ordering'] = $this->category_model->get_new_ordering($data['id_parent']);
+		}
+		
+		unset($data['id_parent_old']);
+				 
+		$this->category_model->edit_category($data);
 	}
 	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Move category 
+	 *
+	 * @access	public
+	 */
+	 
+	function move_category()
+	{
+		$data = array(
+						'id_category'	=> $this->input->post('id_1'),
+						'ordering'		=> $this->input->post('ordering_2')
+					 );
+		echo $this->category_model->edit_category($data);
+		
+		$data = array(
+						'id_category'	=> $this->input->post('id_2'),
+						'ordering'		=> $this->input->post('ordering_1')
+					 );
+		echo $this->category_model->edit_category($data);
+	}
 	// ------------------------------------------------------------------------
 }
 
