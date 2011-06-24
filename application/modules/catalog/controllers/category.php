@@ -202,13 +202,25 @@ class Category extends MX_Controller
 						'id_category'	=> $this->input->post('id_1'),
 						'ordering'		=> $this->input->post('ordering_2')
 					 );
-		echo $this->category_model->edit_category($data);
+		$this->category_model->edit_category($data);
 		
 		$data = array(
 						'id_category'	=> $this->input->post('id_2'),
 						'ordering'		=> $this->input->post('ordering_1')
 					 );
-		echo $this->category_model->edit_category($data);
+		$this->category_model->edit_category($data);
+	}
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Delete category 
+	 *
+	 * @access	public
+	 */
+	 
+	function delete_category()
+	{
+		$this->category_model->delete_category($this->input->post('id'));
 	}
 	// ------------------------------------------------------------------------
 }

@@ -145,7 +145,7 @@ $('.button_delete').click(function(){
 	}
 	else
 	{
-		var msg = '<p><span class="ui-icon ui-icon-alert"></span>Please select at least 1 row.</p>';
+		var msg = '<p><span class="ui-icon ui-icon-alert"></span>Please select at least 1 item.</p>';
 		$('#dialog_alert').html(msg).dialog('open');
 	}
 });
@@ -198,12 +198,12 @@ $(".button_move_up, .button_move_down").click(function(){
 	}
 	else if(checked > 1)
 	{
-		var msg = '<p><span class="ui-icon ui-icon-alert"></span>Please select only 1 row.</p>';
+		var msg = '<p><span class="ui-icon ui-icon-alert"></span>Please select only 1 item.</p>';
 		$('#dialog_alert').html(msg).dialog('open');
 	}
 	else
 	{
-		var msg = '<p><span class="ui-icon ui-icon-alert"></span>Please select at least 1 row.</p>';
+		var msg = '<p><span class="ui-icon ui-icon-alert"></span>Please select at least 1 item.</p>';
 		$('#dialog_alert').html(msg).dialog('open');
 	}
 	
@@ -295,16 +295,15 @@ $('#dialog_delete').dialog({
 	buttons		: {
 					Delete: function() 
 					{
+						var id = new Array();
+						$('tbody').find('input[type=checkbox]:checked').each(function(index) {
+							id.push($(this).val());
+						});
+						//alert('Delete: ' + id);
 						
-						var url = URL_SERVER + 'catalog/category/edit_category/';
-						var dialog = $('#dialog_edit');
+						var url = URL_SERVER + 'catalog/category/delete_category/';
 						var data = {
-							'id_category'	: dialog.find('#id_category').val(),
-							'id_parent'		: dialog.find('#id_parent').val(),
-							'id_parent_old'	: dialog.find('#id_parent_old').val(),
-							'name' 			: dialog.find('#name').val(),
-							'description' 	: dialog.find('#description').val(),
-							'is_enable' 	: dialog.find('input:radio[name=is_enable]:checked').val()
+							'id'	: id
 						};
 						
 						$.post(url, data, function(response){

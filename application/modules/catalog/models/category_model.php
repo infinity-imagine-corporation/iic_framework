@@ -72,6 +72,27 @@ class Category_model extends CI_Model
 	
 	// ------------------------------------------------------------------------
 	
+	/**
+	 * Delete category
+	 *
+	 * @access	public
+	 * @param 	array		$id		
+	 * @return	bool
+	 */
+	
+	function delete_category($id)
+	{		
+		for($loop = 0; $loop < count($id); $loop++)
+		{
+			$this->db->where('id_category', $id[$loop]);
+			$this->db->delete($this->table_category);
+		}
+		
+		return TRUE;
+	}
+	
+	// ------------------------------------------------------------------------
+	
 	function add_category_item($data)
 	{
 		$this->db->insert($this->table_category_item, $data);
