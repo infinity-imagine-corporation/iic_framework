@@ -76,6 +76,17 @@ function get_category_selectbox_option(id_parent)
 /* Checkbox */
 /*------------------------------------------------------------*/
 
+$('#select_all').toggle(
+	function()
+	{
+		$('tbody').find('input[type=checkbox]').attr('checked', 'checked');
+	},
+	function()
+	{
+		$('tbody').find('input[type=checkbox]').removeAttr('checked');
+	}
+);
+
 $('tbody').find('input[type=checkbox]').live('click', function()
 {
 	$(this).parent().parent().toggleClass('checked');	
@@ -114,7 +125,9 @@ $('.button_add').click(function(){
 	
 	var url = URL_SERVER + 'catalog/category/add_category_form';
 	$.post(url, function(response){
-		$('#dialog_add').html(response).dialog('open');
+		
+		
+		$('#dialog_add').html(response).dialog('open').find('#id_parent').val($('#quick_access').val())
 	})
 	.error(function() { alert('Error: ' + url); });
 });
@@ -247,7 +260,7 @@ $('#dialog_add').dialog({
 							'is_enable' 	: dialog.find('input:radio[name=is_enable]:checked').val()
 						};
 						$.post(url, data, function(response){
-							list_category(id_parent);
+							list_category(data['id_parent']);
 						})
 						.success(function() { $('#dialog_add').dialog('close'); })
 						.error(function() { alert('Error'); });

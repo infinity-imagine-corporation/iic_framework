@@ -28,7 +28,7 @@ class Category extends MX_Controller
 		$data['category'] = $this->category_model->get_category();
 		
 		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'',			'label'=>'&nbsp;'));
+		array_push($data['th'], array('axis'=>'',			'label'=>'<input type="checkbox" id="select_all" />'));
 		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
 		array_push($data['th'], array('axis'=>'description','label'=>'Description'));
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Status'));
