@@ -1,7 +1,7 @@
 <div id="content_top">
 	<button class="button_add">New Category</button>
 	<div id="search_section">
-		<label class="inline" for="quick_access">Quick access:</label>
+		<label class="inline" for="quick_access">Category:</label>
 		<select name="quick_access" id="quick_access"></select>
 	</div>
 	
@@ -25,7 +25,6 @@
 </table>
 <div id="content_bottom">
 	<button class="button_delete">Delete</button>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<button class="button_move_up" rel="up">Move Up</button>
 	<button class="button_move_down" rel="down">Move Down</button>
 </div>

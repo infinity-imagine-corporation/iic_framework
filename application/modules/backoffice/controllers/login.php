@@ -18,7 +18,7 @@ class Login extends MX_Controller
 		$data['title'] = 'Login';
 		$data['error_msg'] = $error_msg;
 		
-		$this->load->view('login', $data);	
+		$this->load->view('login_dialog', $data);	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -73,7 +73,7 @@ class Login extends MX_Controller
 								<li>or your session has expire, please login again.</li>';
 			$data['url_target'] = 'backoffice/login';
 			$data['button_text'] = '';
-			$this->load->view('iic_report.php', $data);	
+			$this->load->view('report_dialog.php', $data);	
 			exit();
 		}
 	}
@@ -94,7 +94,7 @@ class Login extends MX_Controller
 		$data['message'] = '<li >Logout success</li>';
 		$data['url_target'] = 'backoffice/login';
 		$data['button_text'] = '';
-		$this->load->view('iic_report.php', $data);	
+		$this->load->view('report_dialog.php', $data);
 	}
 	
 	// ------------------------------------------------------------------------

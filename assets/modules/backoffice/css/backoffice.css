@@ -214,10 +214,10 @@ body#Category .menu_main li#Category a
 .dialog form 
 { 
 	padding: 0px 10px;
-	margin-left: -10px;
+	margin-left: -13px;
 }
 
-.dialog input[type=text], .dialog select, .dialog textarea
+.dialog input[type=text], .dialog input[type=password], .dialog select, .dialog textarea
 {
 	width: 100%	
 }
