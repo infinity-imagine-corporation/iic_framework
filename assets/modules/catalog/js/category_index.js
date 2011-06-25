@@ -76,16 +76,16 @@ function get_category_selectbox_option(id_parent)
 /* Checkbox */
 /*------------------------------------------------------------*/
 
-$('#select_all').toggle(
-	function()
+$('#select_all').live('click', function(){
+	if($(this).attr('checked') == 'checked')
 	{
 		$('tbody').find('input[type=checkbox]').attr('checked', 'checked');
-	},
-	function()
+	}
+	else
 	{
 		$('tbody').find('input[type=checkbox]').removeAttr('checked');
 	}
-);
+});
 
 $('tbody').find('input[type=checkbox]').live('click', function()
 {
@@ -176,6 +176,7 @@ $(".button_move_up, .button_move_down").click(function(){
 		var action = ($(this).attr('rel') == 'up') ? 'up' : 'down';
 		var checkbox_1 = $('tbody').find('input[type=checkbox]:checked');
 		var index_1 = parseInt($('tbody').find('input[type=checkbox]').index(checkbox_1));
+		
 		if(action == 'up' && index_1 == 0)
 		{
 			alert('Top');
