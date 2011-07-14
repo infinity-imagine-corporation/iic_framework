@@ -3,19 +3,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $title ?></title>
+
+<!--Framework assets-->
 <?php echo css_asset('aristo/jquery-ui-1.8.7.custom.css', 'iic_tools'); ?>
 <?php echo css_asset('iic_layout.css', 'iic_tools'); ?>
 <?php echo css_asset('iic_style.css', 'iic_tools'); ?>
 
+<!--Backoffice assets-->
 <?php echo css_asset('backoffice.css', 'backoffice'); ?>
 <?php echo css_asset('backoffice_theme.css', 'backoffice'); ?>
+<?php echo js_asset('jquery-1.6.1.min.js', 'backoffice'); ?>
+<?php echo js_asset('jquery-ui-1.8.10.custom.min.js', 'backoffice'); ?>
+<?php echo js_asset('ajax.config.js', 'backoffice'); ?>
 
+<!--Module assets-->
 <?php echo css_asset($page.'.css', $module); ?>
-
-<?php echo js_asset('jquery-1.6.1.min.js'); ?>
-<?php echo js_asset('jquery-ui-1.8.10.custom.min.js'); ?>
-<?php echo js_asset('ajax.config.js'); ?>
-
 <?php echo js_asset($page.'.js', $module); ?>
 
 </head>
@@ -28,7 +30,7 @@
 		<h3><?php echo $theme['header_text_2'] ?></h3>
 	</div>-->
 	<div id="menu">
-		<?php $this->load->view('backoffice/menu_main'); ?>
+		<?php $this->load->view('backoffice/menu'); ?>
 	</div>
 	<div id="navigator">Home</div>
 	<div id="content">

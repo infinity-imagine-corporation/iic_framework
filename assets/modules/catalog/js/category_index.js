@@ -58,7 +58,7 @@ function list_category(id_parent, id_checked)
 		
 	}, "json")
 	.success(function() { $('#preload').slideUp('fast'); })
-	.error(function() { alert('Error'); });
+	.error(function() { alert('Error: Can\'t load ' + url); });
 }
 
 function get_category_selectbox_option(id_parent)

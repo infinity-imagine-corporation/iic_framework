@@ -71,7 +71,7 @@ class Login extends MX_Controller
 			$data['title'] = 'Security System';
 			$data['message'] = '<li>You don\'t have permission to access this page.</li>
 								<li>or your session has expire, please login again.</li>';
-			$data['url_target'] = 'backoffice/login';
+			$data['url_target'] = index_page().'/backoffice/login';
 			$data['button_text'] = '';
 			$this->load->view('report_dialog.php', $data);	
 			exit();
@@ -92,7 +92,7 @@ class Login extends MX_Controller
 		
 		$data['title'] = 'Security System';
 		$data['message'] = '<li >Logout success</li>';
-		$data['url_target'] = 'backoffice/login';
+		$data['url_target'] = index_page().'/backoffice/login';
 		$data['button_text'] = '';
 		$this->load->view('report_dialog.php', $data);
 	}
