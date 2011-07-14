@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $title ?></title>
 
-<!--Framework assets-->
+<!--iic_tools assets-->
 <?php echo css_asset('aristo/jquery-ui-1.8.7.custom.css', 'iic_tools'); ?>
 <?php echo css_asset('iic_layout.css', 'iic_tools'); ?>
 <?php echo css_asset('iic_style.css', 'iic_tools'); ?>
@@ -15,6 +15,7 @@
 <?php echo js_asset('jquery-1.6.1.min.js', 'backoffice'); ?>
 <?php echo js_asset('jquery-ui-1.8.10.custom.min.js', 'backoffice'); ?>
 <?php echo js_asset('ajax.config.js', 'backoffice'); ?>
+<?php echo js_asset('main.js', 'backoffice'); ?>
 
 <!--Module assets-->
 <?php echo css_asset($page.'.css', $module); ?>
@@ -23,22 +24,39 @@
 </head>
 <body id="<?php echo $title ?>">
 <div id="container">
-	<!--<div id="header">
+	<div id="header">
 		<h1><?php echo $title ?></h1>
 		<h2><?php echo $theme['header_text_1'] ?></h2>
 		<?php echo image_asset('line_gradient_300px.png', 'backoffice', array('alt'=>'line')); ?>
 		<h3><?php echo $theme['header_text_2'] ?></h3>
-	</div>-->
+	</div>
 	<div id="menu">
 		<?php $this->load->view('backoffice/menu'); ?>
 	</div>
-	<div id="navigator">Home</div>
+	<div id="navigator">
+		<div id="user_info">
+			<b>User: </b><?php echo $this->session->userdata('name'); ?> 
+			<b>Group: </b> 
+			<b>Role: </b>
+		</div>
+		<div id="address">Home</div>
+	</div>
+	
 	<div id="content">
 		<div id="preload">Loading...</div>
 		<?php $this->load->view($page); ?>
+		<div id="dialog_alert" class="dialog">
+			<p><span class="ui-icon ui-icon-alert"></span><span id="dialog_alert_message"></span></p>
+		</div>
+		<div id="dialog_create" class="dialog"></div>
+		<div id="dialog_update" class="dialog"></div>
+		<div id="dialog_delete" class="dialog">
+			<p><span class="ui-icon ui-icon-alert"></span>
+			These items will be permanently deleted and cannot be recovered. Are you sure?</p>
+		</div>
 	</div>
 	<div class="clear"></div>
-	<div id="footer"> <?php echo $theme['footer_text'] ?> </div>
+	<div id="footer"><?php echo $theme['footer_text'] ?></div>
 </div>
 </body>
 </html>

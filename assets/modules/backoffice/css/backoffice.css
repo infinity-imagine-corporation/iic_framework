@@ -9,6 +9,8 @@ body { background-color: #666; }
 	background-color: #FFF; 
 }
 
+.dialog { display: none; }
+
 /*------------------------------------------------------------*/
 /* Backoffice Main Menu */
 /*------------------------------------------------------------*/
@@ -169,6 +171,8 @@ body#Category .menu_main li#Category a
 	margin: 0px 15px	
 }
 
+#user_info { float: right; }
+
 /*------------------------------------------------------------*/
 /* Content */
 /*------------------------------------------------------------*/
@@ -221,6 +225,21 @@ body#Category .menu_main li#Category a
 {
 	width: 100%	
 }
+
+.dialog > p
+{
+	margin: 10px 0 0 0;
+}
+
+.dialog > p > span
+{
+	float:left;
+	margin: 4px 10px 20px 0;
+}
+
+#dialog_alert_message { float: none; }
+
+.button_delete { margin-right: 30px; }
 
 /*------------------------------------------------------------*/
 /* End */

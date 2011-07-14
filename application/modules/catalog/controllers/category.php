@@ -25,8 +25,17 @@ class Category extends MX_Controller
 	  
 	function index()
 	{
-		$data['category'] = $this->category_model->get_category();
+		// Load theme
+		$this->load->model('backoffice/theme_model');
+		$data['theme'] = $this->theme_model->get_theme();
 		
+		// Set module
+		$data['module']		= 'catalog';
+		$data['controller']	= 'category';
+		$data['page']		= 'category_index';
+		$data['title']		= 'Category';
+		
+		// Set table haed
 		$data['th'] = array();
 		array_push($data['th'], array('axis'=>'',			'label'=>'<input type="checkbox" id="select_all" />'));
 		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
@@ -34,13 +43,10 @@ class Category extends MX_Controller
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Status'));
 		array_push($data['th'], array('axis'=>'',			'label'=>'Action'));
 		
-		$this->load->model('backoffice/theme_model');
-		$data['theme'] = $this->theme_model->get_theme();
+		// Set other content
+		$data['category'] = $this->category_model->get_category();
 		
-		$data['module'] = 'catalog';
-		$data['page'] = 'category_index';
-		$data['title'] = 'Category';
-		
+		// Display
 		$this->load->view('backoffice/main', $data);
 	}
 	
@@ -143,12 +149,12 @@ class Category extends MX_Controller
 	function add_category_form()
 	{
 		$data = array(
-			'id_category'	=> 0,
-			'id_parent'		=> 0,
-			'name'			=> '',
-			'description'	=> '',
-			'is_enable'		=> 1
-		);
+						'id_category'	=> 0,
+						'id_parent'		=> 0,
+						'name'			=> '',
+						'description'	=> '',
+						'is_enable'		=> 1
+					 );
 		$this->load->view('category_form', $data);	
 	}
 	
@@ -177,6 +183,7 @@ class Category extends MX_Controller
 	function edit_category()
 	{
 		$data = $this->input->post();
+		
 		if($data['id_parent_old'] != $data['id_parent'])
 		{
 			// Get lastet ordering
@@ -210,6 +217,7 @@ class Category extends MX_Controller
 					 );
 		$this->category_model->edit_category($data);
 	}
+	
 	// ------------------------------------------------------------------------
 	
 	/**
@@ -222,6 +230,7 @@ class Category extends MX_Controller
 	{
 		$this->category_model->delete_category($this->input->post('id'));
 	}
+	
 	// ------------------------------------------------------------------------
 }
 
