@@ -1,12 +1,11 @@
 $(function() {	
 	
 	// ------------------------------------------------------------------------
+	// Checkbox
+	// ------------------------------------------------------------------------
 	
-	/**
-	 * Checkbox
-	 */	
+	/* Select all */
 	
-	// Select all
 	$('#select_all').live('click', function(){
 		if($(this).attr('checked') == 'checked')
 		{
@@ -18,23 +17,25 @@ $(function() {
 		}
 	});
 	
-	// Hilite selected row
+	/* Hilite selected row */
+	
 	$('tbody').find('input[type=checkbox]').live('click', function(){
 		$(this).parent().parent().toggleClass('checked');	
 	});	
-	
+		
+	// ------------------------------------------------------------------------
+	// Buttion - setup
 	// ------------------------------------------------------------------------
 	
-	/**
-	 * Buttion
-	 */	
+	/* Button create */
 	
-	// Setup button
 	$('.button_create').button({
 		icons: {
 			primary: "ui-icon-plusthick"
 		}
 	})
+	
+	/* Button delete */
 	
 	$(".button_delete").button({
 		icons: {
@@ -43,8 +44,11 @@ $(function() {
 	})
 	
 	// ------------------------------------------------------------------------
+	// Buttion - action
+	// ------------------------------------------------------------------------
 	
-	// Button create
+	/* Button create */
+	
 	$('.button_create').click(function(){
 		var form_uri = $(this).attr('rel');
 		var url = URL_SERVER + form_uri;
@@ -52,7 +56,8 @@ $(function() {
 		get_create_form(url);
 	});
 	
-	// Button update
+	/* Button update (when clik on table row) */
+	
 	$('.table td:not(td:has(input[type=checkbox]))').live('click', function(){
 		var form_uri = $('.button_create').attr('rel');
 		var id_content = $(this).parent().attr('rel');
@@ -61,7 +66,8 @@ $(function() {
 		get_update_form(url);
 	});
 	
-	// Button delete
+	/* Button delete */
+	
 	$('.button_delete').click(function(){
 		var checked = $('tbody').find('input[type=checkbox]:checked').length;
 		
@@ -78,7 +84,7 @@ $(function() {
 	});
 	
 	// ------------------------------------------------------------------------
-	/* Dialog */
+	// Dialog
 	// ------------------------------------------------------------------------
 	
 	$('#dialog_alert').dialog({
@@ -140,7 +146,9 @@ $(function() {
 						}
 					  }
 	});	
+	
 });
 
+
 /* End of file main.js */
-/* Location: assets/modules/backoffice/main.js */
+/* Location: assets/modules/backoffice/js/main.js */

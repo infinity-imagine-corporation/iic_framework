@@ -4,25 +4,25 @@
 		<label class="inline" for="quick_access">Category:</label>
 		<select name="quick_access" id="quick_access"></select>
 	</div>
-	
 </div>
+
 <table class="table">
 	<thead>
 		<tr>
+			<th><input type="checkbox" id="select_all" /></th>
 			<?php
-		foreach($th as $data)
-		{
-			echo '<th axis="'.$data['axis'].'">'.$data['label'].'</th>';
-		}
-	 	?>
+			foreach($th as $data)
+			{
+				echo '<th axis="'.$data['axis'].'">'.$data['label'].'</th>';
+			}
+			?>
 		</tr>
 	</thead>
 	<tbody>
-		<?php
-			echo'<tr><td colspan="'.count($th).'" class="center">No result found.</td></tr>';
-	 	?>
+		<?php echo'<tr><td colspan="'.(count($th) + 1).'" class="center">No result found.</td></tr>'; ?>
 	</tbody>
 </table>
+
 <div id="content_bottom">
 	<button class="button_delete">Delete</button>
 	<button class="button_move_up" rel="up">Move Up</button>

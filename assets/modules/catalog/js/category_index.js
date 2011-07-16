@@ -1,24 +1,24 @@
 $(function() {
 	
-	/*------------------------------------------------------------*/
-	/* Load content */
-	/*------------------------------------------------------------*/
+	// ------------------------------------------------------------------------
+	// Load content 
+	// ------------------------------------------------------------------------
 	
 	list_content(0);
 	
-	/*------------------------------------------------------------*/
-	/* Quick access */
-	/*------------------------------------------------------------*/
+	// ------------------------------------------------------------------------
+	// Quick access 
+	// ------------------------------------------------------------------------
 	
 	$('#quick_access').change(function(){
 		list_content($(this).val());
 	})
 	
-	/*------------------------------------------------------------*/
-	/* Button */
-	/*------------------------------------------------------------*/
+	// ------------------------------------------------------------------------
+	// Button - setup
+	// ------------------------------------------------------------------------
 	
-	/* Setup Button */
+	/* Button move up */
 	
 	$(".button_move_up").button({
 		icons: {
@@ -26,13 +26,19 @@ $(function() {
 		}
 	})
 	
+	/* Button move down */
+	
 	$(".button_move_down").button({
 		icons: {
 			primary: "ui-icon-arrowreturnthick-1-s"
 		}
 	})
 	
-	/* Button move up/down */
+	// ------------------------------------------------------------------------
+	// Button - action
+	// ------------------------------------------------------------------------
+	
+	/* Button move up, Button move down */
 	
 	$(".button_move_up, .button_move_down").click(function(){
 		
@@ -91,16 +97,18 @@ $(function() {
 		}
 		
 	});
+	
 });	
 		
 // ------------------------------------------------------------------------
-// Content
+// Function
 // ------------------------------------------------------------------------
 
 /**
- * List content
+ * List content - get new content via ajax and replace in <tbody>
  * 
- * get new content via ajax and replace in <tbody>
+ * @param integer id_parent
+ * @param integer id_checked
  */	
 
 function list_content(id_parent, id_checked)
@@ -160,20 +168,29 @@ function list_content(id_parent, id_checked)
 	.error(function() { alert('Error: Can\'t load ' + url); });
 }
 	
-
 // ------------------------------------------------------------------------
-/* Load create form */
+
+/**
+ * Load create form via ajax
+ * 
+ * @param string url
+ */	
 
 function get_create_form(url)
 {
 	$.post(url, function(response){
 		$('#dialog_create').html(response).dialog('open').find('#id_parent').val($('#quick_access').val())
 	})
-	.error(function() { alert('Error: ' + url); });
+	.error(function() { alert('Error: get_create_form ' + url); });
 }
 
 // ------------------------------------------------------------------------
-/* Load update form */
+
+/**
+ * Load update form via ajax
+ * 
+ * @param string url
+ */	
 
 function get_update_form(url)
 {
@@ -184,7 +201,10 @@ function get_update_form(url)
 }
 
 // ------------------------------------------------------------------------
-/* Create content */
+
+/**
+ * Create content via ajax
+ */	
 
 function create_content()
 {
@@ -204,8 +224,11 @@ function create_content()
 }
 
 // ------------------------------------------------------------------------
-/* Update content */
 
+/**
+ * Update content via ajax
+ */	
+ 
 function update_content()
 {
 	var url = URL_SERVER + 'catalog/category/edit_category/';
@@ -227,7 +250,10 @@ function update_content()
 }
 
 // ------------------------------------------------------------------------
-/* Delete content */
+
+/**
+ * Delete content via ajax
+ */	
 
 function delete_content()
 {
@@ -249,7 +275,12 @@ function delete_content()
 }
 
 // ------------------------------------------------------------------------
-/* Get quick access content */
+
+/**
+ * Get quick access content via ajax
+ * 
+ * @param integer url
+ */	
 
 function get_category_selectbox_option(id_parent)
 {
@@ -262,6 +293,8 @@ function get_category_selectbox_option(id_parent)
 	.error(function() { alert('Error'); });
 }
 
-/*------------------------------------------------------------*/
-/* End */
-/*------------------------------------------------------------*/
+// ------------------------------------------------------------------------
+
+
+/* End of file category_index.js */
+/* Location: assets/modules/backoffice/js/main.js */

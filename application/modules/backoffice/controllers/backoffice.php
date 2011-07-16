@@ -46,10 +46,7 @@ class Backoffice extends MX_Controller
 	 */
 	
 	function module($module, $controller, $page = '')
-	{	
-		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
-		
+	{
 		// Display
 		echo Modules::run($module.'/'.$controller.'/'.$page);
 	}
@@ -59,26 +56,6 @@ class Backoffice extends MX_Controller
 	function dashboard()
 	{
 		$this->load->view('dashboard');
-	}
-	
-	// ------------------------------------------------------------------------
-	
-	function user_group()
-	{		
-		// Check permission
-		Modules::run('backoffice/login/check_permission');
-		
-		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
-		
-		// Set module
-		$data['module']		= 'backoffice';
-		$data['controller']	= 'backoffice';
-		$data['page']		= 'user_group_index';
-		$data['title']		= 'User Group';
-		
-		// Display
-		$this->load->view('main', $data);
 	}
 	
 	// ------------------------------------------------------------------------

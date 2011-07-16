@@ -37,7 +37,6 @@ class Category extends MX_Controller
 		
 		// Set table haed
 		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'',			'label'=>'<input type="checkbox" id="select_all" />'));
 		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
 		array_push($data['th'], array('axis'=>'description','label'=>'Description'));
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Status'));
@@ -215,6 +214,7 @@ class Category extends MX_Controller
 						'id_category'	=> $this->input->post('id_2'),
 						'ordering'		=> $this->input->post('ordering_1')
 					 );
+					 
 		$this->category_model->edit_category($data);
 	}
 	
