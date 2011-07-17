@@ -1,5 +1,4 @@
 <?php
-
 class Category extends MX_Controller 
 {
 	// ------------------------------------------------------------------------
@@ -54,7 +53,7 @@ class Category extends MX_Controller
 	}
 	
 	// ------------------------------------------------------------------------
-	// function - content
+	// Function - Content
 	// ------------------------------------------------------------------------
 	
 	/**
@@ -73,7 +72,7 @@ class Category extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Mian page
+	 * Get content form
 	 *
 	 * @access	public
 	 * @param 	integer	$id_content
@@ -179,7 +178,7 @@ class Category extends MX_Controller
 	}
 	
 	// ------------------------------------------------------------------------
-	// function - selectbox
+	// Function - Selectbox
 	// ------------------------------------------------------------------------
 	
 	/**

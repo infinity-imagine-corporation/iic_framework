@@ -1,17 +1,16 @@
-<?php
-	
+<?php	
 class Category_model extends CI_Model
 {
 	// ------------------------------------------------------------------------
-	
-	/**
-	 * Setup database
-	 */
+	// Setup database
+	// ------------------------------------------------------------------------
 	  
 	var $table_category = 'catalog_category';
 	var $table_category_item = 'catalog_category_item';
 	var $table_item = 'catalog_item';
 	
+	// ------------------------------------------------------------------------
+	// Function
 	// ------------------------------------------------------------------------
 	
 	/**

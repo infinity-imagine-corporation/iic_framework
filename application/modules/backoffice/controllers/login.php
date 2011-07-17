@@ -1,6 +1,9 @@
 <?php
 class Login extends MX_Controller 
 {
+	
+	// ------------------------------------------------------------------------
+	// Page
 	// ------------------------------------------------------------------------
 	
 	/**
@@ -21,6 +24,27 @@ class Login extends MX_Controller
 		$this->load->view('login_dialog', $data);	
 	}
 	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Logout 
+	  *
+	  * @access	public
+	  */
+	  
+	function logout()
+	{
+		$this->session->sess_destroy();
+		
+		$data['title'] = 'Security System';
+		$data['message'] = '<li >Logout success</li>';
+		$data['url_target'] = index_page().'/backoffice/login';
+		$data['button_text'] = '';
+		$this->load->view('report_dialog.php', $data);
+	}
+	
+	// ------------------------------------------------------------------------
+	// Function
 	// ------------------------------------------------------------------------
 	
 	/**
@@ -76,25 +100,6 @@ class Login extends MX_Controller
 			$this->load->view('report_dialog.php', $data);	
 			exit();
 		}
-	}
-	
-	// ------------------------------------------------------------------------
-	
-	/**
-	  * Logout 
-	  *
-	  * @access	public
-	  */
-	  
-	function logout()
-	{
-		$this->session->sess_destroy();
-		
-		$data['title'] = 'Security System';
-		$data['message'] = '<li >Logout success</li>';
-		$data['url_target'] = index_page().'/backoffice/login';
-		$data['button_text'] = '';
-		$this->load->view('report_dialog.php', $data);
 	}
 	
 	// ------------------------------------------------------------------------
