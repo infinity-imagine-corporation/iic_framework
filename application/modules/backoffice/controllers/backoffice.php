@@ -2,6 +2,8 @@
 class Backoffice extends MX_Controller 
 {	
 	// ------------------------------------------------------------------------
+	// Constructor
+	// ------------------------------------------------------------------------
 	
 	function __construct()
 	{
@@ -11,6 +13,8 @@ class Backoffice extends MX_Controller
 		$this->load->model('theme_model');
 	}
 	
+	// ------------------------------------------------------------------------
+	// Page
 	// ------------------------------------------------------------------------
 	
 	/**
@@ -31,12 +35,16 @@ class Backoffice extends MX_Controller
 		$data['module']		= 'backoffice';
 		$data['controller']	= 'backoffice';
 		$data['page']		= 'dashboard';
+		
+		// Set content
 		$data['title']		= 'Home';
 		
 		// Display
 		$this->load->view('main', $data);
 	}
 	
+	// ------------------------------------------------------------------------
+	// Function
 	// ------------------------------------------------------------------------
 	
 	/**
@@ -50,14 +58,6 @@ class Backoffice extends MX_Controller
 		// Display
 		echo Modules::run($module.'/'.$controller.'/'.$page);
 	}
-	
-	// ------------------------------------------------------------------------
-	
-	function dashboard()
-	{
-		$this->load->view('dashboard');
-	}
-	
 	// ------------------------------------------------------------------------
 }
 

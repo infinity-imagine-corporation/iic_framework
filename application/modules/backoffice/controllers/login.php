@@ -27,7 +27,7 @@ class Login extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Logout 
+	  * Logout page
 	  *
 	  * @access	public
 	  */
@@ -36,11 +36,17 @@ class Login extends MX_Controller
 	{
 		$this->session->sess_destroy();
 		
+		// Set module
+		$data['module']		= 'backoffice';
+		$data['controller']	= 'login';
+		$data['page']		= 'logout';
+		
 		$data['title'] = 'Security System';
-		$data['message'] = '<li >Logout success</li>';
+		$data['message'] = '<li>Logout success</li>';
 		$data['url_target'] = index_page().'/backoffice/login';
 		$data['button_text'] = '';
-		$this->load->view('report_dialog.php', $data);
+		
+		$this->load->view('report_dialog', $data);
 	}
 	
 	// ------------------------------------------------------------------------

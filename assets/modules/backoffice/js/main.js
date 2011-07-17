@@ -126,7 +126,7 @@ $(function()
 	
 	$('#dialog_create').dialog(
 	{
-		title		: 'Add Category',
+		title		: 'Create New Data',
 		autoOpen	: false,
 		resizable	: false,
 		width		: 500,
@@ -142,7 +142,7 @@ $(function()
 	
 	$('#dialog_update').dialog(
 	{
-		title		: 'Edit Category',
+		title		: 'Update Data',
 		autoOpen	: false,
 		resizable	: false,
 		width		: 500,
@@ -158,7 +158,7 @@ $(function()
 	
 	$('#dialog_delete').dialog(
 	{
-		title		: 'Confirm Delete',
+		title		: 'Confirm Delete Data',
 		autoOpen	: false,
 		resizable	: false,
 		width		: 400,

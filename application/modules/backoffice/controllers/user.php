@@ -2,6 +2,21 @@
 class User extends MX_Controller 
 {
 	// ------------------------------------------------------------------------
+	// Constructor
+	// ------------------------------------------------------------------------
+	
+	function __construct()
+	{
+		parent::__construct();
+		
+		// Check permission
+		Modules::run('backoffice/login/check_permission');
+		
+		// Load model
+		$this->load->model('user_model');
+	}
+	
+	// ------------------------------------------------------------------------
 	// Page
 	// ------------------------------------------------------------------------
 	
@@ -57,24 +72,21 @@ class User extends MX_Controller
 	 * Get content form
 	 *
 	 * @access	public
-	 * @param 	integer	$id_group
+	 * @param 	integer	$id
 	 * @return	json
 	 */
 	
-	function get_form($id_group = NULL)
+	function get_group_form($id = NULL)
 	{
-		if($id_content != NULL)
+		if($id != NULL)
 		{
-			$data = $this->user_model->get_group_detail($id_group);	
+			$data = $this->user_model->get_group_detail($id);	
 		} 
 		else
 		{
 			$data = array(
-							'id_category'	=> 0,
-							'id_parent'		=> 0,
-							'name'			=> '',
-							'description'	=> '',
-							'is_enable'		=> 1
+							'id'	=> '',
+							'name'	=> ''
 					 	 );	
 		}
 		
