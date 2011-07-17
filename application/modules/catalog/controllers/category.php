@@ -3,6 +3,8 @@
 class Category extends MX_Controller 
 {
 	// ------------------------------------------------------------------------
+	// Constructor
+	// ------------------------------------------------------------------------
 	
 	function __construct()
 	{
@@ -15,6 +17,8 @@ class Category extends MX_Controller
 		$this->load->model('category_model');
 	}
 	
+	// ------------------------------------------------------------------------
+	// Page
 	// ------------------------------------------------------------------------
 	
 	/**
@@ -50,12 +54,14 @@ class Category extends MX_Controller
 	}
 	
 	// ------------------------------------------------------------------------
+	// function - content
+	// ------------------------------------------------------------------------
 	
 	/**
 	 * Get category list
 	 *
 	 * @access	public
-	 * @param 	int		$id_paraent
+	 * @param 	integer	$id_paraent
 	 * @return	json
 	 */
 	  
@@ -67,83 +73,12 @@ class Category extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Get selectbox opion
+	 * Mian page
 	 *
 	 * @access	public
-	 * @param 	array	$category		id of category
-	 * @param 	int		$selected		selected value
-	 * @param 	string	$space			text to indent subcategory
-	 * @return	mixed
+	 * @param 	integer	$id_content
+	 * @return	json
 	 */
-	
-	function get_category_select_option($category, $selected = NULL, $space = NULL)
-	{
-		$_option = '';
-		
-		for($loop = 0; $loop < count($category); $loop++)
-		{
-			$_selected = ($category[$loop]['id_category'] == $selected) ? 'selected' : '';
-			$_option .= '<option value="' .  $category[$loop]['id_category'] . '" ' . $_selected . '>' . $space . '- -&raquo; </span>' .$category[$loop]['name'] . '</option>';
-			
-			$_space_new = $space . '- - ';
-			$_option .= $this->get_category_select_option($category[$loop]['category'], $selected, $_space_new);
-		}
-		
-		return $_option;
-	}
-	
-	// ------------------------------------------------------------------------
-	  
-	function get_category_selectbox_option($selected = NULL)
-	{		
-		$_category_list = $this->category_model->get_all_category();
-		
-		$_option = '<option value="0">Root</option>';
-		$_option .= $this->get_category_select_option($_category_list, $selected);
-		
-		echo $_option;
-	}
-	
-	// ------------------------------------------------------------------------
-	
-	/**
-	 * Get all category selectbox
-	 *
-	 * @access	public
-	 * @param 	int		$selected		selected value
-	 * @return	mixed
-	 */
-	  
-	function get_category_selectbox($selected = NULL)
-	{		
-		$_category_list = $this->category_model->get_all_category();
-		
-		$_selectbox = '<select id="id_category" name="id_category">';
-		$_selectbox .= '<option value="0">Root</option>';
-		$_selectbox .= $this->get_category_select_option($_category_list, $selected);
-		$_selectbox .= '</select>';
-		
-		return $_selectbox;
-	}
-	
-	
-	// ------------------------------------------------------------------------
-	
-	function get_parent_selectbox($selected = NULL)
-	{
-		$_category_list = $this->category_model->get_all_category();
-		
-		$_select = ($selected == 0) ? 'selected' : '';
-		
-		$_selectbox = '<select id="id_parent" name="id_parent">';
-		$_selectbox .= '<option value="0"' . $_select . '>Root</option>';
-		$_selectbox .= $this->get_category_select_option($_category_list, $selected);
-		$_selectbox .= '</select>';
-		
-		return $_selectbox;
-	}
-	
-	// ------------------------------------------------------------------------
 	
 	function get_form($id_content = NULL)
 	{
@@ -167,19 +102,31 @@ class Category extends MX_Controller
 	
 	// ------------------------------------------------------------------------
 	
-	function add_category()
+	/**
+	 * Create category 
+	 *
+	 * @access	public
+	 */
+	
+	function create_category()
 	{		
 		$data = $this->input->post();
 		
 		// Get lastet ordering
 		$data['ordering'] = $this->category_model->get_new_ordering($data['id_parent']);
 				 
-		$this->category_model->add_category($data);
+		$this->category_model->create_category($data);
 	}
 	
 	// ------------------------------------------------------------------------
 	
-	function edit_category()
+	/**
+	 * Update category 
+	 *
+	 * @access	public
+	 */
+	
+	function update_category()
 	{
 		$data = $this->input->post();
 		
@@ -191,7 +138,20 @@ class Category extends MX_Controller
 		
 		unset($data['id_parent_old']);
 				 
-		$this->category_model->edit_category($data);
+		$this->category_model->update_category($data);
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Delete category 
+	 *
+	 * @access	public
+	 */
+	 
+	function delete_content()
+	{
+		$this->category_model->delete_category($this->input->post('id'));
 	}
 	
 	// ------------------------------------------------------------------------
@@ -208,27 +168,110 @@ class Category extends MX_Controller
 						'id_category'	=> $this->input->post('id_1'),
 						'ordering'		=> $this->input->post('ordering_2')
 					 );
-		$this->category_model->edit_category($data);
+		$this->category_model->update_category($data);
 		
 		$data = array(
 						'id_category'	=> $this->input->post('id_2'),
 						'ordering'		=> $this->input->post('ordering_1')
 					 );
 					 
-		$this->category_model->edit_category($data);
+		$this->category_model->update_category($data);
+	}
+	
+	// ------------------------------------------------------------------------
+	// function - selectbox
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get all category selectbox
+	 *
+	 * @access	public
+	 * @param 	int		$selected		selected value
+	 * @return	mixed
+	 */
+	  
+	function get_category_selectbox($selected = NULL)
+	{		
+		$_category_list = $this->category_model->get_all_category();
+		
+		$_selectbox = '<select id="id_category" name="id_category">';
+		$_selectbox .= '<option value="0">Root</option>';
+		$_selectbox .= $this->get_category_selectbox_option($_category_list, $selected);
+		$_selectbox .= '</select>';
+		
+		return $_selectbox;
 	}
 	
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Delete category 
+	 * Get parent categoty selectbox
 	 *
 	 * @access	public
+	 * @param 	int		$selected		selected value
+	 * @return	mixed
 	 */
-	 
-	function delete_category()
+	
+	function get_parent_selectbox($selected = 0)
 	{
-		$this->category_model->delete_category($this->input->post('id'));
+		$_category_list = $this->category_model->get_all_category();
+		
+		$_selected = ($selected == 0) ? 'selected' : '';
+		
+		$_selectbox = '<select id="id_parent" name="id_parent">';
+		$_selectbox .= '<option value="0"' . $_selected . '>Root</option>';
+		$_selectbox .= $this->get_category_selectbox_option($_category_list, $selected);
+		$_selectbox .= '</select>';
+		
+		return $_selectbox;
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get selectbox opion
+	 *
+	 * @access	public
+	 * @param 	array	$category		id of category
+	 * @param 	integer	$selected		selected value
+	 * @param 	string	$space			text to indent subcategory
+	 * @return	mixed
+	 */
+	
+	function get_category_selectbox_option($category, $selected = NULL, $space = NULL)
+	{
+		$_option = '';
+		
+		for($loop = 0; $loop < count($category); $loop++)
+		{
+			$_selected = ($category[$loop]['id_category'] == $selected) ? 'selected' : '';
+			$_option .= '<option value="' .  $category[$loop]['id_category'] . '" ' . $_selected . '>' . $space . '- -&raquo; </span>' .$category[$loop]['name'] . '</option>';
+			
+			$_space_new = $space . '- - ';
+			$_option .= $this->get_category_selectbox_option($category[$loop]['category'], $selected, $_space_new);
+		}
+		
+		return $_option;
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Update parent selectbox option
+	 *
+	 * @access	public
+	 * @param 	integer	$selected
+	 * @return	json
+	 */
+	  
+	function update_selectbox_option($selected = NULL)
+	{		
+		$_category_list = $this->category_model->get_all_category();
+		
+		$_option = '<option value="0">Root</option>';
+		$_option .= $this->get_category_selectbox_option($_category_list, $selected);
+		
+		echo $_option;
 	}
 	
 	// ------------------------------------------------------------------------

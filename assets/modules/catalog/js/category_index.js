@@ -50,6 +50,7 @@ $(function()
 		
 		if(checked == 1)
 		{
+			// Check action
 			var action = ($(this).attr('rel') == 'up') ? 'up' : 'down';
 			var checkbox_1 = $('tbody').find('input[type=checkbox]:checked');
 			var index_1 = parseInt($('tbody').find('input[type=checkbox]').index(checkbox_1));
@@ -64,13 +65,14 @@ $(function()
 			}
 			else
 			{
+				// Setup variable
 				var id_1 = checkbox_1.attr('id');
 				var ordering_1 = checkbox_1.attr('rel');
 				var index_2 = (action == 'up') ? (index_1 - 1) : (index_1 + 1);
 				var checkbox_2 = $('tbody').find('input[type=checkbox]:eq(' + index_2 + ')')
 				var id_2 = checkbox_2.attr('id');
 				var ordering_2 = checkbox_2.attr('rel');
-			
+				
 				var url = URL_SERVER + 'catalog/category/move_category/' + action;
 				var data = {
 					'id_1'			: id_1,
@@ -78,6 +80,8 @@ $(function()
 					'ordering_1' 	: ordering_1,
 					'ordering_2'	: ordering_2
 				};
+				
+				// Setup ajax
 				$.post(url, data, function(response){
 					
 					list_content($('#quick_access').val(), id_1);
@@ -159,7 +163,7 @@ function list_content(id_parent, id_checked)
 			$('#select_all').removeAttr('checked')	
 			
 			// Update quick access content
-			get_category_selectbox_option(id_parent);
+			update_selectbox_option(id_parent);
 			
 			// Update table content			
 			$("tbody").html(list);
@@ -189,7 +193,7 @@ function create_content()
 {
 	// Setup variable
 	var dialog = $('#dialog_create');
-	var url = URL_SERVER + 'catalog/category/add_category';
+	var url = URL_SERVER + 'catalog/category/create_category';
 	var data = {
 					'id_parent'		: dialog.find('#id_parent').val(),
 					'name' 			: dialog.find('#name').val(),
@@ -220,7 +224,7 @@ function create_content()
 function update_content()
 {
 	// Setup variable
-	var url = URL_SERVER + 'catalog/category/edit_category/';
+	var url = URL_SERVER + 'catalog/category/update_category/';
 	var dialog = $('#dialog_update');
 	var data = {
 		'id_category'	: dialog.find('#id_category').val(),
@@ -253,10 +257,10 @@ function update_content()
  * @param integer url
  */	
 
-function get_category_selectbox_option(id_parent)
+function update_selectbox_option(id_parent)
 {
 	// Setup variable
-	var url = URL_SERVER + 'catalog/category/get_category_selectbox_option/' + id_parent;
+	var url = URL_SERVER + 'catalog/category/update_selectbox_option/' + id_parent;
 	
 	// Setup ajax
 	$.post(url, function(response)
@@ -265,7 +269,7 @@ function get_category_selectbox_option(id_parent)
 	}, "html")
 	.error(function() 
 	{  
-		var msg = 'Error: get_category_selectbox_option(' + id_parent + ')';
+		var msg = 'Error: update_selectbox_option(' + id_parent + ')';
 		$('#dialog_alert_message').html(msg);
 		$('#dialog_alert').dialog('open');
 	});

@@ -6,7 +6,6 @@ class Category_model extends CI_Model
 	
 	/**
 	 * Setup database
-	 *
 	 */
 	  
 	var $table_category = 'catalog_category';
@@ -45,7 +44,7 @@ class Category_model extends CI_Model
 	 * @return	bool
 	 */
 	
-	function add_category($data)
+	function create_category($data)
 	{
 		$this->db->insert($this->table_category, $data);
 		
@@ -62,7 +61,7 @@ class Category_model extends CI_Model
 	 * @return	bool
 	 */
 	
-	function edit_category($data)
+	function update_category($data)
 	{		
 		$this->db->where('id_category', $data['id_category']);
 		$this->db->update($this->table_category, $data);
@@ -93,7 +92,7 @@ class Category_model extends CI_Model
 	
 	// ------------------------------------------------------------------------
 	
-	function add_category_item($data)
+	function create_category_item($data)
 	{
 		$this->db->insert($this->table_category_item, $data);
 		
@@ -102,7 +101,7 @@ class Category_model extends CI_Model
 	
 	// ------------------------------------------------------------------------
 	
-	function edit_category_item($old_category, $new_category)
+	function update_category_item($old_category, $new_category)
 	{
 		$this->db->where($old_category);
 		$this->db->update($this->table_category_item, $new_category);
@@ -178,14 +177,14 @@ class Category_model extends CI_Model
 		{
 			foreach($_query->result_array() as $_data)
 			{
-				// count category
+				// Count category
 				$_sql_category = 'SELECT *
 								  FROM '.$this->table_category.' 
 								  WHERE id_parent = ' . $_data['id_category'];
 				$_query_category = $this->db->query($_sql_category);
 				$_data['total_category'] = $_queryt_category->num_rows();
 				
-				// count item
+				// Count item
 				$_sql_item = 'SELECT *
 							  FROM '.$this->table_category_item.'
 							  WHERE id_category = ' .$_data['id_category'];

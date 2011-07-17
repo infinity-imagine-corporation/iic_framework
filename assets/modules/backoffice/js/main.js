@@ -90,6 +90,10 @@ $(function()
 		
 		if(checked > 0)
 		{
+			// Call ajax function
+			delete_content(url);
+			
+			// Open dialog
 			$('#dialog_delete').dialog('open');
 		}
 		else

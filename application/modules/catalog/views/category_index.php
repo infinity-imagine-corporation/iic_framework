@@ -1,5 +1,5 @@
 <div id="content_top">
-	<button class="button_create" rel="catalog/category/get_form">New Category</button>
+	<button class="button_create" rel="<?php echo $module ?>/<?php echo $controller ?>/get_form">New Category</button>
 	<div id="search_section">
 		<label class="inline" for="quick_access">Category:</label>
 		<select name="quick_access" id="quick_access"></select>
@@ -24,7 +24,7 @@
 </table>
 
 <div id="content_bottom">
-	<button class="button_delete">Delete</button>
+	<button class="button_delete" rel="<?php echo $module ?>/<?php echo $controller ?>/delete_content" >Delete</button>
 	<button class="button_move_up" rel="up">Move Up</button>
 	<button class="button_move_down" rel="down">Move Down</button>
 </div>
