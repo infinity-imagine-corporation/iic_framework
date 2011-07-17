@@ -1,12 +1,17 @@
-$(function() {	
-	
+// ------------------------------------------------------------------------
+// DOM - action
+// ------------------------------------------------------------------------
+
+$(function() 
+{	
 	// ------------------------------------------------------------------------
-	// Checkbox
+	// Checkbox - action
 	// ------------------------------------------------------------------------
 	
 	/* Select all */
 	
-	$('#select_all').live('click', function(){
+	$('#select_all').live('click', function()
+	{
 		if($(this).attr('checked') == 'checked')
 		{
 			$('tbody').find('input[type=checkbox]').attr('checked', 'checked').parent().parent().addClass('checked');
@@ -19,7 +24,8 @@ $(function() {
 	
 	/* Hilite selected row */
 	
-	$('tbody').find('input[type=checkbox]').live('click', function(){
+	$('tbody').find('input[type=checkbox]').live('click', function()
+	{
 		$(this).parent().parent().toggleClass('checked');	
 	});	
 		
@@ -29,7 +35,8 @@ $(function() {
 	
 	/* Button create */
 	
-	$('.button_create').button({
+	$('.button_create').button(
+	{
 		icons: {
 			primary: "ui-icon-plusthick"
 		}
@@ -37,7 +44,8 @@ $(function() {
 	
 	/* Button delete */
 	
-	$(".button_delete").button({
+	$(".button_delete").button(
+	{
 		icons: {
 			primary: "ui-icon-trash"
 		}
@@ -49,27 +57,36 @@ $(function() {
 	
 	/* Button create */
 	
-	$('.button_create').click(function(){
+	$('.button_create').click(function()
+	{
+		// Setup variable
 		var form_uri = $(this).attr('rel');
 		var url = URL_SERVER + form_uri;
 		
+		// Call ajax function
 		get_create_form(url);
 	});
 	
 	/* Button update (when clik on table row) */
 	
-	$('.table td:not(td:has(input[type=checkbox]))').live('click', function(){
+	$('.table td:not(td:has(input[type=checkbox]))').live('click', function()
+	{
+		// Setup variable
 		var form_uri = $('.button_create').attr('rel');
 		var id_content = $(this).parent().attr('rel');
 		var url = URL_SERVER + form_uri + '/' + id_content;
 		
+		// Call ajax function
 		get_update_form(url);
 	});
 	
 	/* Button delete */
 	
-	$('.button_delete').click(function(){
+	$('.button_delete').click(function()
+	{
+		// Setup variable
 		var checked = $('tbody').find('input[type=checkbox]:checked').length;
+		var url = URL_SERVER + $(this).attr('rel');
 		
 		if(checked > 0)
 		{
@@ -84,10 +101,11 @@ $(function() {
 	});
 	
 	// ------------------------------------------------------------------------
-	// Dialog
+	// Dialog - setup
 	// ------------------------------------------------------------------------
 	
-	$('#dialog_alert').dialog({
+	$('#dialog_alert').dialog(
+	{
 		title		: 'Alert',
 		autoOpen	: false,
 		resizable	: false,
@@ -102,7 +120,8 @@ $(function() {
 					  }
 	});	
 	
-	$('#dialog_create').dialog({
+	$('#dialog_create').dialog(
+	{
 		title		: 'Add Category',
 		autoOpen	: false,
 		resizable	: false,
@@ -117,7 +136,8 @@ $(function() {
 					  }
 	});	
 	
-	$('#dialog_update').dialog({
+	$('#dialog_update').dialog(
+	{
 		title		: 'Edit Category',
 		autoOpen	: false,
 		resizable	: false,
@@ -132,7 +152,8 @@ $(function() {
 					  }
 	});	
 	
-	$('#dialog_delete').dialog({
+	$('#dialog_delete').dialog(
+	{
 		title		: 'Confirm Delete',
 		autoOpen	: false,
 		resizable	: false,
@@ -146,8 +167,91 @@ $(function() {
 						}
 					  }
 	});	
-	
 });
+		
+// ------------------------------------------------------------------------
+// Function
+// ------------------------------------------------------------------------
+
+/**
+ * Load create form via ajax
+ * 
+ * @param string url
+ */	
+
+function get_create_form(url)
+{
+	// Setup ajax
+	$.post(url, function(response)
+	{
+		$('#dialog_create').html(response).dialog('open').find('#id_parent').val($('#quick_access').val())
+	})
+	.error(function() 
+	{  
+		var msg = 'Error: get_create_form(' + url + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Load update form via ajax
+ * 
+ * @param string url
+ */	
+
+function get_update_form(url)
+{
+	// Setup ajax
+	$.post(url, function(response)
+	{
+		$('#dialog_update').html(response).dialog('open');
+	})
+	.error(function() 
+	{  
+		var msg = 'Error: get_create_form(' + url + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Delete content via ajax
+ */	
+
+function delete_content(url)
+{
+	// Setup variable
+	var id = new Array();
+	
+	$('tbody').find('input[type=checkbox]:checked').each(function(index) 
+	{
+		id.push($(this).val());
+	});
+	
+	var data = {
+					'id' : id
+			   };
+	
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
+		list_content($('#quick_access').val());
+	})
+	.success(function() { $('#dialog_delete').dialog('close'); })
+	.error(function() 
+	{  
+		var msg = 'Error: delete_content(' + url + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
+}
+
+// ------------------------------------------------------------------------
 
 
 /* End of file main.js */

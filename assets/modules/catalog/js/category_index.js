@@ -1,5 +1,9 @@
-$(function() {
-	
+// ------------------------------------------------------------------------
+// DOM - action
+// ------------------------------------------------------------------------
+
+$(function() 
+{
 	// ------------------------------------------------------------------------
 	// Load content 
 	// ------------------------------------------------------------------------
@@ -7,10 +11,11 @@ $(function() {
 	list_content(0);
 	
 	// ------------------------------------------------------------------------
-	// Quick access 
+	// Quick access - action
 	// ------------------------------------------------------------------------
 	
-	$('#quick_access').change(function(){
+	$('#quick_access').change(function()
+	{
 		list_content($(this).val());
 	})
 	
@@ -20,18 +25,16 @@ $(function() {
 	
 	/* Button move up */
 	
-	$(".button_move_up").button({
-		icons: {
-			primary: "ui-icon-arrowreturnthick-1-n"
-		}
+	$(".button_move_up").button(
+	{
+		icons: { primary: "ui-icon-arrowreturnthick-1-n" }
 	})
 	
 	/* Button move down */
 	
-	$(".button_move_down").button({
-		icons: {
-			primary: "ui-icon-arrowreturnthick-1-s"
-		}
+	$(".button_move_down").button(
+	{
+		icons: { primary: "ui-icon-arrowreturnthick-1-s" }
 	})
 	
 	// ------------------------------------------------------------------------
@@ -40,8 +43,8 @@ $(function() {
 	
 	/* Button move up, Button move down */
 	
-	$(".button_move_up, .button_move_down").click(function(){
-		
+	$(".button_move_up, .button_move_down").click(function()
+	{
 		var checked = $('tbody').find('input[type=checkbox]:checked').length;
 		var total_checkbox = $('tbody').find('input[type=checkbox]').length;
 		
@@ -113,20 +116,23 @@ $(function() {
 
 function list_content(id_parent, id_checked)
 {
+	// Show preload
 	$('#preload').slideDown('fast');
 	
+	// Setup variable
 	var id_checked = id_checked || '';
 	var class_checked = '';
 	var url = URL_SERVER + 'catalog/category/get_category_list/'+id_parent;
 	var data = 'id_parent = ' + id_parent;
 	
+	// Setup ajax
 	$.post(url, data, function(response)
 	{
 		if(response != '')
 		{
 			 var list = '';
-			 $.each(response, function(i, data) {
-				 
+			 $.each(response, function(i, data) 
+			 {
 				 if(id_checked == data['id_category'])
 				 {
 					 var checked = 'checked="checked"';
@@ -165,39 +171,12 @@ function list_content(id_parent, id_checked)
 		
 	}, "json")
 	.success(function() { $('#preload').slideUp('fast'); })
-	.error(function() { alert('Error: Can\'t load ' + url); });
-}
-	
-// ------------------------------------------------------------------------
-
-/**
- * Load create form via ajax
- * 
- * @param string url
- */	
-
-function get_create_form(url)
-{
-	$.post(url, function(response){
-		$('#dialog_create').html(response).dialog('open').find('#id_parent').val($('#quick_access').val())
-	})
-	.error(function() { alert('Error: get_create_form ' + url); });
-}
-
-// ------------------------------------------------------------------------
-
-/**
- * Load update form via ajax
- * 
- * @param string url
- */	
-
-function get_update_form(url)
-{
-	$.post(url, function(response){
-		$('#dialog_update').html(response).dialog('open');
-	})
-	.error(function() { alert('Error'); });
+	.error(function() 
+	{  
+		var msg = 'Error: list_content(' + id_parent + ', ' + id_checked + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
 }
 
 // ------------------------------------------------------------------------
@@ -208,19 +187,28 @@ function get_update_form(url)
 
 function create_content()
 {
+	// Setup variable
 	var dialog = $('#dialog_create');
 	var url = URL_SERVER + 'catalog/category/add_category';
 	var data = {
-		'id_parent'		: dialog.find('#id_parent').val(),
-		'name' 			: dialog.find('#name').val(),
-		'description' 	: dialog.find('#description').val(),
-		'is_enable' 	: dialog.find('input:radio[name=is_enable]:checked').val()
-	};
-	$.post(url, data, function(response){
+					'id_parent'		: dialog.find('#id_parent').val(),
+					'name' 			: dialog.find('#name').val(),
+					'description' 	: dialog.find('#description').val(),
+					'is_enable' 	: dialog.find('input:radio[name=is_enable]:checked').val()
+			   };
+	
+	// Setup ajax		   
+	$.post(url, data, function(response)
+	{
 		list_content(data['id_parent']);
 	})
 	.success(function() { $('#dialog_create').dialog('close'); })
-	.error(function() { alert('Error'); });	
+	.error(function() 
+	{  
+		var msg = 'Error: create_content(' + url + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
 }
 
 // ------------------------------------------------------------------------
@@ -231,6 +219,7 @@ function create_content()
  
 function update_content()
 {
+	// Setup variable
 	var url = URL_SERVER + 'catalog/category/edit_category/';
 	var dialog = $('#dialog_update');
 	var data = {
@@ -242,36 +231,18 @@ function update_content()
 		'is_enable' 	: dialog.find('input:radio[name=is_enable]:checked').val()
 	};
 	
-	$.post(url, data, function(response){
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
 		list_content(data['id_parent']);
 	})
 	.success(function() { $('#dialog_update').dialog('close'); })
-	.error(function() { alert('Error'); });
-}
-
-// ------------------------------------------------------------------------
-
-/**
- * Delete content via ajax
- */	
-
-function delete_content()
-{
-	var id = new Array();
-	$('tbody').find('input[type=checkbox]:checked').each(function(index) {
-		id.push($(this).val());
+	.error(function() 
+	{  
+		var msg = 'Error: update_content(' + url + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
 	});
-	
-	var url = URL_SERVER + 'catalog/category/delete_category/';
-	var data = {
-		'id'	: id
-	};
-	
-	$.post(url, data, function(response){
-		list_content($('#quick_access').val());
-	})
-	.success(function() { $('#dialog_delete').dialog('close'); })
-	.error(function() { alert('Error'); });	
 }
 
 // ------------------------------------------------------------------------
@@ -284,13 +255,20 @@ function delete_content()
 
 function get_category_selectbox_option(id_parent)
 {
+	// Setup variable
 	var url = URL_SERVER + 'catalog/category/get_category_selectbox_option/' + id_parent;
 	
+	// Setup ajax
 	$.post(url, function(response)
 	{
 		$('#quick_access').html(response);
 	}, "html")
-	.error(function() { alert('Error'); });
+	.error(function() 
+	{  
+		var msg = 'Error: get_category_selectbox_option(' + id_parent + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
 }
 
 // ------------------------------------------------------------------------
