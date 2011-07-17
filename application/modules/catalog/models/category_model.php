@@ -26,28 +26,6 @@ class Category_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Get last ordering + 1 in category
-	 *
-	 * @access	public
-	 * @param 	int		$id_parent		
-	 * @return	int
-	 */
-	
-	function get_new_ordering($id_parent)
-	{
-		$_sql = 'SELECT MAX(ordering)+1 as ordering
-				 FROM '.$this->table_category.'
-				 WHERE id_parent = '.$id_parent;
-		$_query = $this->db->query($_sql);
-		$_data = $_query->row_array();
-		$_ordering = ($_data['ordering'] == '') ? 1 : $_data['ordering'];
-		
-		return $_ordering;
-	}
-	
-	// ------------------------------------------------------------------------
-	
-	/**
 	 * Create new category
 	 *
 	 * @access	public
@@ -58,8 +36,6 @@ class Category_model extends CI_Model
 	function create_category($data)
 	{
 		$this->db->insert($this->table_category, $data);
-		
-		return TRUE;
 	}
 	
 	// ------------------------------------------------------------------------
@@ -259,6 +235,28 @@ class Category_model extends CI_Model
 			
 			return $_category_list;
 		}
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get last ordering + 1 in category
+	 *
+	 * @access	public
+	 * @param 	int		$id_parent		
+	 * @return	int
+	 */
+	
+	function get_new_ordering($id_parent)
+	{
+		$_sql = 'SELECT MAX(ordering)+1 as ordering
+				 FROM '.$this->table_category.'
+				 WHERE id_parent = '.$id_parent;
+		$_query = $this->db->query($_sql);
+		$_data = $_query->row_array();
+		$_ordering = ($_data['ordering'] == '') ? 1 : $_data['ordering'];
+		
+		return $_ordering;
 	}
 	
 	// ------------------------------------------------------------------------

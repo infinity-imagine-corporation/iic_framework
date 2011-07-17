@@ -3,17 +3,18 @@
 class Theme_model extends CI_Model
 {
 	// ------------------------------------------------------------------------
-	
-	/**
-	 * Setup database
-	 *
-	 */
+	// Setup database
+	// ------------------------------------------------------------------------
 	  
 	var $table = 'backoffice_theme';
 	
+	// ------------------------------------------------------------------------
+	// Function
+	// ------------------------------------------------------------------------
+	
 	function get_theme($id = 1)
 	{	
-		$query = $this->db->get_where($this->table, array('id_theme' => $id));
+		$query = $this->db->get_where($this->table, array('id' => $id));
 	
 		return $query->row_array();
 	}
@@ -69,4 +70,4 @@ class Theme_model extends CI_Model
 
 
 /* End of file theme_model.php */
-/* Location: ./application/modules/category/model/theme_model.php */
+/* Location: ./application/modules/backoffice/model/theme_model.php */

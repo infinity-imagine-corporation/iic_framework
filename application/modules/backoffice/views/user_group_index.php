@@ -1,5 +1,5 @@
 <div id="content_top">
-	<button class="button_create" rel="<?php echo $module ?>/<?php echo $controller ?>/get_user_group_form" >New Group</button>
+	<button class="button_create" rel="<?php echo $module ?>/<?php echo $controller ?>/get_group_form" >New Group</button>
 	<div id="search_section">
 		<input type="text" name="keyword" id="keyword" class="search_left" />
 		<label class="inline" for="criteria">in:</label>
@@ -30,5 +30,5 @@
 	</tbody>
 </table>
 <div id="content_bottom">
-	<button class="button_delete" rel="<?php echo $module ?>/<?php echo $controller ?>/delete_content" >Delete</button>
+	<button class="button_delete" rel="<?php echo $module ?>/<?php echo $controller ?>/delete_group" >Delete</button>
 </div>

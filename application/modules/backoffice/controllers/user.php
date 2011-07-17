@@ -63,7 +63,7 @@ class User extends MX_Controller
 	  
 	function get_group_list()
 	{		
-		echo json_encode($this->category_model->get_group());	
+		echo json_encode($this->user_model->get_group_list());	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -101,14 +101,13 @@ class User extends MX_Controller
 	 * @access	public
 	 */
 	
-	function create_category()
+	function create_group()
 	{		
 		$data = $this->input->post();
 		
-		// Get lastet ordering
-		$data['ordering'] = $this->category_model->get_new_ordering($data['id_parent']);
+		unset($data['id']);
 				 
-		$this->category_model->create_category($data);
+		$this->user_model->create_group($data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -119,19 +118,11 @@ class User extends MX_Controller
 	 * @access	public
 	 */
 	
-	function update_category()
+	function update_group()
 	{
 		$data = $this->input->post();
-		
-		if($data['id_parent_old'] != $data['id_parent'])
-		{
-			// Get lastet ordering
-			$data['ordering'] = $this->category_model->get_new_ordering($data['id_parent']);
-		}
-		
-		unset($data['id_parent_old']);
 				 
-		$this->category_model->update_category($data);
+		$this->user_model->update_group($data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -142,9 +133,9 @@ class User extends MX_Controller
 	 * @access	public
 	 */
 	 
-	function delete_content()
+	function delete_group()
 	{
-		$this->category_model->delete_category($this->input->post('id'));
+		$this->user_model->delete_group($this->input->post('id'));
 	}
 	
 	// ------------------------------------------------------------------------

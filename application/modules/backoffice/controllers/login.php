@@ -70,7 +70,7 @@ class Login extends MX_Controller
 			
 			$data = array(
 				'name' => $user['name'],
-				'id' => $user['id_user'],
+				'id' => $user['id'],
 				'login_status' => TRUE
 			);
 			$this->session->set_userdata($data);

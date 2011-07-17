@@ -170,6 +170,13 @@ function list_content(id_parent, id_checked)
 		}
 		else
 		{
+			// Uncheck select all   
+			$('#select_all').removeAttr('checked')	
+			
+			// Update quick access content
+			update_selectbox_option(id_parent);
+			
+			// Update table content		
 			$("tbody").html("<td align='center' colspan='5'>No result found.</td>");	
 		}
 		
@@ -224,7 +231,7 @@ function create_content()
 function update_content()
 {
 	// Setup variable
-	var url = URL_SERVER + 'catalog/category/update_category/';
+	var url = URL_SERVER + 'catalog/category/update_category';
 	var dialog = $('#dialog_update');
 	var data = {
 		'id_category'	: dialog.find('#id_category').val(),

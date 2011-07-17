@@ -5,92 +5,12 @@ class User_model extends CI_Model
 	// Setup database
 	// ------------------------------------------------------------------------
 	
-	var $fields = array();
-	var $table;
+	var $table_user 		= 'backoffice_user';
+	var $table_user_group 	= 'backoffice_user_group';
+	var $table_user_role	= 'backoffice_user_role';
 	
 	// ------------------------------------------------------------------------
-	// Constructor
-	// ------------------------------------------------------------------------
-	
-	function __construct()
-	{
-		parent::__construct();
-		
-		// Setting
-		$this->fields['id'] = 'id_member';
-		$this->fields['username'] = 'username';
-		$this->fields['password'] = 'password';
-		$this->table = 'backoffice_user';
-	}
-	
-	// ------------------------------------------------------------------------
-	// Function - User group
-	// ------------------------------------------------------------------------
-	
-	
-	
-	
-	// ------------------------------------------------------------------------
-	// Function - Login
-	// ------------------------------------------------------------------------
-	
-	/**
-	 * Login page
-	 *
-	 * @access	public
-	 */
-	  
-	function validate()
-	{
-		$this->db->where($this->fields['username'], $this->input->post('username'));
-		$this->db->where($this->fields['password'], $this->input->post('password'));
-		$query = $this->db->get($this->table);
-		$validation = ($query->num_rows == 1) ? TRUE : FALSE;
-		
-		return $validation;
-	}
-	
-	// ------------------------------------------------------------------------
-	
-	/**
-	 * Login page
-	 *
-	 * @access	public
-	 */
-	  
-	function get_detail($id = NULL)  
-	{  
-		if($id != NULL)  
-		{  
-			$this->db->where($this->fields['id'], $id); 
-			$query = $this->db->get($this->table);
-			
-			return $query->row_array();  
-		} 
-		else 
-		{ 
-			return FALSE;  
-		} 
-	}
-	
-	// ------------------------------------------------------------------------
-	
-	/**
-	 * Get user detail by username
-	 *
-	 * @access	public
-	 * @param 	sting	$username
-	 * @return	array
-	 */
-	  
-	function get_detail_by_username($username)  
-	{  
-		$this->db->where($this->fields['username'], $username); 
-		$query = $this->db->get($this->table);
-		
-		return $query->row_array();  
-	}
-	
+	// Function - User
 	// ------------------------------------------------------------------------
 	
 	/**
@@ -112,6 +32,166 @@ class User_model extends CI_Model
 		$insert = $this->db->insert($this->table, $new_member_insert_data);
 		return $insert;
 	}*/
+			
+	// ------------------------------------------------------------------------
+	// Function - User group
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Create new user group
+	 *
+	 * @access	public
+	 * @param 	array		$data		
+	 */
+	
+	function create_group($data)
+	{
+		$this->db->insert($this->table_user_group, $data);
+		
+		return TRUE;
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Update user group content
+	 *
+	 * @access	public
+	 * @param 	array		$data		
+	 * @return	bool
+	 */
+	
+	function update_group($data)
+	{		
+		$this->db->where('id', $data['id']);
+		$this->db->update($this->table_user_group, $data);
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Delete user group
+	 *
+	 * @access	public
+	 * @param 	array		$id		
+	 */
+	
+	function delete_group($id)
+	{		
+		for($loop = 0; $loop < count($id); $loop++)
+		{
+			$this->db->where('id', $id[$loop]);
+			$this->db->delete($this->table_user_group);
+		}
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user group list
+	 *
+	 * @access	public
+	 * @param 	integer		$limit
+	 * @param 	integer		$offset		
+	 * @return	array
+	 */
+	
+	function get_group_list($limit = '', $offset = '')
+	{		
+		if($limit != '' && $offset != '')
+		{
+			$_query = $this->db->get($this->table_user_group, $limit, $offset);
+		}
+		else if($limit != '')
+		{
+			$_query = $this->db->get($this->table_user_group, $limit, 0);
+		}
+		else
+		{
+			$_query = $this->db->get($this->table_user_group);
+		}
+		
+		return $_query->result();
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user group detail
+	 *
+	 * @access	public
+	 * @param 	int		$id		
+	 * @return	array
+	 */
+	
+	function get_group_detail($id)
+	{		
+		$this->db->where('id', $id);
+		$_query = $this->db->get($this->table_user_group);
+		
+		return $_query->row_array();
+	}	
+	
+	// ------------------------------------------------------------------------
+	// Function - Login
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Login page
+	 *
+	 * @access	public
+	 */
+	  
+	function validate()
+	{
+		$this->db->where('username', $this->input->post('username'));
+		$this->db->where('password', $this->input->post('password'));
+		$_query = $this->db->get($this->table_user);
+		$validation = ($_query->num_rows == 1) ? TRUE : FALSE;
+		
+		return $validation;
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Login page
+	 *
+	 * @access	public
+	 */
+	  
+	function get_detail($id = NULL)  
+	{  
+		if($id != NULL)  
+		{  
+			$this->db->where('id', $id); 
+			$query = $this->db->get($this->table_user);
+			
+			return $query->row_array();  
+		} 
+		else 
+		{ 
+			return FALSE;  
+		} 
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user detail by username
+	 *
+	 * @access	public
+	 * @param 	sting	$username
+	 * @return	array
+	 */
+	  
+	function get_detail_by_username($username)  
+	{  
+		$this->db->where('username', $username); 
+		$query = $this->db->get($this->table_user);
+		
+		return $query->row_array();  
+	}
 	
 	// ------------------------------------------------------------------------
 }
