@@ -69,7 +69,7 @@ function get_content()
 	var limit = limit || '';
 	var offset = offset || '';
 	
-	var url = URL_SERVER + 'backoffice/user/get_group_list';
+	var url = URL_SERVER + 'backoffice/user/get_role_list';
 	var data = {
 					'limit'		:limit,
 					'offset' 	:offset
@@ -98,7 +98,7 @@ function get_content()
 function search_content()
 {
 	// Setup variable
-	var url = URL_SERVER + 'backoffice/user/search_group';
+	var url = URL_SERVER + 'backoffice/user/search_role';
 	var data = {
 					'keyword'	: $('#keyword').val(),
 					'criteria'	: $('#criteria').val()
@@ -127,7 +127,7 @@ function create_content()
 {
 	// Setup variable
 	var dialog = $('#dialog_create');
-	var url = URL_SERVER + 'backoffice/user/create_group';
+	var url = URL_SERVER + 'backoffice/user/create_role';
 	var data = {
 					'name' : dialog.find('#name').val()
 			   };
@@ -155,7 +155,7 @@ function create_content()
 function update_content()
 {
 	// Setup variable
-	var url = URL_SERVER + 'backoffice/user/update_group';
+	var url = URL_SERVER + 'backoffice/user/update_role';
 	var dialog = $('#dialog_update');
 	var data = {
 					'id'	: dialog.find('#id').val(),
@@ -186,7 +186,7 @@ function delete_content()
 {
 	// Setup variable
 	var checked = $('tbody').find('input[type=checkbox]:checked');
-	var url = URL_SERVER + 'backoffice/user/delete_group';
+	var url = URL_SERVER + 'backoffice/user/delete_role';
 	var id = new Array();
 	
 	checked.each(function(index) 
@@ -215,5 +215,5 @@ function delete_content()
 // ------------------------------------------------------------------------
 
 
-/* End of file user_group_index.js */
+/* End of file user_role_index.js */
 /* Location: assets/modules/backoffice/js/user_role_index.js */

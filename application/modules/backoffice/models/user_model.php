@@ -150,6 +150,123 @@ class User_model extends CI_Model
 			$this->db->where('id', $id[$loop]);
 			$this->db->delete($this->table_user_group);
 		}
+	}// ------------------------------------------------------------------------
+	// Function - User role
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Create new user role
+	 *
+	 * @access	public
+	 * @param 	array		$data		
+	 */
+	
+	function create_role($data)
+	{
+		$this->db->insert($this->table_user_role, $data);
+		
+		return TRUE;
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user role list
+	 *
+	 * @access	public
+	 * @param 	integer		$limit
+	 * @param 	integer		$offset		
+	 * @return	array
+	 */
+	
+	function get_role_list($limit = '', $offset = '')
+	{		
+		if($limit != '' && $offset != '')
+		{
+			$_query = $this->db->get($this->table_user_role, $limit, $offset);
+		}
+		else if($limit != '')
+		{
+			$_query = $this->db->get($this->table_user_role, $limit, 0);
+		}
+		else
+		{
+			$_query = $this->db->get($this->table_user_role);
+		}
+		
+		return $_query->result();
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Search user role
+	 *
+	 * @access	public
+	 * @param 	string		$keyword		
+	 * @param 	string		$criteria	
+	 * @return	array
+	 */
+	
+	function search_role($keyword, $criteria)
+	{				
+		$this->db->like($criteria, $keyword);
+		$_query = $this->db->get($this->table_user_role);
+		
+		return $_query->result();
+	}	
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user role detail
+	 *
+	 * @access	public
+	 * @param 	int		$id		
+	 * @return	array
+	 */
+	
+	function get_role_detail($id)
+	{		
+		$this->db->where('id', $id);
+		$_query = $this->db->get($this->table_user_role);
+		
+		return $_query->row_array();
+	}	
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Update user role content
+	 *
+	 * @access	public
+	 * @param 	integer		$id		
+	 * @param 	array		$data	
+	 * @return	bool
+	 */
+	
+	function update_role($id, $data)
+	{		
+		$this->db->where('id', $id);
+		$this->db->update($this->table_user_role, $data);
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Delete user role
+	 *
+	 * @access	public
+	 * @param 	array		$id		
+	 */
+	
+	function delete_role($id)
+	{		
+		for($loop = 0; $loop < count($id); $loop++)
+		{
+			$this->db->where('id', $id[$loop]);
+			$this->db->delete($this->table_user_role);
+		}
 	}
 	
 	// ------------------------------------------------------------------------
