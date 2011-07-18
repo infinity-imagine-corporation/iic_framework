@@ -36,16 +36,54 @@ class Setting extends MX_Controller
 		
 		// Set module
 		$data['module']		= 'backoffice';
-		$data['controller']	= 'setting';
+		$data['controller']	= 'Setting';
 		$data['page']		= 'module_index';
 		$data['title']		= 'Module';
 		
 		// Set table haed
 		$data['th'] = array();
+		array_push($data['th'], array('axis'=>'id',			'label'=>'ID'));
 		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
 		array_push($data['th'], array('axis'=>'description','label'=>'Description'));
 		array_push($data['th'], array('axis'=>'uri',		'label'=>'URI'));
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Status'));
+		
+		// Set other content
+		
+		// Display
+		$this->load->view('main', $data);
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Module permission
+	  *
+	  * @access	public
+	  */
+	  
+	function permission()
+	{	
+		// Check permission
+		Modules::run('backoffice/login/check_permission');	
+		
+		// Load theme
+		$data['theme'] = $this->theme_model->get_theme();
+		
+		// Set module
+		$data['module']		= 'backoffice';
+		$data['controller']	= 'Setting';
+		$data['page']		= 'permission_index';
+		$data['title']		= 'Permission';
+		
+		// Set table haed
+		$data['th'] = array();
+		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
+		array_push($data['th'], array('axis'=>'description','label'=>'Read'));
+		array_push($data['th'], array('axis'=>'uri',		'label'=>'Create'));
+		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Edit'));
+		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Delete'));
+		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Full Control'));
 		
 		// Set other content
 		
@@ -162,6 +200,34 @@ class Setting extends MX_Controller
 	{
 		$this->module_model->delete_module($this->input->post('id'));
 	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get module selecbox option 
+	 *
+	 * @access	public
+	 * @param 	string	$selected	
+	 * @return	mixed
+	 */
+	
+	function get_module_selectbox_option($selected = NULL)
+	{
+		$_option = '';
+		$_group = $this->module_model->get_module_list();
+		
+		foreach($_group as $data)
+		{
+			$_selected = ($data->id == $selected) ? ' selected="selected"' : '';
+			$_option .= '<option value="'. $data->id.'"'.$_selected.'>'.$data->name.'</option>';
+		}
+		
+		return $_option;
+	}
+	
+	// ------------------------------------------------------------------------
+	// Function - setting
+	// ------------------------------------------------------------------------
 	
 }
 

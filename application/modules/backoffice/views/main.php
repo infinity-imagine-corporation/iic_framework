@@ -39,7 +39,7 @@
 			<b>Group : </b><?php echo $this->session->userdata('group'); ?>&nbsp;&nbsp;
 			<b>Role : </b><?php echo $this->session->userdata('role'); ?> 
 		</div>
-		<div id="address">Home</div>
+		<div id="address">Home&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;<?php echo $controller ?>&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;<?php echo $title ?></div>
 	</div>
 	
 	<div id="content">

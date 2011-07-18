@@ -71,8 +71,8 @@ function get_content()
 	
 	var url = URL_SERVER + 'backoffice/user/get_group_list';
 	var data = {
-					'limit'		:limit,
-					'offset' 	:offset
+					'limit'		: limit,
+					'offset' 	: offset
 			   };
 			   
 	// Setup ajax
@@ -216,4 +216,4 @@ function delete_content()
 
 
 /* End of file user_group_index.js */
-/* Location: assets/modules/backoffice/js/user_role_index.js */
+/* Location: assets/modules/backoffice/js/user_group_index.js */

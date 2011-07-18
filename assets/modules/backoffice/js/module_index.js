@@ -33,6 +33,7 @@ function generate_html(content)
 		 {
 			list += '<tr rel="' + data['id'] + '">' + 
 						'<td><input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" /></td>' + 
+						'<td width="30" class="center">' + data['id'] + '</td>' + 
 						'<td>' + data['name'] + '</td>' + 
 						'<td>' + data['description'] + '</td>' + 
 						'<td>' + data['uri'] + '</td>' + 

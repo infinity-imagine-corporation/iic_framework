@@ -320,4 +320,4 @@ function update_selectbox_option(id_parent)
 
 
 /* End of file category_index.js */
-/* Location: assets/modules/backoffice/js/main.js */
+/* Location: assets/modules/backoffice/js/category_index.js */
