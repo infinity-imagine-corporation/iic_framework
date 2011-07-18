@@ -77,8 +77,30 @@ class User_model extends CI_Model
 	 */
 	
 	function search_user($keyword, $criteria)
-	{				
-		$this->db->like($criteria, $keyword);
+	{	
+		if($criteria == 'id_group')
+		{
+			$_criteria = $this->table_user_group.'.name';
+		}
+		else if($criteria == 'id_role')
+		{
+			$_criteria= $this->table_user_role.'.name';
+		}
+		else
+		{
+			$_criteria = $this->table_user.'.'.$criteria;
+		}
+	
+		$this->db->select(
+							$this->table_user.'.id, '.
+							$this->table_user.'.name, '.
+							$this->table_user.'.username, '.
+							$this->table_user_group.'.name as "group", '.
+							$this->table_user_role.'.name as "role"'
+						 );
+		$this->db->join($this->table_user_group, $this->table_user.'."id_group" = '.$this->table_user_group.'.id');
+		$this->db->join($this->table_user_role, $this->table_user.'.id_role = '.$this->table_user_role.'.id');			
+		$this->db->like($_criteria, $keyword);
 		$_query = $this->db->get($this->table_user);
 		
 		return $_query->result();

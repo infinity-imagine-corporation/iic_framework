@@ -42,11 +42,10 @@ class User extends MX_Controller
 		
 		// Set table haed
 		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'id',			'label'=>'ID'));
 		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
 		array_push($data['th'], array('axis'=>'username',	'label'=>'User Name'));
-		array_push($data['th'], array('axis'=>'group',		'label'=>'Group'));
-		array_push($data['th'], array('axis'=>'role',		'label'=>'Role'));
+		array_push($data['th'], array('axis'=>'id_group',	'label'=>'Group'));
+		array_push($data['th'], array('axis'=>'id_role',	'label'=>'Role'));
 		
 		// Set other content
 		
@@ -62,7 +61,7 @@ class User extends MX_Controller
 	  * @access	public
 	  */
 	
-	function user_group()
+	function group()
 	{		
 		// Check permission
 		Modules::run('backoffice/login/check_permission');	
@@ -94,7 +93,7 @@ class User extends MX_Controller
 	  * @access	public
 	  */
 	
-	function user_role()
+	function role()
 	{		
 		// Check permission
 		Modules::run('backoffice/login/check_permission');	
