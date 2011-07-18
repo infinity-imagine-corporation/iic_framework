@@ -11,8 +11,8 @@
 			<li><a href="#">User</a></li>
 			<li><?php echo anchor('backoffice/module/backoffice/user/user_group/', 'User Group') ?></li>
 			<li><?php echo anchor('backoffice/module/backoffice/user/user_role/', 'User Role') ?></li>
-			<li><a href="#">Theme</a></li>
-			<li><a href="#">Module</a></li>
+			<!--<li><a href="#">Theme</a></li>-->
+			<!--<li><a href="#">Module</a></li>-->
 		</ul>
 	</li>
 </ul>

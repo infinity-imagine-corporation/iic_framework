@@ -103,13 +103,9 @@ $(function()
 	{
 		// Setup variable
 		var checked = $('tbody').find('input[type=checkbox]:checked').length;
-		var url = URL_SERVER + $(this).attr('rel');
 		
 		if(checked > 0)
-		{
-			// Call ajax function
-			delete_content(url);
-			
+		{			
 			// Open dialog
 			$('#dialog_delete').dialog('open');
 		}

@@ -23,7 +23,7 @@ $(function()
  * @param json content
  */	
 
-function list_content(content)
+function generate_html(content)
 {
 	if(content != '')
 	{
@@ -78,7 +78,7 @@ function get_content()
 	// Setup ajax
 	$.post(url, data, function(response)
 	{
-		list_content(response);	
+		generate_html(response);	
 	}, "json")
 	.success(function() { $('#preload').slideUp('fast'); })
 	.error(function() 
@@ -107,7 +107,7 @@ function search_content()
 	// Setup ajax
 	$.post(url, data, function(response)
 	{
-		list_content(response);
+		generate_html(response);
 	}, "json")
 	.error(function() 
 	{  
@@ -182,12 +182,14 @@ function update_content()
  * Delete content via ajax
  */	
 
-function delete_content(url)
+function delete_content()
 {
 	// Setup variable
+	var checked = $('tbody').find('input[type=checkbox]:checked');
+	var url = URL_SERVER + 'backoffice/user/delete_group';
 	var id = new Array();
 	
-	$('tbody').find('input[type=checkbox]:checked').each(function(index) 
+	checked.each(function(index) 
 	{
 		id.push($(this).val());
 	});
