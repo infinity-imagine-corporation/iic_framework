@@ -169,12 +169,16 @@ class User extends MX_Controller
 		else
 		{
 			$data = array(
-							'id'	=> '',
-							'name'	=> ''
+							'id'		=> '',
+							'name'		=> '',
+							'username'	=> '',
+							'password'	=> '',
+							'id_group'		=> NULL,
+							'id_role'		=> NULL,
 					 	 );	
 		}
 		
-		$this->load->view('user_user_form', $data);	
+		$this->load->view('user_form', $data);	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -333,6 +337,30 @@ class User extends MX_Controller
 	}
 	
 	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user group selecbox option 
+	 *
+	 * @access	public
+	 * @param 	string	$selected	
+	 * @return	mixed
+	 */
+	
+	function get_group_selectbox_option($selected = NULL)
+	{
+		$_option = '';
+		$_group = $this->user_model->get_group_list();
+		
+		foreach($_group as $data)
+		{
+			$_selected = ($data->id == $selected) ? ' selected="selected"' : '';
+			$_option .= '<option value="'. $data->id.'"'.$_selected.'>'.$data->name.'</option>';
+		}
+		
+		return $_option;
+	}
+	
+	// ------------------------------------------------------------------------
 	// Function - User role
 	// ------------------------------------------------------------------------
 	
@@ -437,6 +465,30 @@ class User extends MX_Controller
 	function delete_role()
 	{
 		$this->user_model->delete_role($this->input->post('id'));
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user role selecbox option 
+	 *
+	 * @access	public
+	 * @param 	string	$selected	
+	 * @return	mixed
+	 */
+	
+	function get_role_selectbox_option($selected = NULL)
+	{
+		$_option = '';
+		$_group = $this->user_model->get_role_list();
+		
+		foreach($_group as $data)
+		{
+			$_selected = ($data->id == $selected) ? ' selected="selected"' : '';
+			$_option .= '<option value="'. $data->id.'"'.$_selected.'>'.$data->name.'</option>';
+		}
+		
+		return $_option;
 	}
 	
 	// ------------------------------------------------------------------------

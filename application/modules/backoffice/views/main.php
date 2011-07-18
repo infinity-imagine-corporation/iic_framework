@@ -36,8 +36,8 @@
 	<div id="navigator">
 		<div id="user_info">
 			<b>User: </b><?php echo $this->session->userdata('name'); ?> 
-			<b>Group: </b> 
-			<b>Role: </b>
+			<b>Group: </b><?php echo $this->session->userdata('group'); ?> 
+			<b>Role: </b><?php echo $this->session->userdata('role'); ?> 
 		</div>
 		<div id="address">Home</div>
 	</div>

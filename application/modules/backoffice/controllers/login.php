@@ -69,9 +69,12 @@ class Login extends MX_Controller
 			$user = $this->user_model->get_detail_by_username($this->input->post('username'));			
 			
 			$data = array(
-				'name' => $user['name'],
-				'id' => $user['id'],
-				'login_status' => TRUE
+				'id'			=> $user['id'],
+				'name'			=> $user['name'],
+				'username'		=> $user['username'],
+				'group'			=> $user['group'],
+				'role'			=> $user['role'],
+				'login_status'	=> TRUE
 			);
 			$this->session->set_userdata($data);
 			

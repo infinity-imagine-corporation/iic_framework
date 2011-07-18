@@ -14,24 +14,128 @@ class User_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Create user
+	 * Create new user 
 	 *
 	 * @access	public
+	 * @param 	array		$data		
 	 */
-	  
-	/*function create_member()
+	
+	function create_user($data)
 	{
-		$new_member_insert_data = array(
-			'first_name' 	=> $this->input->post('first_name'),
-			'last_name' 	=> $this->input->post('last_name'),
-			'email_address' => $this->input->post('email_address'),			
-			'username' 		=> $this->input->post('username'),
-			'password' 		=> $this->input->post('password')						
-		);
+		$this->db->insert($this->table_user, $data);
 		
-		$insert = $this->db->insert($this->table, $new_member_insert_data);
-		return $insert;
-	}*/
+		return TRUE;
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user list
+	 *
+	 * @access	public
+	 * @param 	integer		$limit
+	 * @param 	integer		$offset		
+	 * @return	array
+	 */
+	
+	function get_user_list($limit = '', $offset = '')
+	{		
+		if($limit != '' && $offset != '')
+		{
+			$_query = $this->db->get($this->table_user, $limit, $offset);
+		}
+		else if($limit != '')
+		{
+			$_query = $this->db->get($this->table_user, $limit, 0);
+		}
+		else
+		{
+			$this->db->select(
+								$this->table_user.'.id, '.
+								$this->table_user.'.name, '.
+								$this->table_user.'.username, '.
+								$this->table_user_group.'.name as "group", '.
+								$this->table_user_role.'.name as "role"'
+							 );
+ 			$this->db->join($this->table_user_group, $this->table_user.'."id_group" = '.$this->table_user_group.'.id');
+ 			$this->db->join($this->table_user_role, $this->table_user.'.id_role = '.$this->table_user_role.'.id');
+			$_query = $this->db->get($this->table_user);
+		}
+		
+		return $_query->result();
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Search user group
+	 *
+	 * @access	public
+	 * @param 	string		$keyword		
+	 * @param 	string		$criteria	
+	 * @return	array
+	 */
+	
+	function search_user($keyword, $criteria)
+	{				
+		$this->db->like($criteria, $keyword);
+		$_query = $this->db->get($this->table_user);
+		
+		return $_query->result();
+	}	
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user detail
+	 *
+	 * @access	public
+	 * @param 	int		$id		
+	 * @return	array
+	 */
+	
+	function get_user_detail($id)
+	{		
+		$this->db->where('id', $id);
+		$_query = $this->db->get($this->table_user);
+		
+		return $_query->row_array();
+	}	
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Update user content
+	 *
+	 * @access	public
+	 * @param 	integer		$id		
+	 * @param 	array		$data	
+	 * @return	bool
+	 */
+	
+	function update_user($id, $data)
+	{		
+		$this->db->where('id', $id);
+		$this->db->update($this->table_user, $data);
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Delete user
+	 *
+	 * @access	public
+	 * @param 	array		$id		
+	 */
+	
+	function delete_user($id)
+	{		
+		for($loop = 0; $loop < count($id); $loop++)
+		{
+			$this->db->where('id', $id[$loop]);
+			$this->db->delete($this->table_user);
+		}
+	}
 			
 	// ------------------------------------------------------------------------
 	// Function - User group
@@ -150,7 +254,9 @@ class User_model extends CI_Model
 			$this->db->where('id', $id[$loop]);
 			$this->db->delete($this->table_user_group);
 		}
-	}// ------------------------------------------------------------------------
+	}
+	
+	// ------------------------------------------------------------------------
 	// Function - User role
 	// ------------------------------------------------------------------------
 	
@@ -324,10 +430,20 @@ class User_model extends CI_Model
 	  
 	function get_detail_by_username($username)  
 	{  
-		$this->db->where('username', $username); 
-		$query = $this->db->get($this->table_user);
+		$this->db->select(
+							$this->table_user.'.id, '.
+							$this->table_user.'.name, '.
+							$this->table_user.'.username, '.
+							$this->table_user.'.password, '.
+							$this->table_user_group.'.name as "group", '.
+							$this->table_user_role.'.name as "role"'
+						 );
+ 		$this->db->join($this->table_user_group, $this->table_user.'.id_group = '.$this->table_user_group.'.id');
+ 		$this->db->join($this->table_user_role, $this->table_user.'.id_role = '.$this->table_user_role.'.id');
+		$this->db->where($this->table_user.'.username', $username); 
+		$_query = $this->db->get($this->table_user);
 		
-		return $query->row_array();  
+		return $_query->row_array();  
 	}
 	
 	// ------------------------------------------------------------------------

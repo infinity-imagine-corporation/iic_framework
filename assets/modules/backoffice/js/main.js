@@ -125,6 +125,7 @@ $(function()
 	{
 		title		: 'Alert',
 		autoOpen	: false,
+		draggable	: false,
 		resizable	: false,
 		width		: 400,
 		height		: 'auto',
@@ -141,6 +142,7 @@ $(function()
 	{
 		title		: 'Create New Data',
 		autoOpen	: false,
+		draggable	: false,
 		resizable	: false,
 		width		: 500,
 		height		: 'auto',
@@ -157,6 +159,7 @@ $(function()
 	{
 		title		: 'Update Data',
 		autoOpen	: false,
+		draggable	: false,
 		resizable	: false,
 		width		: 500,
 		height		: 'auto',
@@ -173,6 +176,7 @@ $(function()
 	{
 		title		: 'Confirm Delete Data',
 		autoOpen	: false,
+		draggable	: false,
 		resizable	: false,
 		width		: 400,
 		height		: 'auto',
