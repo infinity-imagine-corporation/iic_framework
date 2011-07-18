@@ -59,7 +59,6 @@ $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
-
 /* mysql */
 /*
 $db['default']['hostname'] = 'localhost';

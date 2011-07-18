@@ -34,9 +34,9 @@ function generate_html(content)
 			list += '<tr rel="' + data['id'] + '">' + 
 						'<td><input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" /></td>' + 
 						'<td>' + data['name'] + '</td>' + 
-						'<td>' + data['username'] + '</td>' + 
-						'<td>' + data['group'] + '</td>' + 
-						'<td>' + data['role'] + '</td>' + 
+						'<td>' + data['description'] + '</td>' + 
+						'<td>' + data['uri'] + '</td>' + 
+						'<td>' + data['is_enable'] + '</td>' + 
 					'</tr>';
 		  });
 		
@@ -72,7 +72,7 @@ function get_content()
 	var limit = limit || '';
 	var offset = offset || '';
 	
-	var url = URL_SERVER + 'backoffice/user/get_user_list';
+	var url = URL_SERVER + 'backoffice/setting/get_module_list';
 	var data = {
 					'limit'		:limit,
 					'offset' 	:offset
@@ -101,7 +101,7 @@ function get_content()
 function search_content()
 {
 	// Setup variable
-	var url = URL_SERVER + 'backoffice/user/search_user';
+	var url = URL_SERVER + 'backoffice/setting/search_module';
 	var data = {
 					'keyword'	: $('#keyword').val(),
 					'criteria'	: $('#criteria').val()
@@ -130,13 +130,12 @@ function create_content()
 {
 	// Setup variable
 	var dialog = $('#dialog_create');
-	var url = URL_SERVER + 'backoffice/user/create_user';
+	var url = URL_SERVER + 'backoffice/setting/create_module';
 	var data = {
-					'name'		: dialog.find('#name').val(),
-					'username'	: dialog.find('#username').val(),
-					'password'	: dialog.find('#password').val(),
-					'id_group'	: dialog.find('#id_group').val(),
-					'id_role'	: dialog.find('#id_role').val()
+					'name'			: dialog.find('#name').val(),
+					'description'	: dialog.find('#description').val(),
+					'uri'			: dialog.find('#uri').val(),
+					'is_enable'		: dialog.find('input:radio[name=is_enable]:checked').val()
 			   };
 	
 	// Setup ajax		   
@@ -162,15 +161,14 @@ function create_content()
 function update_content()
 {
 	// Setup variable
-	var url = URL_SERVER + 'backoffice/user/update_user';
+	var url = URL_SERVER + 'backoffice/setting/update_module';
 	var dialog = $('#dialog_update');
 	var data = {
-					'id'		: dialog.find('#id').val(),
-					'name'		: dialog.find('#name').val(),
-					'username'	: dialog.find('#username').val(),
-					'password'	: dialog.find('#password').val(),
-					'id_group'	: dialog.find('#id_group').val(),
-					'id_role'	: dialog.find('#id_role').val()
+					'id'			: dialog.find('#id').val(),
+					'name'			: dialog.find('#name').val(),
+					'description'	: dialog.find('#description').val(),
+					'uri'			: dialog.find('#uri').val(),
+					'is_enable'		: dialog.find('input:radio[name=is_enable]:checked').val()
 			   };
 	
 	// Setup ajax
@@ -197,7 +195,7 @@ function delete_content()
 {
 	// Setup variable
 	var checked = $('tbody').find('input[type=checkbox]:checked');
-	var url = URL_SERVER + 'backoffice/user/delete_user';
+	var url = URL_SERVER + 'backoffice/setting/delete_module';
 	var id = new Array();
 	
 	checked.each(function(index) 
@@ -226,5 +224,5 @@ function delete_content()
 // ------------------------------------------------------------------------
 
 
-/* End of file user_index.js */
-/* Location: assets/modules/backoffice/js/user_index.js */
+/* End of file module_index.js */
+/* Location: assets/modules/backoffice/js/module_index.js */

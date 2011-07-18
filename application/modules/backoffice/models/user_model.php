@@ -57,7 +57,7 @@ class User_model extends CI_Model
 								$this->table_user_group.'.name as "group", '.
 								$this->table_user_role.'.name as "role"'
 							 );
- 			$this->db->join($this->table_user_group, $this->table_user.'."id_group" = '.$this->table_user_group.'.id');
+ 			$this->db->join($this->table_user_group, $this->table_user.'.id_group = '.$this->table_user_group.'.id');
  			$this->db->join($this->table_user_role, $this->table_user.'.id_role = '.$this->table_user_role.'.id');
 			$_query = $this->db->get($this->table_user);
 		}
