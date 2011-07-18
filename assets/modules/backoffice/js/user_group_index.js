@@ -135,7 +135,7 @@ function create_content()
 	// Setup ajax		   
 	$.post(url, data, function(response)
 	{
-		list_content();
+		get_content();
 	})
 	.success(function() { $('#dialog_create').dialog('close'); })
 	.error(function() 
@@ -165,12 +165,46 @@ function update_content()
 	// Setup ajax
 	$.post(url, data, function(response)
 	{
-		list_content();
+		get_content();
 	})
 	.success(function() { $('#dialog_update').dialog('close'); })
 	.error(function() 
 	{  
 		var msg = 'Error: update_content(' + url + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Delete content via ajax
+ */	
+
+function delete_content(url)
+{
+	// Setup variable
+	var id = new Array();
+	
+	$('tbody').find('input[type=checkbox]:checked').each(function(index) 
+	{
+		id.push($(this).val());
+	});
+	
+	var data = {
+					'id' : id
+			   };
+	
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
+		get_content();
+	})
+	.success(function() { $('#dialog_delete').dialog('close'); })
+	.error(function() 
+	{  
+		var msg = 'Error: delete_content(' + url + ')';
 		$('#dialog_alert_message').html(msg);
 		$('#dialog_alert').dialog('open');
 	});

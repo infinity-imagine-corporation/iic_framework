@@ -259,6 +259,40 @@ function update_content()
 // ------------------------------------------------------------------------
 
 /**
+ * Delete content via ajax
+ */	
+
+function delete_content(url)
+{
+	// Setup variable
+	var id = new Array();
+	
+	$('tbody').find('input[type=checkbox]:checked').each(function(index) 
+	{
+		id.push($(this).val());
+	});
+	
+	var data = {
+					'id' : id
+			   };
+	
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
+		list_content($('#quick_access').val());
+	})
+	.success(function() { $('#dialog_delete').dialog('close'); })
+	.error(function() 
+	{  
+		var msg = 'Error: delete_content(' + url + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
  * Get quick access content via ajax
  * 
  * @param integer url

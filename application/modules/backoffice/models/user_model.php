@@ -123,13 +123,14 @@ class User_model extends CI_Model
 	 * Update user group content
 	 *
 	 * @access	public
-	 * @param 	array		$data		
+	 * @param 	integer		$id		
+	 * @param 	array		$data	
 	 * @return	bool
 	 */
 	
-	function update_group($data)
+	function update_group($id, $data)
 	{		
-		$this->db->where('id', $data['id']);
+		$this->db->where('id', $id);
 		$this->db->update($this->table_user_group, $data);
 	}
 	

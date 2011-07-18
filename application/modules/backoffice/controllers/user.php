@@ -137,8 +137,11 @@ class User extends MX_Controller
 	function update_group()
 	{
 		$data = $this->input->post();
+		$id = $data['id'];
+		
+		unset($data['id']);
 				 
-		$this->user_model->update_group($data);
+		$this->user_model->update_group($id, $data);
 	}
 	
 	// ------------------------------------------------------------------------

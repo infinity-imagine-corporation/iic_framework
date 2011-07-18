@@ -89,10 +89,8 @@ class Category_model extends CI_Model
 	
 	function get_detail($id_category)
 	{
-		$_sql = 'SELECT * 
-				 FROM '.$this->table_category.' 
-				 WHERE id_category = "' . $id_category . '"';
-		$_query = $this->db->query($_sql);
+		$this->db->where('id_category', $id_category);
+		$_query = $this->db->get($this->table_category);
 		
 		return $_query->row_array();
 	}
