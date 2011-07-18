@@ -55,7 +55,7 @@ class User extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Get group list
+	 * Get user group list
 	 *
 	 * @access	public
 	 * @return	json
@@ -69,7 +69,23 @@ class User extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Get content form
+	 * Search user group list
+	 *
+	 * @access	public
+	 * @return	json
+	 */
+	  
+	function search_group()
+	{		
+		$data = $this->input->post();
+		
+		echo json_encode($this->user_model->search_group($data['keyword'], $data['criteria']));	
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user group form
 	 *
 	 * @access	public
 	 * @param 	integer	$id
@@ -96,7 +112,7 @@ class User extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Create category 
+	 * Create user group 
 	 *
 	 * @access	public
 	 */
@@ -113,7 +129,7 @@ class User extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Update category 
+	 * Update user group 
 	 *
 	 * @access	public
 	 */
@@ -128,7 +144,7 @@ class User extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Delete category 
+	 * Delete user group 
 	 *
 	 * @access	public
 	 */

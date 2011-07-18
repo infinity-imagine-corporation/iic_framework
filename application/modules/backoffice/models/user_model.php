@@ -54,6 +54,72 @@ class User_model extends CI_Model
 	// ------------------------------------------------------------------------
 	
 	/**
+	 * Get user group list
+	 *
+	 * @access	public
+	 * @param 	integer		$limit
+	 * @param 	integer		$offset		
+	 * @return	array
+	 */
+	
+	function get_group_list($limit = '', $offset = '')
+	{		
+		if($limit != '' && $offset != '')
+		{
+			$_query = $this->db->get($this->table_user_group, $limit, $offset);
+		}
+		else if($limit != '')
+		{
+			$_query = $this->db->get($this->table_user_group, $limit, 0);
+		}
+		else
+		{
+			$_query = $this->db->get($this->table_user_group);
+		}
+		
+		return $_query->result();
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Search user group
+	 *
+	 * @access	public
+	 * @param 	string		$keyword		
+	 * @param 	string		$criteria	
+	 * @return	array
+	 */
+	
+	function search_group($keyword, $criteria)
+	{				
+		$this->db->like($criteria, $keyword);
+		$_query = $this->db->get($this->table_user_group);
+		
+		return $_query->result();
+	}	
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user group detail
+	 *
+	 * @access	public
+	 * @param 	int		$id		
+	 * @return	array
+	 */
+	
+	function get_group_detail($id)
+	{		
+		$this->db->where('id', $id);
+		$_query = $this->db->get($this->table_user_group);
+		
+		return $_query->row_array();
+	}	
+	
+	// ------------------------------------------------------------------------
+	
+	/**
 	 * Update user group content
 	 *
 	 * @access	public
@@ -84,53 +150,6 @@ class User_model extends CI_Model
 			$this->db->delete($this->table_user_group);
 		}
 	}
-	
-	// ------------------------------------------------------------------------
-	
-	/**
-	 * Get user group list
-	 *
-	 * @access	public
-	 * @param 	integer		$limit
-	 * @param 	integer		$offset		
-	 * @return	array
-	 */
-	
-	function get_group_list($limit = '', $offset = '')
-	{		
-		if($limit != '' && $offset != '')
-		{
-			$_query = $this->db->get($this->table_user_group, $limit, $offset);
-		}
-		else if($limit != '')
-		{
-			$_query = $this->db->get($this->table_user_group, $limit, 0);
-		}
-		else
-		{
-			$_query = $this->db->get($this->table_user_group);
-		}
-		
-		return $_query->result();
-	}
-	
-	// ------------------------------------------------------------------------
-	
-	/**
-	 * Get user group detail
-	 *
-	 * @access	public
-	 * @param 	int		$id		
-	 * @return	array
-	 */
-	
-	function get_group_detail($id)
-	{		
-		$this->db->where('id', $id);
-		$_query = $this->db->get($this->table_user_group);
-		
-		return $_query->row_array();
-	}	
 	
 	// ------------------------------------------------------------------------
 	// Function - Login

@@ -8,7 +8,7 @@ $(function()
 	// Load content 
 	// ------------------------------------------------------------------------
 	
-	list_content();
+	get_content();
 	
 	// ------------------------------------------------------------------------
 });	
@@ -20,12 +20,48 @@ $(function()
 /**
  * List content - get new content via ajax and replace in <tbody>
  * 
- * @param integer limit
- * @param integer offset
+ * @param json content
  */	
 
-function list_content(limit, offset)
+function list_content(content)
 {
+	if(content != '')
+	{
+		 var list = '';
+		 
+		 $.each(content, function(i, data) 
+		 {
+			list += '<tr rel="' + data['id'] + '">' + 
+						'<td><input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" /></td>' + 
+						'<td>' + data['name'] + '</td>' + 
+					'</tr>';
+		  });
+		
+		// Uncheck select all   
+		$('#select_all').removeAttr('checked');
+		
+		// Update table content			
+		$("tbody").html(list);
+	}
+	else
+	{
+		// Uncheck select all   
+		$('#select_all').removeAttr('checked');
+		
+		// Update table content			
+		$("tbody").html("<td align='center' colspan='2'>No result found.</td>");	
+	}
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Get content via ajax
+ */	
+
+function get_content()
+{
+
 	// Show preload
 	$('#preload').slideDown('fast');
 	
@@ -42,38 +78,40 @@ function list_content(limit, offset)
 	// Setup ajax
 	$.post(url, data, function(response)
 	{
-		if(response != '')
-		{
-			 var list = '';
-			 
-			 $.each(response, function(i, data) 
-			 {
-				list += '<tr rel="' + data['id'] + '">' + 
-							'<td><input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" /></td>' + 
-							'<td>' + data['name'] + '</td>' + 
-						'</tr>';
-			  });
-			
-			// Uncheck select all   
-			$('#select_all').removeAttr('checked');
-			
-			// Update table content			
-			$("tbody").html(list);
-		}
-		else
-		{
-			// Uncheck select all   
-			$('#select_all').removeAttr('checked');
-			
-			// Update table content			
-			$("tbody").html("<td align='center' colspan='2'>No result found.</td>");	
-		}
-		
+		list_content(response);	
 	}, "json")
 	.success(function() { $('#preload').slideUp('fast'); })
 	.error(function() 
 	{  
 		var msg = 'Error: list_content(' + limit + ', ' + offset + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Search content via ajax
+ */	
+ 
+function search_content()
+{
+	// Setup variable
+	var url = URL_SERVER + 'backoffice/user/search_group';
+	var data = {
+					'keyword'	: $('#keyword').val(),
+					'criteria'	: $('#criteria').val()
+			   };
+	
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
+		list_content(response);
+	}, "json")
+	.error(function() 
+	{  
+		var msg = 'Error: search_content(' + url + ')';
 		$('#dialog_alert_message').html(msg);
 		$('#dialog_alert').dialog('open');
 	});

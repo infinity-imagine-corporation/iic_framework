@@ -45,6 +45,7 @@ class CI_DB_sqlsrv_result extends CI_DB_result {
 	 */
 	function num_rows()
 	{
+		$num_rows=0;
 		return !$num_rows = sqlsrv_num_rows($this->result_id) ? 0 : $num_rows;
 	}
 	

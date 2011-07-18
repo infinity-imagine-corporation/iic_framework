@@ -54,6 +54,19 @@ class CI_DB_sqlsrv_driver extends CI_DB {
 
 	var	$_escape_char 	= '';
 	var $dbdriver 		= 'sqlsrv';
+	
+	// clause and character used for LIKE escape sequences
+	var $_like_escape_str = " ESCAPE '%s' ";
+	var $_like_escape_chr = '!';
+
+	/**
+	 * The syntax to count rows is slightly different across different
+	 * database engines, so this string appears in each driver and is
+	 * used for the count_all() and count_all_results() functions.
+	 */
+	 
+	var $_count_string = "SELECT COUNT(*) AS ";
+	var $_random_keyword = ' ASC'; // not currently supported
 
 	/**
 	 * db_connect
