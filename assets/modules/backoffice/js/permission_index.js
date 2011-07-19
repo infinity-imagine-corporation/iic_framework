@@ -47,7 +47,7 @@ function generate_html(response, id_target)
 		 var list = '';
 		 $.each(response, function(i, data) 
 		 {
-			list += '<tr rel="' + data['id_category'] + '" ' + class_checked + '>' + 
+			list += '<tr rel="' + data['id'] + '" ' + class_checked + '>' + 
 						'<td width="50%">' + data['name'] + '</td>' + 
 						'<td width="10%" class="center"><input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" ' + checked + ' /></td>' + 
 						'<td width="10%" class="center"><input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" ' + checked + ' /></td>' + 
@@ -83,8 +83,16 @@ function list_content()
 {
 	get_group_content();
 	get_role_content();
+	get_user_content();
 }
 
+// ------------------------------------------------------------------------
+
+/**
+ * Get user group
+ * 
+ */	
+ 
 function get_group_content()
 {
 	// Show preload
@@ -114,6 +122,13 @@ function get_group_content()
 	});
 }
 
+// ------------------------------------------------------------------------
+
+/**
+ * Get user role
+ * 
+ */	
+ 
 function get_role_content()
 {
 
@@ -134,6 +149,77 @@ function get_role_content()
 	$.post(url, data, function(response)
 	{
 		generate_html(response, 'table_role');	
+	}, "json")
+	.success(function() { $('#preload').slideUp('fast'); })
+	.error(function() 
+	{  
+		var msg = 'Error: list_content(' + limit + ', ' + offset + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
+}
+
+// ------------------------------------------------------------------------
+
+/**
+ * Get user role
+ */	
+
+function get_user_content()
+{
+
+	// Show preload
+	$('#preload').slideDown('fast');
+	
+	// Setup variable
+	var limit = limit || '';
+	var offset = offset || '';
+	
+	var url = URL_SERVER + 'backoffice/user/get_user_list';
+	var data = {
+					'limit'		:limit,
+					'offset' 	:offset
+			   };
+			   
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
+		generate_html(response, 'table_user');	
+	}, "json")
+	.success(function() { $('#preload').slideUp('fast'); })
+	.error(function() 
+	{  
+		var msg = 'Error: list_content(' + limit + ', ' + offset + ')';
+		$('#dialog_alert_message').html(msg);
+		$('#dialog_alert').dialog('open');
+	});
+}
+// ------------------------------------------------------------------------
+
+/**
+ * Get content via ajax
+ */	
+
+function get_content()
+{
+
+	// Show preload
+	$('#preload').slideDown('fast');
+	
+	// Setup variable
+	var limit = limit || '';
+	var offset = offset || '';
+	
+	var url = URL_SERVER + 'backoffice/user/get_user_list';
+	var data = {
+					'limit'		:limit,
+					'offset' 	:offset
+			   };
+			   
+	// Setup ajax
+	$.post(url, data, function(response)
+	{
+		generate_html(response);	
 	}, "json")
 	.success(function() { $('#preload').slideUp('fast'); })
 	.error(function() 
