@@ -100,6 +100,8 @@ body#Category .menu_main li#Category a
 	-webkit-box-shadow: 0px 0px 2px #666 inset;
 }
 
+/* Menu Level 2 */ 
+
 .menu_main > li > ul
 {
 	background: #999;
@@ -110,6 +112,7 @@ body#Category .menu_main li#Category a
 	opacity: 0.9;
 	padding: 5px;
 	position: absolute;
+	white-space: nowrap;
 	z-index: 1000;
 	
 	/* CSS3 */
@@ -123,15 +126,18 @@ body#Category .menu_main li#Category a
 
 .menu_main > li > ul > li
 {
+	line-height: 20px;
 	margin: 0px;
 	padding: 0px;
+	position: relative;
 }
 
-.menu_main > li:hover > ul > li > a
+.menu_main > li:hover > ul > li a, .menu_main > li:hover > ul > li:hover > ul > li > a
 {
 	background: #999;
 	border: 1px solid #999;
 	color: #FFF;
+	margin-top: 0px;
 	padding: 0px 10px;
 	text-align: left;
 	text-shadow: 0px 0px 3px #333;
@@ -143,7 +149,8 @@ body#Category .menu_main li#Category a
 	-webkit-box-shadow: none;
 }
 
-.menu_main > li > ul > li > a:hover
+.menu_main > li > ul > li:hover a,
+.menu_main > li:hover > ul > li:hover > ul > li > a:hover
 {
 	background: #AFAFAF;
 	border: 1px solid #909090;
@@ -157,6 +164,37 @@ body#Category .menu_main li#Category a
 	box-shadow: 0px 0px 3px #666 inset;
 	-moz-box-shadow: 0px 0px 3px #666 inset;
 	-webkit-box-shadow: 0px 0px 3px #666 inset;
+}
+
+/* Menu Level 3 */ 
+
+.menu_main > li > ul > li > ul
+{
+	background: #999;
+	display: none;
+	min-width: 150px;
+	opacity: 0.9;
+	padding: 5px;
+	position: absolute;
+	top: 0px;
+	right: -155px;
+	white-space: nowrap;
+	z-index: 1001;
+	
+	/* CSS3 */
+	
+	box-shadow: 0px 1px 5px #333;
+	-moz-box-shadow: 0px 1px 5px #333;
+	-webkit-box-shadow: 0px 1px 5px #333;
+}
+
+.menu_main > li > ul > li:hover > ul { display: inherit; }
+
+.menu_main > li > ul > li > ul > li
+{
+	margin: 0px;
+	padding: 0px;
+	position: relative;
 }
 
 /*------------------------------------------------------------*/
