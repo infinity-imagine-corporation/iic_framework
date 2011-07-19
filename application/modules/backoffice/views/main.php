@@ -39,7 +39,27 @@
 			<b>Group : </b><?php echo $this->session->userdata('group'); ?>&nbsp;&nbsp;
 			<b>Role : </b><?php echo $this->session->userdata('role'); ?> 
 		</div>
-		<div id="address">Home&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;<?php echo $controller ?>&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;<?php echo $title ?></div>
+		<div id="address">
+		<?php 
+		
+		if($module !=  'Backoffice')
+		{
+			 echo  'Backoffice&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;';
+		}
+		
+		if($module !=  $controller)
+		{
+			 echo  $module . '&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;';
+		}
+		
+		if($controller !=  $title)
+		{
+			 echo  $controller . '&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;';
+		}
+		
+		echo $title 
+		?>
+		</div>
 	</div>
 	
 	<div id="content">

@@ -35,8 +35,8 @@ class User extends MX_Controller
 		$data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'backoffice';
-		$data['controller']	= 'user';
+		$data['module']		= 'Backoffice';
+		$data['controller']	= 'User';
 		$data['page']		= 'user_index';
 		$data['title']		= 'User';
 		
@@ -70,8 +70,8 @@ class User extends MX_Controller
 		$data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'backoffice';
-		$data['controller']	= 'user';
+		$data['module']		= 'Backoffice';
+		$data['controller']	= 'User';
 		$data['page']		= 'user_group_index';
 		$data['title']		= 'User Group';
 		
@@ -102,8 +102,8 @@ class User extends MX_Controller
 		$data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'backoffice';
-		$data['controller']	= 'user';
+		$data['module']		= 'Backoffice';
+		$data['controller']	= 'User';
 		$data['page']		= 'user_role_index';
 		$data['title']		= 'User Role';
 		

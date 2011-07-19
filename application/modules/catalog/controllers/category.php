@@ -33,8 +33,8 @@ class Category extends MX_Controller
 		$data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'catalog';
-		$data['controller']	= 'category';
+		$data['module']		= 'Catalog';
+		$data['controller']	= 'Category';
 		$data['page']		= 'category_index';
 		$data['title']		= 'Category';
 		

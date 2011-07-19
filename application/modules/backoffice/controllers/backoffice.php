@@ -32,8 +32,8 @@ class Backoffice extends MX_Controller
 		$data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'backoffice';
-		$data['controller']	= 'backoffice';
+		$data['module']		= 'Backoffice';
+		$data['controller']	= 'Backoffice';
 		$data['page']		= 'dashboard';
 		
 		// Set content
@@ -59,7 +59,7 @@ class Backoffice extends MX_Controller
 		
 		// Set module
 		$data['module']		= 'backoffice';
-		$data['controller']	= 'backoffice';
+		$data['controller']	= 'Backoffice';
 		$data['page']		= 'modules_index';
 		$data['title']		= 'Modules';
 		

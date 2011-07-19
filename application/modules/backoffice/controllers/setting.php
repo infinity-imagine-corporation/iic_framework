@@ -35,7 +35,7 @@ class Setting extends MX_Controller
 		$data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'backoffice';
+		$data['module']		= 'Backoffice';
 		$data['controller']	= 'Setting';
 		$data['page']		= 'module_index';
 		$data['title']		= 'Module';
@@ -71,7 +71,7 @@ class Setting extends MX_Controller
 		$data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'backoffice';
+		$data['module']		= 'Backoffice';
 		$data['controller']	= 'Setting';
 		$data['page']		= 'permission_index';
 		$data['title']		= 'Permission';
@@ -79,11 +79,11 @@ class Setting extends MX_Controller
 		// Set table haed
 		$data['th'] = array();
 		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
+		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Full Control'));
 		array_push($data['th'], array('axis'=>'description','label'=>'Read'));
 		array_push($data['th'], array('axis'=>'uri',		'label'=>'Create'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Edit'));
+		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Update'));
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Delete'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Full Control'));
 		
 		// Set other content
 		
