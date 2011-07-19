@@ -5,9 +5,10 @@ class User_model extends CI_Model
 	// Setup database
 	// ------------------------------------------------------------------------
 	
-	var $table_user 		= 'backoffice_user';
-	var $table_user_group 	= 'backoffice_user_group';
-	var $table_user_role	= 'backoffice_user_role';
+	var $table_user 	= 'backoffice_user';
+	var $table_group 	= 'backoffice_user_group';
+	var $table_role		= 'backoffice_user_role';
+	var $table_log		= 'backoffice_user_log';
 	
 	// ------------------------------------------------------------------------
 	// Function - User
@@ -54,11 +55,11 @@ class User_model extends CI_Model
 								$this->table_user.'.id, '.
 								$this->table_user.'.name, '.
 								$this->table_user.'.username, '.
-								$this->table_user_group.'.name as "group", '.
-								$this->table_user_role.'.name as "role"'
+								$this->table_group.'.name as "group", '.
+								$this->table_role.'.name as "role"'
 							 );
- 			$this->db->join($this->table_user_group, $this->table_user.'.id_group = '.$this->table_user_group.'.id');
- 			$this->db->join($this->table_user_role, $this->table_user.'.id_role = '.$this->table_user_role.'.id');
+ 			$this->db->join($this->table_group, $this->table_user.'.id_group = '.$this->table_group.'.id');
+ 			$this->db->join($this->table_role, $this->table_user.'.id_role = '.$this->table_role.'.id');
 			$_query = $this->db->get($this->table_user);
 		}
 		
@@ -80,11 +81,11 @@ class User_model extends CI_Model
 	{	
 		if($criteria == 'id_group')
 		{
-			$_criteria = $this->table_user_group.'.name';
+			$_criteria = $this->table_group.'.name';
 		}
 		else if($criteria == 'id_role')
 		{
-			$_criteria= $this->table_user_role.'.name';
+			$_criteria= $this->table_role.'.name';
 		}
 		else
 		{
@@ -95,11 +96,11 @@ class User_model extends CI_Model
 							$this->table_user.'.id, '.
 							$this->table_user.'.name, '.
 							$this->table_user.'.username, '.
-							$this->table_user_group.'.name as "group", '.
-							$this->table_user_role.'.name as "role"'
+							$this->table_group.'.name as "group", '.
+							$this->table_role.'.name as "role"'
 						 );
-		$this->db->join($this->table_user_group, $this->table_user.'."id_group" = '.$this->table_user_group.'.id');
-		$this->db->join($this->table_user_role, $this->table_user.'.id_role = '.$this->table_user_role.'.id');			
+		$this->db->join($this->table_group, $this->table_user.'."id_group" = '.$this->table_group.'.id');
+		$this->db->join($this->table_role, $this->table_user.'.id_role = '.$this->table_role.'.id');			
 		$this->db->like($_criteria, $keyword);
 		$_query = $this->db->get($this->table_user);
 		
@@ -172,7 +173,7 @@ class User_model extends CI_Model
 	
 	function create_group($data)
 	{
-		$this->db->insert($this->table_user_group, $data);
+		$this->db->insert($this->table_group, $data);
 		
 		return TRUE;
 	}
@@ -192,15 +193,15 @@ class User_model extends CI_Model
 	{		
 		if($limit != '' && $offset != '')
 		{
-			$_query = $this->db->get($this->table_user_group, $limit, $offset);
+			$_query = $this->db->get($this->table_group, $limit, $offset);
 		}
 		else if($limit != '')
 		{
-			$_query = $this->db->get($this->table_user_group, $limit, 0);
+			$_query = $this->db->get($this->table_group, $limit, 0);
 		}
 		else
 		{
-			$_query = $this->db->get($this->table_user_group);
+			$_query = $this->db->get($this->table_group);
 		}
 		
 		return $_query->result();
@@ -220,7 +221,7 @@ class User_model extends CI_Model
 	function search_group($keyword, $criteria)
 	{				
 		$this->db->like($criteria, $keyword);
-		$_query = $this->db->get($this->table_user_group);
+		$_query = $this->db->get($this->table_group);
 		
 		return $_query->result();
 	}	
@@ -238,7 +239,7 @@ class User_model extends CI_Model
 	function get_group_detail($id)
 	{		
 		$this->db->where('id', $id);
-		$_query = $this->db->get($this->table_user_group);
+		$_query = $this->db->get($this->table_group);
 		
 		return $_query->row_array();
 	}	
@@ -257,7 +258,7 @@ class User_model extends CI_Model
 	function update_group($id, $data)
 	{		
 		$this->db->where('id', $id);
-		$this->db->update($this->table_user_group, $data);
+		$this->db->update($this->table_group, $data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -274,7 +275,7 @@ class User_model extends CI_Model
 		for($loop = 0; $loop < count($id); $loop++)
 		{
 			$this->db->where('id', $id[$loop]);
-			$this->db->delete($this->table_user_group);
+			$this->db->delete($this->table_group);
 		}
 	}
 	
@@ -291,7 +292,7 @@ class User_model extends CI_Model
 	
 	function create_role($data)
 	{
-		$this->db->insert($this->table_user_role, $data);
+		$this->db->insert($this->table_role, $data);
 		
 		return TRUE;
 	}
@@ -311,15 +312,15 @@ class User_model extends CI_Model
 	{		
 		if($limit != '' && $offset != '')
 		{
-			$_query = $this->db->get($this->table_user_role, $limit, $offset);
+			$_query = $this->db->get($this->table_role, $limit, $offset);
 		}
 		else if($limit != '')
 		{
-			$_query = $this->db->get($this->table_user_role, $limit, 0);
+			$_query = $this->db->get($this->table_role, $limit, 0);
 		}
 		else
 		{
-			$_query = $this->db->get($this->table_user_role);
+			$_query = $this->db->get($this->table_role);
 		}
 		
 		return $_query->result();
@@ -339,7 +340,7 @@ class User_model extends CI_Model
 	function search_role($keyword, $criteria)
 	{				
 		$this->db->like($criteria, $keyword);
-		$_query = $this->db->get($this->table_user_role);
+		$_query = $this->db->get($this->table_role);
 		
 		return $_query->result();
 	}	
@@ -357,7 +358,7 @@ class User_model extends CI_Model
 	function get_role_detail($id)
 	{		
 		$this->db->where('id', $id);
-		$_query = $this->db->get($this->table_user_role);
+		$_query = $this->db->get($this->table_role);
 		
 		return $_query->row_array();
 	}	
@@ -376,7 +377,7 @@ class User_model extends CI_Model
 	function update_role($id, $data)
 	{		
 		$this->db->where('id', $id);
-		$this->db->update($this->table_user_role, $data);
+		$this->db->update($this->table_role, $data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -393,9 +394,42 @@ class User_model extends CI_Model
 		for($loop = 0; $loop < count($id); $loop++)
 		{
 			$this->db->where('id', $id[$loop]);
-			$this->db->delete($this->table_user_role);
+			$this->db->delete($this->table_role);
 		}
 	}
+	
+	// ------------------------------------------------------------------------
+	// Function - User log
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user log list
+	 *
+	 * @access	public
+	 * @param 	integer		$limit
+	 * @param 	integer		$offset		
+	 * @return	array
+	 */
+	
+	function get_log_list($limit = '', $offset = '')
+	{		
+		if($limit != '' && $offset != '')
+		{
+			$_query = $this->db->get($this->table_log, $limit, $offset);
+		}
+		else if($limit != '')
+		{
+			$_query = $this->db->get($this->table_log, $limit, 0);
+		}
+		else
+		{
+			$_query = $this->db->get($this->table_log);
+		}
+		
+		return $_query->result();
+	}
+	
+	// ------------------------------------------------------------------------
 	
 	// ------------------------------------------------------------------------
 	// Function - Login
@@ -457,11 +491,11 @@ class User_model extends CI_Model
 							$this->table_user.'.name, '.
 							$this->table_user.'.username, '.
 							$this->table_user.'.password, '.
-							$this->table_user_group.'.name as "group", '.
-							$this->table_user_role.'.name as "role"'
+							$this->table_group.'.name as "group", '.
+							$this->table_role.'.name as "role"'
 						 );
- 		$this->db->join($this->table_user_group, $this->table_user.'.id_group = '.$this->table_user_group.'.id');
- 		$this->db->join($this->table_user_role, $this->table_user.'.id_role = '.$this->table_user_role.'.id');
+ 		$this->db->join($this->table_group, $this->table_user.'.id_group = '.$this->table_group.'.id');
+ 		$this->db->join($this->table_role, $this->table_user.'.id_role = '.$this->table_role.'.id');
 		$this->db->where($this->table_user.'.username', $username); 
 		$_query = $this->db->get($this->table_user);
 		

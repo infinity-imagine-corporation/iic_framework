@@ -11,9 +11,9 @@
 			<li><?php echo anchor('backoffice/module/backoffice/user/user/', 'User') ?></li>
 			<li><?php echo anchor('backoffice/module/backoffice/user/group/', 'User Group') ?></li>
 			<li><?php echo anchor('backoffice/module/backoffice/user/role/', 'User Role') ?></li>
+			<li><?php echo anchor('backoffice/module/backoffice/user/log/', 'User Logs') ?></li>
 			<li><?php echo anchor('backoffice/module/backoffice/setting/system_module/', 'Module') ?></li>
 			<li><?php echo anchor('backoffice/module/backoffice/setting/permission/', 'Module Permission') ?></li>
-			<li><?php echo anchor('backoffice/module/backoffice/logs/index/', 'System Logs') ?></li>
 			<!--<li><a href="#">Theme</a></li>-->
 			<!--<li><a href="#">Module</a></li>-->
 		</ul>

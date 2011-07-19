@@ -118,6 +118,42 @@ class User extends MX_Controller
 	}
 	
 	// ------------------------------------------------------------------------
+	
+	/**
+	  * User log
+	  *
+	  * @access	public
+	  */
+	
+	function log()
+	{		
+		// Check permission
+		Modules::run('backoffice/login/check_permission');	
+		
+		// Load theme
+		$data['theme'] = $this->theme_model->get_theme();
+		
+		// Set module
+		$data['module']		= 'Backoffice';
+		$data['controller']	= 'User';
+		$data['page']		= 'user_log_index';
+		$data['title']		= 'User log';
+		
+		// Set table haed
+		$data['th'] = array();
+		array_push($data['th'], array('axis'=>'name', 'label'=>'Date'));
+		array_push($data['th'], array('axis'=>'name', 'label'=>'User'));
+		array_push($data['th'], array('axis'=>'name', 'label'=>'Action'));
+		array_push($data['th'], array('axis'=>'name', 'label'=>'Module'));
+		array_push($data['th'], array('axis'=>'name', 'label'=>'Note'));
+		
+		// Set other content
+		
+		// Display
+		$this->load->view('main', $data);
+	}
+	
+	// ------------------------------------------------------------------------
 	// Function - User
 	// ------------------------------------------------------------------------
 	
@@ -488,6 +524,38 @@ class User extends MX_Controller
 		}
 		
 		return $_option;
+	}
+	
+	// ------------------------------------------------------------------------
+	// Function - User log
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Get user log list
+	 *
+	 * @access	public
+	 * @return	json
+	 */
+	  
+	function get_log_list()
+	{		
+		echo json_encode($this->user_model->get_log_list());	
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Search user log list
+	 *
+	 * @access	public
+	 * @return	json
+	 */
+	  
+	function search_log()
+	{		
+		$data = $this->input->post();
+		
+		echo json_encode($this->user_model->search_log($data['keyword'], $data['criteria']));	
 	}
 	
 	// ------------------------------------------------------------------------

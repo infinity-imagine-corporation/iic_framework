@@ -64,3 +64,7 @@
 		</table>
 	</div>
 </div>
+
+<div id="content_bottom" class="center">
+	<button class="button_save" rel="<?php echo $module ?>/<?php echo $controller ?>/save_permission" >Save</button>
+</div>
