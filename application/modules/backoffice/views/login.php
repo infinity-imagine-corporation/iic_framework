@@ -23,11 +23,27 @@ $(function() {
 </script>
 
 <style type="text/css">
-.center_box > div.gadget { padding: 0px; width: 350px; }
+.center_box div.gadget 
+{ 
+	padding: 2px; 
+	max-width: 350px; 
+}
 
 #form_section { padding: 20px; }
 
-input[type=text], input[type=password] { width: 300px; }
+form 
+{ 
+	padding: 0px 10px;
+	margin-left: -13px;
+}
+
+input[type=text], input[type=password] { width: 100%; }
+
+#submit
+{ 
+	position: relative;
+	margin-right: -10px; 
+}
 </style>
 </head>
 
@@ -46,8 +62,8 @@ input[type=text], input[type=password] { width: 300px; }
 				<input type="text" name="username" id="username" value="" />
 				<label for="password">Password</label>
 				<input type="password" name="password" id="password" />
-				<div class="center">
-					<input name="Submit" type="submit" value="Login" />
+				<div class="right">
+					<input name="Submit" id="submit" type="submit" value="Login" />
 				</div>
 			<?php echo form_close() ?>
 		</div>

@@ -29,7 +29,8 @@ $(function() {
 	draggable	: false,
 	width		: 400,
 	height		: 'auto',
-	modal		: false,
+	modal		: true,
+	zIndex		: 2000,
 	buttons		: {
 					<?php echo $button_text ?>: function() {
 						window.open('<?php echo base_url().$url_target ?>','_self');

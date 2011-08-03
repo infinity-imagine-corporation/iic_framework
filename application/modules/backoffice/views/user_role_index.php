@@ -1,8 +1,8 @@
 <div id="content_top">
-	<button class="button_create" rel="<?php echo $module ?>/<?php echo $controller ?>/get_role_form" >New Role</button>
+	<button class="button_create" rel="<?php echo $module ?>/<?php echo $controller ?>/get_role_form" >เพิ่ม</button>
 	<div id="search_section">
 		<input type="text" name="keyword" id="keyword" class="search_left" />
-		<label class="inline" for="criteria">in:</label>
+		<label class="inline" for="criteria">จาก</label>
 		<select name="criteria" id="criteria">
 			<?php			
 			foreach($th as $data)
@@ -26,9 +26,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php echo'<tr><td colspan="'.(count($th) + 1).'" class="center">No result found.</td></tr>'; ?>
+		<?php echo'<tr><td colspan="'.(count($th) + 1).'" class="center">ไม่พบข้อมูล</td></tr>'; ?>
 	</tbody>
 </table>
 <div id="content_bottom">
-	<button class="button_delete" rel="<?php echo $module ?>/<?php echo $controller ?>/delete_role" >Delete</button>
+	<button class="button_delete" rel="<?php echo $module ?>/<?php echo $controller ?>/delete_role" >ลบ</button>
 </div>

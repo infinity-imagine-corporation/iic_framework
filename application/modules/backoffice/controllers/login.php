@@ -7,46 +7,47 @@ class Login extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Login page
-	  *
-	  * @access	public
-	  */
+	 * Login page
+	 *
+	 * @access	public
+	 */
 	  
 	function index($error_msg = NULL)
 	{	
 		$this->load->model('theme_model');
-		$data['theme'] = $this->theme_model->get_theme();
-		$data['theme']['header_text1'] = 'Member Login';
+		$_data['theme'] = $this->theme_model->get_theme();
+		$_data['theme']['header_text1'] = 'Member Login';
 		
-		$data['title'] = 'Login';
-		$data['error_msg'] = $error_msg;
+		$_data['title'] = 'Login';
+		$_data['error_msg'] = $error_msg;
 		
-		$this->load->view('login_dialog', $data);	
+		$this->load->view('login_dialog', $_data);	
 	}
 	
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Logout page
-	  *
-	  * @access	public
-	  */
+	 * Logout page
+	 *
+	 * @access	public
+	 */
 	  
 	function logout()
 	{
 		$this->session->sess_destroy();
 		
 		// Set module
-		$data['module']		= 'backoffice';
-		$data['controller']	= 'login';
-		$data['page']		= 'logout';
+		$_data['module']		= 'backoffice';
+		$_data['controller']	= 'login';
+		$_data['page']		= 'logout';
 		
-		$data['title'] = 'Security System';
-		$data['message'] = '<li>Logout success</li>';
-		$data['url_target'] = index_page().'/backoffice/login';
-		$data['button_text'] = '';
+		// Set content
+		$_data['title'] = 'ระบบรักษาความปลอดภัย';
+		$_data['message'] = '<li>ออกจากระบบ เสร็จสมบูรณ์</li>';
+		$_data['url_target'] = index_page().'/backoffice/login';
+		$_data['button_text'] = '';
 		
-		$this->load->view('report_dialog', $data);
+		$this->load->view('report_dialog', $_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -54,61 +55,68 @@ class Login extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Validating login
-	  *
-	  * @access	public
-	  */
+	 * Validating login
+	 *
+	 * @access	public
+	 */
 	  
 	function validate()
 	{
 		$this->load->model('user_model');
-		$validation = $this->user_model->validate();
+		$_validation = $this->user_model->validate();
 		
-		if($validation)
+		if($_validation)
 		{
-			$user = $this->user_model->get_detail_by_username($this->input->post('username'));			
+			// Get user data
+			$_user = $this->user_model->get_detail_by_username($this->input->post('username'));		
 			
-			$data = array(
-				'id'			=> $user['id'],
-				'name'			=> $user['name'],
-				'username'		=> $user['username'],
-				'group'			=> $user['group'],
-				'role'			=> $user['role'],
-				'login_status'	=> TRUE
-			);
-			$this->session->set_userdata($data);
+			// Set user session
+			$this->user_model->set_session($_user);		
 			
 			redirect('backoffice');
 		}
 		else
 		{
-			$error_msg = 'Incorrect Username or Password';
-			$this->index($error_msg);
+			$_error_msg = 'Incorrect Username or Password';
+			$this->index($_error_msg);
 		}
-		
 	}
 	
 	// ------------------------------------------------------------------------
 	
 	/**
-	  * Check access permission 
-	  *
-	  * @access	public
-	  */
+	 * Check access permission 
+	 *
+	 * @access	public
+	 */
 	  
 	function check_permission()
 	{
-		$login_status = $this->session->userdata('login_status');
-		if(!isset($login_status) || $login_status != TRUE)
+		$_login_status = $this->session->userdata('login_status');
+		
+		if((!isset($_login_status)) || $_login_status != TRUE)
 		{
-			$data['title'] = 'Security System';
-			$data['message'] = '<li>You don\'t have permission to access this page.</li>
-								<li>or your session has expire, please login again.</li>';
-			$data['url_target'] = index_page().'/backoffice/login';
-			$data['button_text'] = '';
-			$this->load->view('report_dialog.php', $data);	
+			$_data['title'] = 'ระบบรักษาความปลอดภัย';
+			$_data['message'] = '<li>คุณไม่มีสิทธิ์เข้าใช้งานหน้านี้</li>
+								 <li>หรือ session ของคุณหมดอายุ, กรุณา Login อีกครั้ง</li>';
+			$_data['url_target'] = index_page().'/backoffice/login';
+			$_data['button_text'] = '';
+			$this->load->view('report_dialog.php', $_data);	
 			exit();
 		}
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Show user session 
+	 *
+	 * @access	public
+	 */
+	
+	function check_session()
+	{
+		print_array($this->session->userdata);
 	}
 	
 	// ------------------------------------------------------------------------

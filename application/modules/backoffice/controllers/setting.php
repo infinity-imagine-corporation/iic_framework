@@ -14,6 +14,7 @@ class Setting extends MX_Controller
 		
 		// Load model
 		$this->load->model('module_model');
+		$this->load->model('setting_model');
 	}
 	
 	// ------------------------------------------------------------------------
@@ -47,8 +48,6 @@ class Setting extends MX_Controller
 		array_push($data['th'], array('axis'=>'description','label'=>'Description'));
 		array_push($data['th'], array('axis'=>'uri',		'label'=>'URI'));
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Status'));
-		
-		// Set other content
 		
 		// Display
 		$this->load->view('main', $data);
@@ -85,7 +84,43 @@ class Setting extends MX_Controller
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Update'));
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Delete'));
 		
-		// Set other content
+		// Display
+		$this->load->view('main', $data);
+	}
+	
+	// ------------------------------------------------------------------------
+	
+	/**
+	  * Upload
+	  *
+	  * @access	public
+	  */
+	  
+	function upload()
+	{	
+		// Check permission
+		Modules::run('backoffice/login/check_permission');	
+		
+		// Load theme
+		$data['theme'] = $this->theme_model->get_theme();
+		
+		// Set module
+		$data['module']		= 'Backoffice';
+		$data['controller']	= 'Setting';
+		$data['page']		= 'upload_index';
+		$data['title']		= 'ประเภทและขนาดไฟล์ อัพโหลด';
+		
+		// Set table haed
+		$data['th'] = array();
+		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
+		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Full Control'));
+		array_push($data['th'], array('axis'=>'description','label'=>'Read'));
+		array_push($data['th'], array('axis'=>'uri',		'label'=>'Create'));
+		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Update'));
+		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Delete'));
+		
+		// Get data
+		$data['upload'] = $this->setting_model->get_upload_setting();	
 		
 		// Display
 		$this->load->view('main', $data);
@@ -208,15 +243,15 @@ class Setting extends MX_Controller
 	 *
 	 * @access	public
 	 * @param 	string	$selected	
-	 * @return	mixed
+	 * @return	HTML
 	 */
 	
 	function get_module_selectbox_option($selected = NULL)
 	{
 		$_option = '';
-		$_group = $this->module_model->get_module_list();
+		$_module = $this->module_model->get_module_list();
 		
-		foreach($_group as $data)
+		foreach($_module as $data)
 		{
 			$_selected = ($data->id == $selected) ? ' selected="selected"' : '';
 			$_option .= '<option value="'. $data->id.'"'.$_selected.'>'.$data->name.'</option>';
@@ -226,7 +261,22 @@ class Setting extends MX_Controller
 	}
 	
 	// ------------------------------------------------------------------------
-	// Function - setting
+	// Function - Upload
+	// ------------------------------------------------------------------------
+	
+	/**
+	 * Update upload_setting
+	 *
+	 * @access	public
+	 */
+	
+	function update_upload_setting()
+	{
+		$data = $this->input->post();
+				 
+		$this->setting_model->update_upload_setting($data);
+	}
+	
 	// ------------------------------------------------------------------------
 	
 }

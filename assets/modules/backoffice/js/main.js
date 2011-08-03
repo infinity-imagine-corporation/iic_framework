@@ -5,19 +5,34 @@
 $(function() 
 {	
 	// ------------------------------------------------------------------------
-	// Input[text] - Action
+	// Search Section - Action
 	// ------------------------------------------------------------------------
 	
-	$('#keyword').keyup(function() {
+	$('#keyword').keyup(function() 
+	{
 		search_content();
 	});
 	
-	// ------------------------------------------------------------------------
-	// Select - Action
-	// ------------------------------------------------------------------------
-	
-	$('#criteria').change(function() {
+	$('#criteria').change(function() 
+	{
 		search_content();
+	});
+	
+	$('#buttton_advance_search').click(function() 
+	{
+		var advance_search_section = $('#advance_search_section');
+		var arrow = $('#buttton_advance_search span');
+		
+		if(advance_search_section.css('display') == "none")
+		{
+			advance_search_section.slideDown();
+			arrow.html('&#x25BC;')
+		}
+		else
+		{
+			advance_search_section.slideUp();
+			arrow.html('&#x25C0;')
+		}
 	});
 	
 	// ------------------------------------------------------------------------
@@ -55,8 +70,8 @@ $(function()
 	$('.button_create').button(
 	{
 		icons: {
-			primary: "ui-icon-plusthick"
-		}
+					primary: "ui-icon-plusthick"
+			   }
 	})
 	
 	/* Button delete */
@@ -64,8 +79,8 @@ $(function()
 	$(".button_delete").button(
 	{
 		icons: {
-			primary: "ui-icon-trash"
-		}
+					primary: "ui-icon-trash"
+			   }
 	})
 	
 	// ------------------------------------------------------------------------
@@ -111,8 +126,10 @@ $(function()
 		}
 		else
 		{
-			var msg = 'Please select at least 1 item.';
+			var msg = 'โปรดเลือกข้อมูลอย่างน้อย 1 แถว.';
 			$('#dialog_alert_message').html(msg);
+			
+			// Open dialog
 			$('#dialog_alert').dialog('open');
 		}
 	});
@@ -121,9 +138,11 @@ $(function()
 	// Dialog - Setup
 	// ------------------------------------------------------------------------
 	
+	/* Dialog alerte */
+	
 	$('#dialog_alert').dialog(
 	{
-		title		: 'Alert',
+		title		: 'แจ้งเตือน',
 		autoOpen	: false,
 		draggable	: false,
 		resizable	: false,
@@ -131,50 +150,69 @@ $(function()
 		height		: 'auto',
 		modal		: true,
 		buttons		: {
-						OK: function() 
+						ตกลง: function() 
 						{
 							$(this).dialog("close");
 						}
 					  }
 	});	
 	
+	/* Dialog create */
+	
 	$('#dialog_create').dialog(
 	{
-		title		: 'Create New Data',
+		title		: 'เพิ่ม',
 		autoOpen	: false,
 		draggable	: false,
 		resizable	: false,
-		width		: 500,
+		width		: 'auto',
 		height		: 'auto',
 		modal		: true,
 		buttons		: {
-						Save: function() 
+						บันทึก: function() 
 						{
 							create_content();							
 						}
 					  }
 	});	
+		
+	// Set icon
+	$('#dialog_create').next().find('button')
+	.removeClass('ui-button-text-only')
+	.addClass('ui-button-text-icon-primary')
+	.prepend('<span class="ui-button-icon-primary ui-icon ui-icon-disk"/>');
+	
+	/* Dialog update */
 	
 	$('#dialog_update').dialog(
 	{
-		title		: 'Update Data',
+		title		: 'แก้ไข',
 		autoOpen	: false,
 		draggable	: false,
 		resizable	: false,
-		width		: 500,
+		minWidth	: 400,
+		width		: 'auto',
 		height		: 'auto',
 		modal		: true,
 		buttons		: {
-						Save: function() 
+						บันทึก: function() 
 						{
 							update_content();
 						}
 					  }
 	});	
 	
+	// Set icon
+	$('#dialog_update').next().find('button')
+	.removeClass('ui-button-text-only')
+	.addClass('ui-button-text-icon-primary')
+	.prepend('<span class="ui-button-icon-primary ui-icon ui-icon-disk"/>');
+	
+	/* Dialog delete */
+	
 	$('#dialog_delete').dialog(
 	{
-		title		: 'Confirm Delete Data',
+		title		: 'ยืนยันการลบข้อมูล',
 		autoOpen	: false,
 		draggable	: false,
 		resizable	: false,
@@ -182,7 +220,7 @@ $(function()
 		height		: 'auto',
 		modal		: true,
 		buttons		: {
-						Delete: function() 
+						ลบ: function() 
 						{
 							delete_content();	
 						}
@@ -226,7 +264,9 @@ function get_create_form(url)
 	// Setup ajax
 	$.post(url, function(response)
 	{
-		$('#dialog_create').html(response).dialog('open').find('#id_parent').val($('#quick_access').val())
+		$('#dialog_create').html(response);
+		
+		$('#dialog_create').dialog('open')
 	})
 	.error(function() 
 	{  
@@ -249,11 +289,13 @@ function get_update_form(url)
 	// Setup ajax
 	$.post(url, function(response)
 	{
-		$('#dialog_update').html(response).dialog('open');
+		$('#dialog_update').html(response);
+		
+		$('#dialog_update').dialog('open');
 	})
 	.error(function() 
 	{  
-		var msg = 'Error: get_create_form(' + url + ')';
+		var msg = 'Error: get_update_form(' + url + ')';
 		$('#dialog_alert_message').html(msg);
 		$('#dialog_alert').dialog('open');
 	});

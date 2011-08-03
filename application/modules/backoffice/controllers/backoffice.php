@@ -35,9 +35,7 @@ class Backoffice extends MX_Controller
 		$data['module']		= 'Backoffice';
 		$data['controller']	= 'Backoffice';
 		$data['page']		= 'dashboard';
-		
-		// Set content
-		$data['title']		= 'Home';
+		$data['title']		= 'หน้าหลัก';
 		
 		// Display
 		$this->load->view('main', $data);

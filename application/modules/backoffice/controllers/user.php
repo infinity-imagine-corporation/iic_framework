@@ -38,7 +38,7 @@ class User extends MX_Controller
 		$data['module']		= 'Backoffice';
 		$data['controller']	= 'User';
 		$data['page']		= 'user_index';
-		$data['title']		= 'User';
+		$data['title']		= 'บัญชีผู้ใช้ระบบ';
 		
 		// Set table haed
 		$data['th'] = array();
@@ -73,11 +73,12 @@ class User extends MX_Controller
 		$data['module']		= 'Backoffice';
 		$data['controller']	= 'User';
 		$data['page']		= 'user_group_index';
-		$data['title']		= 'User Group';
+		$data['title']		= 'หน่วยงาน / สังกัด ผู้ใช้ระบบ';
 		
 		// Set table haed
 		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'name', 'label'=>'Name'));
+		array_push($data['th'], array('axis'=>'name', 'label'=>'หน่วยงาน / สังกัด'));
+		array_push($data['th'], array('axis'=>'code', 'label'=>'รหัส หน่วยงาน / สังกัด'));
 		
 		// Set other content
 		
@@ -105,11 +106,11 @@ class User extends MX_Controller
 		$data['module']		= 'Backoffice';
 		$data['controller']	= 'User';
 		$data['page']		= 'user_role_index';
-		$data['title']		= 'User Role';
+		$data['title']		= 'ตำแหน่ง / หน้าที่ ผู้ใช้ระบบ';
 		
 		// Set table haed
 		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'name', 'label'=>'Name'));
+		array_push($data['th'], array('axis'=>'name', 'label'=>'ตำแหน่ง / หน้าที่'));
 		
 		// Set other content
 		
@@ -137,7 +138,7 @@ class User extends MX_Controller
 		$data['module']		= 'Backoffice';
 		$data['controller']	= 'User';
 		$data['page']		= 'user_log_index';
-		$data['title']		= 'User log';
+		$data['title']		= 'บันทึกการใช้งานระบบ (Site log)';
 		
 		// Set table haed
 		$data['th'] = array();
@@ -226,11 +227,11 @@ class User extends MX_Controller
 	
 	function create_user()
 	{		
-		$data = $this->input->post();
+		$_data = $this->input->post();
 		
-		unset($data['id']);
+		unset($_data['id']);
 				 
-		$this->user_model->create_user($data);
+		$this->user_model->create_user($_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -243,12 +244,18 @@ class User extends MX_Controller
 	
 	function update_user()
 	{
-		$data = $this->input->post();
-		$id = $data['id'];
+		$_data = $this->input->post();
+		$_id = $_data['id'];
 		
-		unset($data['id']);
+		unset($_data['id']);
 				 
-		$this->user_model->update_user($id, $data);
+		$this->user_model->update_user($_id, $_data);
+		
+		// Get user data for update session
+		$_user = $this->user_model->get_detail_by_username($this->input->post('username'));		
+		
+		// Update user session
+		$this->user_model->set_session($_user);	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -316,7 +323,8 @@ class User extends MX_Controller
 		{
 			$data = array(
 							'id'	=> '',
-							'name'	=> ''
+							'name'	=> '',
+							'code'	=> ''
 					 	 );	
 		}
 		
@@ -356,6 +364,12 @@ class User extends MX_Controller
 		unset($data['id']);
 				 
 		$this->user_model->update_group($id, $data);
+		
+		// Get user data for update session
+		$_user = $this->user_model->get_detail_by_username($this->session->userdata('username'));		
+		
+		// Update user session
+		$this->user_model->set_session($_user);	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -487,6 +501,12 @@ class User extends MX_Controller
 		unset($data['id']);
 				 
 		$this->user_model->update_role($id, $data);
+		
+		// Get user data for update session
+		$_user = $this->user_model->get_detail_by_username($this->session->userdata('username'));		
+		
+		// Update user session
+		$this->user_model->set_session($_user);	
 	}
 	
 	// ------------------------------------------------------------------------

@@ -67,6 +67,7 @@ body { background-color: #666; }
 	-webkit-box-shadow: 0px 0px 5px #EEE inset;
 }
 
+.menu_main > li a span { margin-left: 10px; }
 
 .menu_main > li a:hover, 
 .menu_main > li:hover a
@@ -85,7 +86,7 @@ body { background-color: #666; }
 
 .menu_main li a:active,
 .menu_main li:hover a:active,
-body#Home .menu_main li#Home a,
+body#dashboard .menu_main li#Home a,
 body#Category .menu_main li#Category a
 {
 	background: #777;
@@ -166,6 +167,15 @@ body#Category .menu_main li#Category a
 	-webkit-box-shadow: 0px 0px 3px #666 inset;
 }
 
+.menu_main > li > ul.sub_menu > li a { padding-right: 30px }
+
+.menu_main > li > ul > li  > span 
+{ 
+	color: #FFF; 
+	line-height: 24px; 
+	margin-right: 8px; 
+}
+
 /* Menu Level 3 */ 
 
 .menu_main > li > ul > li > ul
@@ -225,14 +235,45 @@ body#Category .menu_main li#Category a
 
 #content h1 { text-shadow: 0px 0px 2px #999; }
 
+/* Content Top */
+
 #content_top { margin-bottom: 15px; }
 
 #content_top  a, #content_top  button { float: right; }
+
+#content_top hr 
+{ 
+	margin: 15px 0px;
+	border-top-style: dotted;
+}
+
+/*------------------------------------------------------------*/
+/* Search Section */
+/*------------------------------------------------------------*/
 
 #search_section
 {
 	line-height: 35px;
 }
+
+#search_section select { margin-right: 15px; }
+
+#buttton_advance_search { cursor: pointer; }
+
+#buttton_advance_search span { margin-left: 10px; }
+
+#advance_search_section
+{
+	border: 1px dotted #AAA;
+	display: none;
+	padding: 5px 10px;
+	margin-top: 10px;
+	
+}
+
+/*------------------------------------------------------------*/
+/* Preload */
+/*------------------------------------------------------------*/
 
 #preload 
 {
@@ -256,13 +297,33 @@ body#Category .menu_main li#Category a
 	-webkit-border-radius: 5px;
 }
 
+/*------------------------------------------------------------*/
+/* Dialog */
+/*------------------------------------------------------------*/
+
+.ui-dialog  
+{ 
+	min-width: 400px;
+}
+
+.ui-dialog .ui-dialog-buttonpane button 
+{
+	margin-top: 13px;
+	margin-left: 0.4em;
+	margin-right: 0px;
+}
+
 .dialog form 
 { 
-	padding: 0px 10px;
+	padding: 0px 15px;
 	margin-left: -13px;
 }
 
-.dialog input[type=text], .dialog input[type=password], .dialog select, .dialog textarea
+.dialog input[type=text], 
+.dialog input[type=password], 
+.dialog input[type=file], 
+.dialog select, 
+.dialog textarea
 {
 	width: 100%	
 }
@@ -279,6 +340,10 @@ body#Category .menu_main li#Category a
 }
 
 #dialog_alert_message { float: none; }
+
+/*------------------------------------------------------------*/
+/* Button */
+/*------------------------------------------------------------*/
 
 .button_delete { margin-right: 30px; }
 

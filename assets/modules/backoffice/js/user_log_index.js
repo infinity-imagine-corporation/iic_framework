@@ -18,7 +18,7 @@ $(function()
 // ------------------------------------------------------------------------
 
 /**
- * List content - get new content via ajax and replace in <tbody>
+ * Generate HTML tag and replace in <tbody>
  * 
  * @param json content
  */	

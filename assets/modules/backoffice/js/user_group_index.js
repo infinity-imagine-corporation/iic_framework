@@ -18,7 +18,7 @@ $(function()
 // ------------------------------------------------------------------------
 
 /**
- * List content - get new content via ajax and replace in <tbody>
+ * Generate HTML tag and replace in <tbody>
  * 
  * @param json content
  */	
@@ -34,6 +34,7 @@ function generate_html(content)
 			list += '<tr rel="' + data['id'] + '">' + 
 						'<td><input type="checkbox" id="' + data['id'] + '" value="' + data['id'] + '" /></td>' + 
 						'<td>' + data['name'] + '</td>' + 
+						'<td>' + data['code'] + '</td>' + 
 					'</tr>';
 		  });
 		
@@ -129,7 +130,8 @@ function create_content()
 	var dialog = $('#dialog_create');
 	var url = URL_SERVER + 'backoffice/user/create_group';
 	var data = {
-					'name' : dialog.find('#name').val()
+					'name' : dialog.find('#name').val(),
+					'code'	: dialog.find('#code').val()
 			   };
 	
 	// Setup ajax		   
@@ -159,13 +161,14 @@ function update_content()
 	var dialog = $('#dialog_update');
 	var data = {
 					'id'	: dialog.find('#id').val(),
-					'name'	: dialog.find('#name').val()
+					'name'	: dialog.find('#name').val(),
+					'code'	: dialog.find('#code').val()
 			   };
 	
 	// Setup ajax
 	$.post(url, data, function(response)
 	{
-		get_content();
+		window.location.reload();
 	})
 	.success(function() { $('#dialog_update').dialog('close'); })
 	.error(function() 

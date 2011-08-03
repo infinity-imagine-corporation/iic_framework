@@ -18,7 +18,7 @@ $(function()
 // ------------------------------------------------------------------------
 
 /**
- * List content - get new content via ajax and replace in <tbody>
+ * Generate HTML tag and replace in <tbody>
  * 
  * @param json content
  */	
@@ -140,7 +140,7 @@ function create_content()
 			   };
 	
 	// Setup ajax		   
-	$.post(url, data, function(response)
+	$.post(url, data, function()
 	{
 		get_content();
 	})
@@ -174,9 +174,9 @@ function update_content()
 			   };
 	
 	// Setup ajax
-	$.post(url, data, function(response)
+	$.post(url, data, function()
 	{
-		get_content();
+		window.location.reload();
 	})
 	.success(function() { $('#dialog_update').dialog('close'); })
 	.error(function() 

@@ -10,19 +10,29 @@
 <?php echo css_asset('iic_style.css', 'iic_tools'); ?>
 
 <!--Backoffice assets-->
+<?php echo css_asset('selectlist.css', 'backoffice'); ?>
 <?php echo css_asset('backoffice.css', 'backoffice'); ?>
 <?php echo css_asset('backoffice_theme.css', 'backoffice'); ?>
+
 <?php echo js_asset('jquery-1.6.1.min.js', 'backoffice'); ?>
 <?php echo js_asset('jquery-ui-1.8.10.custom.min.js', 'backoffice'); ?>
+<?php echo js_asset('jquery-ui-1.8.10.offset.datepicker.min.js', 'backoffice'); ?>
+<?php echo js_asset('jquery.ui.datepicker-th.js', 'backoffice'); ?>
 <?php echo js_asset('ajax.config.js', 'backoffice'); ?>
+<?php echo js_asset('jquery.selectlist.js', 'backoffice'); ?>
+<?php echo js_asset('jquery.form.js', 'backoffice'); ?>
 <?php echo js_asset('main.js', 'backoffice'); ?>
 
 <!--Module assets-->
+<?php echo css_asset($module.'.css', $module); ?>
+<?php echo js_asset($module.'.js', $module); ?>
+
+<!--Page assets-->
 <?php echo css_asset($page.'.css', $module); ?>
 <?php echo js_asset($page.'.js', $module); ?>
 
 </head>
-<body id="<?php echo $title ?>">
+<body id="<?php echo $page ?>">
 <div id="container">
 	<div id="header">
 		<h1><?php echo $title ?></h1>
@@ -35,9 +45,10 @@
 	</div>
 	<div id="navigator">
 		<div id="user_info">
-			<b>User : </b><?php echo $this->session->userdata('name'); ?>&nbsp;&nbsp;
-			<b>Group : </b><?php echo $this->session->userdata('group'); ?>&nbsp;&nbsp;
-			<b>Role : </b><?php echo $this->session->userdata('role'); ?> 
+			<b>ชื่อ : </b><?php echo $this->session->userdata('name'); ?>&nbsp;&nbsp;
+			<b>หน่วยงาน / สังกัด : </b><?php echo $this->session->userdata('group'); ?>&nbsp;&nbsp;
+			<b>ตำแหน่ง / หน้าที่ : </b><?php echo $this->session->userdata('role'); ?>&nbsp;&nbsp;
+			<b>วันที่ : </b><?php echo date('d / m / ').(date('Y') + 543); ?>
 		</div>
 		<div id="address">
 		<?php 
@@ -69,10 +80,11 @@
 			<p><span class="ui-icon ui-icon-alert"></span><span id="dialog_alert_message"></span></p>
 		</div>
 		<div id="dialog_create" class="dialog"></div>
+		<div id="dialog_read" class="dialog"></div>
 		<div id="dialog_update" class="dialog"></div>
 		<div id="dialog_delete" class="dialog">
 			<p><span class="ui-icon ui-icon-alert"></span>
-			These items will be permanently deleted and cannot be recovered. Are you sure?</p>
+			ข้อมูลที่คุณเลือกจะถูกลบอย่างถาวร โดยไม่สามารถนำกลับมาได้ คุณต้องการลบใช่หรือไม่?</p>
 		</div>
 	</div>
 	<div class="clear"></div>

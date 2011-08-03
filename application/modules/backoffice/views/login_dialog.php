@@ -51,10 +51,10 @@ div.ui-dialog a.ui-dialog-titlebar-close { display: none; }
 <div id="dialog" class="dialog">
 	<p id="error_msg" class="center red text_12 bold"><?php echo $error_msg ?></p>
 	<?php echo form_open('backoffice/login/validate'); ?>
-	<label for="username">Username</label>
-	<input type="text" name="username" id="username" value="" />
-	<label for="password">Password</label>
-	<input type="password" name="password" id="password" />
+		<label for="username">Username</label>
+		<input type="text" name="username" id="username" value="" />
+		<label for="password">Password</label>
+		<input type="password" name="password" id="password" />
 	<?php echo form_close() ?> </div>
 </body>
 </html>
