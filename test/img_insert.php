@@ -7,19 +7,14 @@ if($_FILES["upfile"]["name"] != "Please Insert Images")
 								"UID"		=> "nsm", 
 								"PWD"		=> "Admin@2008"
 							);
-	$conn = sqlsrv_connect( $serverName, $connectionInfo);
+							
+	$conn = sqlsrv_connect($serverName, $connectionInfo);
 	
-	if($conn)
-	{
-		 echo "Connection established.\n";
-		 echo '<hr />';
-	}
-	else
+	if(!$conn)
 	{
 		 echo "Connection could not be established.\n";
 		 echo '<hr />';
 		 die(print_r( sqlsrv_errors(), true));
-
 	}
 	
 	$FileName	= $_FILES['upfile']['tmp_name']; 
@@ -27,45 +22,54 @@ if($_FILES["upfile"]["name"] != "Please Insert Images")
 	$Size		= $_FILES["upfile"]["size"]; 
 	$Type		= $_FILES["upfile"]["type"]; 
 	
+	echo '<pre>';
+	print_r($_FILES);
+	echo '</pre>';
+	echo '<hr />';	
 	
-	/*$DataImage	= file_get_contents($FileName ); 
-	$ArrData	= unpack("H*hex", $DataImage); 
-	$HexData 	= "0x".$ArrData['hex']; */
+	$dataString = fopen($FileName, 'r');
 	
-	if(file_exists($FileName))     
-	{ 
-		$fp = fopen($FileName, 'r'); 
-		$HexData = fread($fp, filesize($FileName)); 
-		$HexData = addslashes($HexData); 
-		fclose($fp); 
-	} 
-	else 
-	{ 
-		$HexData = ''; 
-	} 
-	
-	$sql = "INSERT INTO Images 
+	$sql = "INSERT INTO dbo.Images 
 			(
+				Img_Data,
 				Img_Name,
 				Img_Size,
-				Img_Data,
 				Img_Type
 			) 
 		    VALUES (?, ?, ?, ?)";
-			
-	$params = array("$Name", "$Size", "$HexData", "$Type");
+	
+	$params = array(
+						array(
+								& $dataString,
+								SQLSRV_PARAM_IN,
+								SQLSRV_PHPTYPE_STREAM(SQLSRV_ENC_BINARY),
+								SQLSRV_SQLTYPE_VARBINARY('max')
+							 ),
+						& $Name,
+						& $Size,
+						& $Type
+						
+				    );
+	
+	echo '<pre>';				
+	print_r($params);
+	echo '<hr />';
+	
+	//$uploadPic = sqlsrv_prepare($conn, $sql, $params);
+	//$stmt = sqlsrv_execute($uploadPic);
 	
 	$stmt = sqlsrv_query($conn, $sql, $params);
-	
-	if($stmt === false) 
+
+	if(! $stmt) 
 	{
 		 echo "sqlsrv_query error.\n";
 		 echo '<hr />';
 		 echo '<pre>';
-		 die( print_r( sqlsrv_errors(), true));
+		 die(print_r( sqlsrv_errors(), true));
 	}	
 	
 	echo "Upload Complete<br>";
+	echo '<hr />';
 	echo "<a href='Img_show.php'>View_img</a> ";
 }
 ?>

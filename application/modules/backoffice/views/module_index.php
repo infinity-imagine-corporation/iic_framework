@@ -1,5 +1,5 @@
 <div id="content_top">
-	<button class="button_create" rel="<?php echo $module ?>/<?php echo $controller ?>/get_module_form" >New Module</button>
+	<button class="button_create" rel="<?php echo $module ?>/<?php echo $controller ?>/get_module_form" >New</button>
 	<div id="search_section">
 		<input type="text" name="keyword" id="keyword" class="search_left" />
 		<label class="inline" for="criteria">in:</label>

@@ -44,7 +44,9 @@ class Setting extends MX_Controller
 		// Set table haed
 		$data['th'] = array();
 		array_push($data['th'], array('axis'=>'id',			'label'=>'ID'));
+		array_push($data['th'], array('axis'=>'code',		'label'=>'Code'));
 		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
+		array_push($data['th'], array('axis'=>'label',		'label'=>'Label'));
 		array_push($data['th'], array('axis'=>'description','label'=>'Description'));
 		array_push($data['th'], array('axis'=>'uri',		'label'=>'URI'));
 		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Status'));
@@ -110,15 +112,6 @@ class Setting extends MX_Controller
 		$data['page']		= 'upload_index';
 		$data['title']		= 'ประเภทและขนาดไฟล์ อัพโหลด';
 		
-		// Set table haed
-		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Full Control'));
-		array_push($data['th'], array('axis'=>'description','label'=>'Read'));
-		array_push($data['th'], array('axis'=>'uri',		'label'=>'Create'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Update'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Delete'));
-		
 		// Get data
 		$data['upload'] = $this->setting_model->get_upload_setting();	
 		
@@ -178,6 +171,8 @@ class Setting extends MX_Controller
 		{
 			$data = array(
 							'id'			=> '',
+							'code'			=> '',
+							'label'			=> '',
 							'name'			=> '',
 							'description'	=> '',
 							'uri'			=> '',

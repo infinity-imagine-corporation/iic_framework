@@ -21,7 +21,7 @@ class Login extends MX_Controller
 		$_data['title'] = 'Login';
 		$_data['error_msg'] = $error_msg;
 		
-		$this->load->view('login_dialog', $_data);	
+		$this->load->view('login', $_data);	
 	}
 	
 	// ------------------------------------------------------------------------

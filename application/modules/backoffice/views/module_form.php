@@ -1,6 +1,10 @@
 <form>
+	<label for="name">Code : </label>
+	<input id="code" name="code" type="text" value="<?php echo $code ?>" />
 	<label for="name">Name : </label>
 	<input id="name" name="name" type="text" value="<?php echo $name ?>" />
+	<label for="label">Name : </label>
+	<input id="label" name="label" type="text" value="<?php echo $label ?>" />
 	<label for="description">Description : </label>
 	<input id="description" name="description" type="text" value="<?php echo $description ?>" />
 	<label for="uri">URI : </label>

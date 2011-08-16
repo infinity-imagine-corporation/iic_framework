@@ -44,33 +44,7 @@
 		<?php $this->load->view('backoffice/menu'); ?>
 	</div>
 	<div id="navigator">
-		<div id="user_info">
-			<b>ชื่อ : </b><?php echo $this->session->userdata('name'); ?>&nbsp;&nbsp;
-			<b>หน่วยงาน / สังกัด : </b><?php echo $this->session->userdata('group'); ?>&nbsp;&nbsp;
-			<b>ตำแหน่ง / หน้าที่ : </b><?php echo $this->session->userdata('role'); ?>&nbsp;&nbsp;
-			<b>วันที่ : </b><?php echo date('d / m / ').(date('Y') + 543); ?>
-		</div>
-		<div id="address">
-		<?php 
-		
-		if($module !=  'Backoffice')
-		{
-			 echo  'Backoffice&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;';
-		}
-		
-		if($module !=  $controller)
-		{
-			 echo  $module . '&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;';
-		}
-		
-		if($controller !=  $title)
-		{
-			 echo  $controller . '&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;';
-		}
-		
-		echo $title 
-		?>
-		</div>
+		<?php $this->load->view('backoffice/navigator'); ?>
 	</div>
 	
 	<div id="content">
