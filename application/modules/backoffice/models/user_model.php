@@ -512,7 +512,6 @@ class User_model extends CI_Model
 		$this->db->select(
 							$this->table['user'].'.* ,'.
 							$this->table['group'].'.name as "group", '.
-							$this->table['group'].'.code as "group_code", '.
 							$this->table['role'].'.name as "role"'
 						 );
 						 
