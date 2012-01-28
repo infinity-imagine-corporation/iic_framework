@@ -47,12 +47,11 @@ body { background-color: #666; }
 .menu_main > li a
 {
 	/*background: url(../image/bg_mainMenu_button.png) top repeat-x;*/
-	border: 1px solid #BFBFBF;
 	color: #555;
 	display: block;
 	line-height: 26px;
 	padding: 0px 15px;
-	margin: 6px 0px 0px 0px;
+	margin: 7px 1px 1px 1px;
 	text-align: center;
 	text-shadow: 0px 0px 2px #FFF;
 	
@@ -61,10 +60,6 @@ body { background-color: #666; }
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	
-	box-shadow: 0px 0px 5px #EEE inset;
-	-moz-box-shadow: 0px 0px 5px #EEE inset;
-	-webkit-box-shadow: 0px 0px 5px #EEE inset;
 }
 
 .menu_main > li a span { margin-left: 10px; }
@@ -72,16 +67,17 @@ body { background-color: #666; }
 .menu_main > li a:hover, 
 .menu_main > li:hover a
 {
-	background: #999;
+	background: #777;
 	border: 1px solid #949494;
 	color: #FFF;
 	text-shadow: 0px 0px 3px #333;
+	margin: 6px 0px 0px 0px;
 	
 	/* CSS3 */
 	
-	box-shadow: 0px 0px 2px #666 inset;
-	-moz-box-shadow: 0px 0px 2px #666 inset;
-	-webkit-box-shadow: 0px 0px 2px #666 inset;
+	box-shadow: 0px 0px 1px #333 inset;
+	-moz-box-shadow: 0px 0px 1px #333 inset;
+	-webkit-box-shadow: 0px 0px 1px #333 inset;
 }
 
 .menu_main li a:active,
@@ -96,9 +92,9 @@ body#Category .menu_main li#Category a
 	
 	/* CSS3 */
 	
-	box-shadow: 0px 0px 2px #666 inset;
-	-moz-box-shadow: 0px 0px 2px #666 inset;
-	-webkit-box-shadow: 0px 0px 2px #666 inset;
+	box-shadow: 0px 0px 2px #333 inset;
+	-moz-box-shadow: 0px 0px 2px #333 inset;
+	-webkit-box-shadow: 0px 0px 2px #333 inset;
 }
 
 /* Menu Level 2 */ 
@@ -118,9 +114,9 @@ body#Category .menu_main li#Category a
 	
 	/* CSS3 */
 	
-	box-shadow: 0px 1px 5px #333;
-	-moz-box-shadow: 0px 1px 5px #333;
-	-webkit-box-shadow: 0px 1px 5px #333;
+	box-shadow: 1px 1px 3px #333;
+	-moz-box-shadow: 1px 1px 3px #333;
+	-webkit-box-shadow: 1px 1px 3px #333;
 }
 
 .menu_main > li:hover > ul { display: inherit; }
@@ -153,7 +149,7 @@ body#Category .menu_main li#Category a
 .menu_main > li > ul > li:hover a,
 .menu_main > li:hover > ul > li:hover > ul > li > a:hover
 {
-	background: #AFAFAF;
+	background: #666;
 	border: 1px solid #909090;
 	
 	/* CSS3 */
@@ -162,9 +158,9 @@ body#Category .menu_main li#Category a
 	-moz-box-shadow: 0px 0px 1px #CCC;
 	-webkit-box-shadow: 0px 0px 1px #CCC;
 	
-	box-shadow: 0px 0px 3px #666 inset;
-	-moz-box-shadow: 0px 0px 3px #666 inset;
-	-webkit-box-shadow: 0px 0px 3px #666 inset;
+	box-shadow: 0px 0px 2px #333 inset;
+	-moz-box-shadow: 0px 0px 2px #333 inset;
+	-webkit-box-shadow: 0px 0px 2px #333 inset;
 }
 
 .menu_main > li > ul.sub_menu > li a { padding-right: 30px }
@@ -214,11 +210,14 @@ body#Category .menu_main li#Category a
 #navigator
 {
 	border: 1px dotted #999; 
-	color: 666; 
+	color: #666; 
 	font-size: 10px;
 	padding: 5px 10px;
 	margin: 0px 15px	
 }
+
+#navigator a:link, #navigator a:visited { color: #000; }
+#navigator a:hover { text-decoration: underline; }
 
 #user_info { float: right;}
 
@@ -340,6 +339,32 @@ body#Category .menu_main li#Category a
 }
 
 #dialog_alert_message { float: none; }
+
+.attachfile ul
+{	
+	list-style: none;
+	margin: 0;
+	margin-top: 5px;
+	padding: 0;	
+}
+
+
+.attachfile ul li
+{
+	border: solid 1px #DDD;
+	padding: 3px 5px;
+	margin: 1px 0px;
+}
+
+
+.attachfile ul li a.delete_attachfile
+{
+	background: url(../img/icon_close.png) no-repeat center;
+	cursor: pointer;
+	float: right;
+	height: 24px;
+	width: 24px;
+}
 
 /*------------------------------------------------------------*/
 /* Button */

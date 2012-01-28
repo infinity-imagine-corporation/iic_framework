@@ -549,7 +549,6 @@ class User_model extends CI_Model
 							'username'		=> $data['username'],
 							'id_group'		=> $data['id_group'],
 							'group'			=> $data['group'],
-							'group_code'	=> $data['group_code'],
 							'id_role'		=> $data['id_role'],
 							'role'			=> $data['role'],
 							'login_status'	=> TRUE
