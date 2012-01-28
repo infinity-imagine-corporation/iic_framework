@@ -1,0 +1,48 @@
+/*------------------------------------------------------------*/
+/* Gadget */
+/*------------------------------------------------------------*/
+
+.gadget
+{
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	min-width: 250px;
+	font-size: 14px;
+}
+
+.gadget h3
+{
+	margin-top: 5px;
+}
+
+.gadget table
+{
+	width: 100%;
+	margin: 0px;
+}
+
+.gadget ol
+{
+	line-height: 32px;
+	list-style: decimal inside;
+	margin-bottom: 5px;
+}
+
+.gadget li
+{
+	border-bottom: 1px dashed #AAA;
+	margin: 10px 0px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	position: relative;
+}
+
+.gadget li > span
+{
+	position: absolute;
+	right: 0;
+}
+
+/* End of file dashboard.css */
+/* Location: assets/modules/backoffice/css/dashboard.css */

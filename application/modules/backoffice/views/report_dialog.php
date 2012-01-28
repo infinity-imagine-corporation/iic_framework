@@ -8,16 +8,7 @@
 <title><?php echo $title ?></title>
 <link rel="shortcut icon" href="../favicon.ico" />
 
-<!--iic_tools assets-->
-<?php echo css_asset('aristo/jquery-ui-1.8.7.custom.css', 'iic_tools'); ?>
-<?php echo css_asset('iic_layout.css', 'iic_tools'); ?>
-<?php echo css_asset('iic_style.css', 'iic_tools'); ?>
-
-<!--Backoffice assets-->
-<?php echo css_asset('backoffice.css', 'backoffice'); ?>
-<?php echo css_asset('backoffice_theme.css', 'backoffice'); ?>
-<?php echo js_asset('jquery-1.6.1.min.js', 'backoffice'); ?>
-<?php echo js_asset('jquery-ui-1.8.10.custom.min.js', 'backoffice'); ?>
+<?php $this->load->view('backoffice/asset'); ?>
 
 <script type="text/javascript">
 $(function() {
@@ -32,7 +23,7 @@ $(function() {
 	modal		: true,
 	zIndex		: 2000,
 	buttons		: {
-					<?php echo $button_text ?>: function() {
+					<?php echo $button_text; ?> : function() {
 						window.open('<?php echo base_url().$url_target ?>','_self');
 					}
 				  }

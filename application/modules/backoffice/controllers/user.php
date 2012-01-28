@@ -13,6 +13,7 @@ class User extends MX_Controller
 		Modules::run('backoffice/login/check_permission');
 		
 		// Load model
+		$this->load->model('backoffice/theme_model');
 		$this->load->model('user_model');
 	}
 	
@@ -26,31 +27,33 @@ class User extends MX_Controller
 	  * @access	public
 	  */
 	
-	function user()
+	function index()
 	{		
 		// Check permission
 		Modules::run('backoffice/login/check_permission');	
 		
 		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
+		$_data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'Backoffice';
-		$data['controller']	= 'User';
-		$data['page']		= 'user_index';
-		$data['title']		= 'บัญชีผู้ใช้ระบบ';
+		$_data['module']		= 'backoffice';
+		$_data['controller']	= 'user';
+		$_data['ajax_uri']		= 'user';
+		$_data['page']			= 'user_index';
+		$_data['template']		= 'backoffice/tpl_module_index';
+		$_data['title']			= 'Backoffice User';
 		
 		// Set table haed
-		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
-		array_push($data['th'], array('axis'=>'username',	'label'=>'User Name'));
-		array_push($data['th'], array('axis'=>'id_group',	'label'=>'Group'));
-		array_push($data['th'], array('axis'=>'id_role',	'label'=>'Role'));
+		$_data['th'] = array();
+		array_push($_data['th'], array('axis'=>'name',		'label'=>'Name'));
+		array_push($_data['th'], array('axis'=>'username',	'label'=>'User Name'));
+		array_push($_data['th'], array('axis'=>'id_group',	'label'=>'Group'));
+		array_push($_data['th'], array('axis'=>'id_role',	'label'=>'Role'));
 		
 		// Set other content
 		
 		// Display
-		$this->load->view('main', $data);
+		$this->load->view('main', $_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -67,23 +70,22 @@ class User extends MX_Controller
 		Modules::run('backoffice/login/check_permission');	
 		
 		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
+		$_data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'Backoffice';
-		$data['controller']	= 'User';
-		$data['page']		= 'user_group_index';
-		$data['title']		= 'หน่วยงาน / สังกัด ผู้ใช้ระบบ';
+		$_data['module']		= 'backoffice';
+		$_data['controller']	= 'user';
+		$_data['ajax_uri']		= 'group';
+		$_data['page']			= 'user_group_index';
+		$_data['template']		= 'tpl_module_index';
+		$_data['title']			= 'User Group';
 		
 		// Set table haed
-		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'name', 'label'=>'หน่วยงาน / สังกัด'));
-		array_push($data['th'], array('axis'=>'code', 'label'=>'รหัส หน่วยงาน / สังกัด'));
-		
-		// Set other content
+		$_data['th'] = array();
+		array_push($_data['th'], array('axis'=>'name', 'label'=>'Name'));
 		
 		// Display
-		$this->load->view('main', $data);
+		$this->load->view('main', $_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -100,22 +102,24 @@ class User extends MX_Controller
 		Modules::run('backoffice/login/check_permission');	
 		
 		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
+		$_data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'Backoffice';
-		$data['controller']	= 'User';
-		$data['page']		= 'user_role_index';
-		$data['title']		= 'ตำแหน่ง / หน้าที่ ผู้ใช้ระบบ';
+		$_data['module']		= 'backoffice';
+		$_data['controller']	= 'user';
+		$_data['ajax_uri']		= 'role';
+		$_data['page']			= 'user_role_index';
+		$_data['template']		= 'backoffice/tpl_module_index';
+		$_data['title']			= 'ตำแหน่ง / หน้าที่ ผู้ใช้ระบบ';
 		
 		// Set table haed
-		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'name', 'label'=>'ตำแหน่ง / หน้าที่'));
+		$_data['th'] = array();
+		array_push($_data['th'], array('axis'=>'name', 'label'=>'ตำแหน่ง / หน้าที่'));
 		
 		// Set other content
 		
 		// Display
-		$this->load->view('main', $data);
+		$this->load->view('main', $_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -132,26 +136,26 @@ class User extends MX_Controller
 		Modules::run('backoffice/login/check_permission');	
 		
 		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
+		$_data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'Backoffice';
-		$data['controller']	= 'User';
-		$data['page']		= 'user_log_index';
-		$data['title']		= 'บันทึกการใช้งานระบบ (Site log)';
+		$_data['module']		= 'backoffice';
+		$_data['controller']	= 'User';
+		$_data['page']		= 'user_log_index';
+		$_data['title']		= 'บันทึกการใช้งานระบบ (Site log)';
 		
 		// Set table haed
-		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'name', 'label'=>'Date'));
-		array_push($data['th'], array('axis'=>'name', 'label'=>'User'));
-		array_push($data['th'], array('axis'=>'name', 'label'=>'Action'));
-		array_push($data['th'], array('axis'=>'name', 'label'=>'Module'));
-		array_push($data['th'], array('axis'=>'name', 'label'=>'Note'));
+		$_data['th'] = array();
+		array_push($_data['th'], array('axis'=>'name', 'label'=>'Date'));
+		array_push($_data['th'], array('axis'=>'name', 'label'=>'User'));
+		array_push($_data['th'], array('axis'=>'name', 'label'=>'Action'));
+		array_push($_data['th'], array('axis'=>'name', 'label'=>'Module'));
+		array_push($_data['th'], array('axis'=>'name', 'label'=>'Note'));
 		
 		// Set other content
 		
 		// Display
-		$this->load->view('main', $data);
+		$this->load->view('main', $_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -181,9 +185,9 @@ class User extends MX_Controller
 	  
 	function search_user()
 	{		
-		$data = $this->input->post();
+		$_data = $this->input->post();
 		
-		echo json_encode($this->user_model->search_user($data['keyword'], $data['criteria']));	
+		echo json_encode($this->user_model->search_user($_data['keyword'], $_data['criteria']));	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -200,11 +204,11 @@ class User extends MX_Controller
 	{
 		if($id != NULL)
 		{
-			$data = $this->user_model->get_user_detail($id);	
+			$_data = $this->user_model->get_user_detail($id);	
 		} 
 		else
 		{
-			$data = array(
+			$_data = array(
 							'id'		=> '',
 							'name'		=> '',
 							'username'	=> '',
@@ -214,7 +218,7 @@ class User extends MX_Controller
 					 	 );	
 		}
 		
-		$this->load->view('user_form', $data);	
+		$this->load->view('user_form', $_data);	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -298,9 +302,9 @@ class User extends MX_Controller
 	  
 	function search_group()
 	{		
-		$data = $this->input->post();
+		$_data = $this->input->post();
 		
-		echo json_encode($this->user_model->search_group($data['keyword'], $data['criteria']));	
+		echo json_encode($this->user_model->search_group($_data['keyword'], $_data['criteria']));	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -317,18 +321,18 @@ class User extends MX_Controller
 	{
 		if($id != NULL)
 		{
-			$data = $this->user_model->get_group_detail($id);	
+			$_data = $this->user_model->get_group_detail($id);	
 		} 
 		else
 		{
-			$data = array(
+			$_data = array(
 							'id'	=> '',
 							'name'	=> '',
 							'code'	=> ''
 					 	 );	
 		}
 		
-		$this->load->view('user_group_form', $data);	
+		$this->load->view('user_group_form', $_data);	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -341,11 +345,11 @@ class User extends MX_Controller
 	
 	function create_group()
 	{		
-		$data = $this->input->post();
+		$_data = $this->input->post();
 		
-		unset($data['id']);
+		unset($_data['id']);
 				 
-		$this->user_model->create_group($data);
+		$this->user_model->create_group($_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -358,12 +362,12 @@ class User extends MX_Controller
 	
 	function update_group()
 	{
-		$data = $this->input->post();
-		$id = $data['id'];
+		$_data = $this->input->post();
+		$id = $_data['id'];
 		
-		unset($data['id']);
+		unset($_data['id']);
 				 
-		$this->user_model->update_group($id, $data);
+		$this->user_model->update_group($id, $_data);
 		
 		// Get user data for update session
 		$_user = $this->user_model->get_detail_by_username($this->session->userdata('username'));		
@@ -400,10 +404,10 @@ class User extends MX_Controller
 		$_option = '';
 		$_group = $this->user_model->get_group_list();
 		
-		foreach($_group as $data)
+		foreach($_group as $_data)
 		{
-			$_selected = ($data->id == $selected) ? ' selected="selected"' : '';
-			$_option .= '<option value="'. $data->id.'"'.$_selected.'>'.$data->name.'</option>';
+			$_selected = ($_data->id == $selected) ? ' selected="selected"' : '';
+			$_option .= '<option value="'. $_data->id.'"'.$_selected.'>'.$_data->name.'</option>';
 		}
 		
 		return $_option;
@@ -436,9 +440,9 @@ class User extends MX_Controller
 	  
 	function search_role()
 	{		
-		$data = $this->input->post();
+		$_data = $this->input->post();
 		
-		echo json_encode($this->user_model->search_role($data['keyword'], $data['criteria']));	
+		echo json_encode($this->user_model->search_role($_data['keyword'], $_data['criteria']));	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -455,17 +459,17 @@ class User extends MX_Controller
 	{
 		if($id != NULL)
 		{
-			$data = $this->user_model->get_role_detail($id);	
+			$_data = $this->user_model->get_role_detail($id);	
 		} 
 		else
 		{
-			$data = array(
+			$_data = array(
 							'id'	=> '',
 							'name'	=> ''
 					 	 );	
 		}
 		
-		$this->load->view('user_role_form', $data);	
+		$this->load->view('user_role_form', $_data);	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -478,11 +482,11 @@ class User extends MX_Controller
 	
 	function create_role()
 	{		
-		$data = $this->input->post();
+		$_data = $this->input->post();
 		
-		unset($data['id']);
+		unset($_data['id']);
 				 
-		$this->user_model->create_role($data);
+		$this->user_model->create_role($_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -495,12 +499,12 @@ class User extends MX_Controller
 	
 	function update_role()
 	{
-		$data = $this->input->post();
-		$id = $data['id'];
+		$_data = $this->input->post();
+		$id = $_data['id'];
 		
-		unset($data['id']);
+		unset($_data['id']);
 				 
-		$this->user_model->update_role($id, $data);
+		$this->user_model->update_role($id, $_data);
 		
 		// Get user data for update session
 		$_user = $this->user_model->get_detail_by_username($this->session->userdata('username'));		
@@ -537,10 +541,10 @@ class User extends MX_Controller
 		$_option = '';
 		$_group = $this->user_model->get_role_list();
 		
-		foreach($_group as $data)
+		foreach($_group as $_data)
 		{
-			$_selected = ($data->id == $selected) ? ' selected="selected"' : '';
-			$_option .= '<option value="'. $data->id.'"'.$_selected.'>'.$data->name.'</option>';
+			$_selected = ($_data->id == $selected) ? ' selected="selected"' : '';
+			$_option .= '<option value="'. $_data->id.'"'.$_selected.'>'.$_data->name.'</option>';
 		}
 		
 		return $_option;
@@ -573,9 +577,9 @@ class User extends MX_Controller
 	  
 	function search_log()
 	{		
-		$data = $this->input->post();
+		$_data = $this->input->post();
 		
-		echo json_encode($this->user_model->search_log($data['keyword'], $data['criteria']));	
+		echo json_encode($this->user_model->search_log($_data['keyword'], $_data['criteria']));	
 	}
 	
 	// ------------------------------------------------------------------------
