@@ -1,8 +1,15 @@
+<input type="hidden" id="config_uri_create" value="<?php echo $module ?>/<?php echo $controller ?>/create_group" />
+<input type="hidden" id="config_uri_update" value="<?php echo $module ?>/<?php echo $controller ?>/update_group" />
+<input type="hidden" id="config_uri_delete" value="<?php echo $module ?>/<?php echo $controller ?>/delete_group" />
+<input type="hidden" id="config_uri_search" value="<?php echo $module ?>/<?php echo $controller ?>/search_group" />
+<input type="hidden" id="config_uri_form" value="<?php echo $module ?>/<?php echo $controller ?>/get_group_form" />
+<input type="hidden" id="config_uri_list" value="<?php echo $module ?>/<?php echo $controller ?>/get_group_list" />
+
 <div id="content_top">
-	<button class="button_create" rel="<?php echo $module ?>/<?php echo $controller ?>/get_group_form" >เพิ่ม</button>
+	<button class="button_create" rel="<?php echo $module ?>/<?php echo $controller ?>/get_group_form" >Create</button>
 	<div id="search_section">
 		<input type="text" name="keyword" id="keyword" class="search_left" />
-		<label class="inline" for="criteria">จาก</label>
+		<label class="inline" for="criteria">in</label>
 		<select name="criteria" id="criteria">
 			<?php			
 			foreach($th as $data)
@@ -30,5 +37,5 @@
 	</tbody>
 </table>
 <div id="content_bottom">
-	<button class="button_delete" rel="<?php echo $module ?>/<?php echo $controller ?>/delete_group" >ลบ</button>
+	<button class="button_delete" rel="<?php echo $module ?>/<?php echo $controller ?>/delete_group" >Delete</button>
 </div>
