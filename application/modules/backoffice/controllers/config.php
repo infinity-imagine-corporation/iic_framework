@@ -1,5 +1,5 @@
 <?php
-class Setting extends MX_Controller 
+class Config extends MX_Controller 
 {
 	// ------------------------------------------------------------------------
 	// Constructor
@@ -277,5 +277,5 @@ class Setting extends MX_Controller
 }
 
 
-/* End of file permission.php */
-/* Location: ./application/modules/backoffice/controllers/permission.php */
+/* End of file config.php */
+/* Location: ./application/modules/backoffice/controllers/config.php */

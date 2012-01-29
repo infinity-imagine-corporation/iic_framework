@@ -29,16 +29,16 @@ class Backoffice extends MX_Controller
 		Modules::run('backoffice/login/check_permission');
 		
 		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
+		$_data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'Backoffice';
-		$data['controller']	= 'Backoffice';
-		$data['page']		= 'dashboard';
-		$data['title']		= 'Home';
+		$_data['module']		= 'Backoffice';
+		$_data['controller']	= 'Backoffice';
+		$_data['page']			= 'dashboard';
+		$_data['title']			= 'Home';
 		
 		// Display
-		$this->load->view('main', $data);
+		$this->load->view('main', $_data);
 	}
 	
 	/**
@@ -53,25 +53,25 @@ class Backoffice extends MX_Controller
 		Modules::run('backoffice/login/check_permission');	
 		
 		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
+		$_data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'backoffice';
-		$data['controller']	= 'Backoffice';
-		$data['page']		= 'modules_index';
-		$data['title']		= 'Modules';
+		$_data['module']		= 'backoffice';
+		$_data['controller']	= 'Backoffice';
+		$_data['page']			= 'modules_index';
+		$_data['title']			= 'Modules';
 		
 		// Set table haed
-		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
-		array_push($data['th'], array('axis'=>'description','label'=>'Description'));
-		array_push($data['th'], array('axis'=>'uri',		'label'=>'URI'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Status'));
+		$_data['th'] = array();
+		array_push($_data['th'], array('axis' => 'name',		'label' => 'Name'));
+		array_push($_data['th'], array('axis' => 'description',	'label' => 'Description'));
+		array_push($_data['th'], array('axis' => 'uri',			'label' => 'URI'));
+		array_push($_data['th'], array('axis' => 'is_enable',	'label' => 'Status'));
 		
 		// Set other content
 		
 		// Display
-		$this->load->view('main', $data);
+		$this->load->view('main', $_data);
 	}
 	
 	

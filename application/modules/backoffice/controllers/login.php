@@ -15,11 +15,12 @@ class Login extends MX_Controller
 	function index($error_msg = NULL)
 	{	
 		$this->load->model('theme_model');
-		$_data['theme'] = $this->theme_model->get_theme();
+		
+		$_data['theme']					= $this->theme_model->get_theme();
 		$_data['theme']['header_text1'] = 'Member Login';
 		
-		$_data['title'] = 'Login';
-		$_data['error_msg'] = $error_msg;
+		$_data['title']					= 'Login';
+		$_data['error_msg'] 			= $error_msg;
 		
 		$this->load->view('login', $_data);	
 	}
@@ -39,13 +40,13 @@ class Login extends MX_Controller
 		// Set module
 		$_data['module']		= 'backoffice';
 		$_data['controller']	= 'login';
-		$_data['page']		= 'logout';
+		$_data['page']			= 'logout';
 		
 		// Set content
-		$_data['title'] = 'ระบบรักษาความปลอดภัย';
-		$_data['message'] = '<li>ออกจากระบบ เสร็จสมบูรณ์</li>';
-		$_data['url_target'] = index_page().'/backoffice/login';
-		$_data['button_text'] = '';
+		$_data['title']			= 'ระบบรักษาความปลอดภัย';
+		$_data['message'] 		= '<li>ออกจากระบบ เสร็จสมบูรณ์</li>';
+		$_data['url_target'] 	= index_page().'/backoffice/login';
+		$_data['button_text']	= '';
 		
 		$this->load->view('report_dialog', $_data);
 	}
@@ -96,11 +97,11 @@ class Login extends MX_Controller
 		
 		if((!isset($_login_status)) || $_login_status != TRUE)
 		{
-			$_data['title'] = 'ระบบรักษาความปลอดภัย';
-			$_data['message'] = '<li>คุณไม่มีสิทธิ์เข้าใช้งานหน้านี้</li>
-								 <li>หรือ session ของคุณหมดอายุ, กรุณา Login อีกครั้ง</li>';
-			$_data['url_target'] = index_page().'/backoffice/login';
-			$_data['button_text'] = '';
+			$_data['title'] 		= 'ระบบรักษาความปลอดภัย';
+			$_data['message'] 		= '<li>คุณไม่มีสิทธิ์เข้าใช้งานหน้านี้ หรือ session ของคุณหมดอายุ</li>'.
+								 	  '<li>กรุณา Login อีกครั้ง</li>';
+			$_data['url_target'] 	= index_page().'/backoffice/login';
+			$_data['button_text'] 	= '';
 			$this->load->view('report_dialog.php', $_data);	
 			exit();
 		}
