@@ -32,17 +32,20 @@ class Backoffice extends MX_Controller
 		$_data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$_data['module']		= 'Backoffice';
-		$_data['controller']	= 'Backoffice';
+		$_data['module']		= 'backoffice';
+		$_data['controller']	= 'bckoffice';
 		$_data['page']			= 'dashboard';
+		$_data['template']		= '';
 		$_data['title']			= 'Home';
 		
 		// Display
 		$this->load->view('main', $_data);
 	}
 	
+	// ------------------------------------------------------------------------
+	
 	/**
-	  * Login page
+	  * Modules index page
 	  *
 	  * @access	public
 	  */
@@ -68,12 +71,9 @@ class Backoffice extends MX_Controller
 		array_push($_data['th'], array('axis' => 'uri',			'label' => 'URI'));
 		array_push($_data['th'], array('axis' => 'is_enable',	'label' => 'Status'));
 		
-		// Set other content
-		
 		// Display
 		$this->load->view('main', $_data);
 	}
-	
 	
 	// ------------------------------------------------------------------------
 	// Function
@@ -90,6 +90,7 @@ class Backoffice extends MX_Controller
 		// Display
 		echo Modules::run($module.'/'.$controller.'/'.$page);
 	}
+	
 	// ------------------------------------------------------------------------
 }
 

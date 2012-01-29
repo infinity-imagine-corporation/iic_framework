@@ -14,7 +14,7 @@ class Config extends MX_Controller
 		
 		// Load model
 		$this->load->model('module_model');
-		$this->load->model('setting_model');
+		$this->load->model('config_model');
 	}
 	
 	// ------------------------------------------------------------------------
@@ -36,20 +36,20 @@ class Config extends MX_Controller
 		$data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'Backoffice';
-		$data['controller']	= 'Setting';
+		$data['module']		= 'backoffice';
+		$data['controller']	= 'config';
 		$data['page']		= 'module_index';
 		$data['title']		= 'Module';
 		
 		// Set table haed
 		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'id',			'label'=>'ID'));
-		array_push($data['th'], array('axis'=>'code',		'label'=>'Code'));
-		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
-		array_push($data['th'], array('axis'=>'label',		'label'=>'Label'));
-		array_push($data['th'], array('axis'=>'description','label'=>'Description'));
-		array_push($data['th'], array('axis'=>'uri',		'label'=>'URI'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Status'));
+		array_push($data['th'], array('axis' => 'id',			'label' => 'ID'));
+		array_push($data['th'], array('axis' => 'code',			'label' => 'Code'));
+		array_push($data['th'], array('axis' => 'name',			'label' => 'Name'));
+		array_push($data['th'], array('axis' => 'label',		'label' => 'Label'));
+		array_push($data['th'], array('axis' => 'description',	'label' => 'Description'));
+		array_push($data['th'], array('axis' => 'uri',			'label' => 'URI'));
+		array_push($data['th'], array('axis' => 'is_enable',	'label' => 'Status'));
 		
 		// Display
 		$this->load->view('main', $data);
@@ -69,25 +69,25 @@ class Config extends MX_Controller
 		Modules::run('backoffice/login/check_permission');	
 		
 		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
+		$_data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'Backoffice';
-		$data['controller']	= 'Setting';
-		$data['page']		= 'permission_index';
-		$data['title']		= 'Permission';
+		$_data['module']		= 'backoffice';
+		$_data['controller']	= 'config';
+		$_data['page']			= 'permission_index';
+		$_data['title']			= 'Permission';
 		
 		// Set table haed
-		$data['th'] = array();
-		array_push($data['th'], array('axis'=>'name',		'label'=>'Name'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Full Control'));
-		array_push($data['th'], array('axis'=>'description','label'=>'Read'));
-		array_push($data['th'], array('axis'=>'uri',		'label'=>'Create'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Update'));
-		array_push($data['th'], array('axis'=>'is_enable',	'label'=>'Delete'));
+		$_data['th'] = array();
+		array_push($_data['th'], array('axis' => 'name',			'label' => 'Name'));
+		array_push($_data['th'], array('axis' => 'is_enable',	'label' => 'Full Control'));
+		array_push($_data['th'], array('axis' => 'description',	'label' => 'Read'));
+		array_push($_data['th'], array('axis' => 'uri',			'label' => 'Create'));
+		array_push($_data['th'], array('axis' => 'is_enable',	'label' => 'Update'));
+		array_push($_data['th'], array('axis' => 'is_enable',	'label' => 'Delete'));
 		
 		// Display
-		$this->load->view('main', $data);
+		$this->load->view('main', $_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -104,19 +104,22 @@ class Config extends MX_Controller
 		Modules::run('backoffice/login/check_permission');	
 		
 		// Load theme
-		$data['theme'] = $this->theme_model->get_theme();
+		$_data['theme'] = $this->theme_model->get_theme();
 		
 		// Set module
-		$data['module']		= 'Backoffice';
-		$data['controller']	= 'Setting';
-		$data['page']		= 'upload_index';
-		$data['title']		= 'ประเภทและขนาดไฟล์ อัพโหลด';
+		$_data['module']		= 'backoffice';
+		$_data['controller']	= 'config';
+		$_data['page']			= 'upload_index';
+		$_data['title']			= 'ประเภทและขนาดไฟล์ อัพโหลด';
 		
 		// Get data
-		$data['upload'] = $this->setting_model->get_upload_setting();	
+		$_data['upload'] = $this->config_model->get_upload_config();	
+		
+		//print_array($_data['upload']);
+		//exit();
 		
 		// Display
-		$this->load->view('main', $data);
+		$this->load->view('main', $_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -146,9 +149,9 @@ class Config extends MX_Controller
 	  
 	function search_module()
 	{		
-		$data = $this->input->post();
+		$_data = $this->input->post();
 		
-		echo json_encode($this->module_model->search_module($data['keyword'], $data['criteria']));	
+		echo json_encode($this->module_model->search_module($_data['keyword'], $_data['criteria']));	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -165,11 +168,11 @@ class Config extends MX_Controller
 	{
 		if($id != NULL)
 		{
-			$data = $this->module_model->get_module_detail($id);	
+			$_data = $this->module_model->get_module_detail($id);	
 		} 
 		else
 		{
-			$data = array(
+			$_data = array(
 							'id'			=> '',
 							'code'			=> '',
 							'label'			=> '',
@@ -180,7 +183,7 @@ class Config extends MX_Controller
 					 	 );	
 		}
 		
-		$this->load->view('module_form', $data);	
+		$this->load->view('module_form', $_data);	
 	}
 	
 	// ------------------------------------------------------------------------
@@ -193,11 +196,11 @@ class Config extends MX_Controller
 	
 	function create_module()
 	{		
-		$data = $this->input->post();
+		$_data = $this->input->post();
 		
-		unset($data['id']);
+		unset($_data['id']);
 				 
-		$this->module_model->create_module($data);
+		$this->module_model->create_module($_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -210,12 +213,12 @@ class Config extends MX_Controller
 	
 	function update_module()
 	{
-		$data = $this->input->post();
-		$id = $data['id'];
+		$_data = $this->input->post();
+		$id = $_data['id'];
 		
-		unset($data['id']);
+		unset($_data['id']);
 				 
-		$this->module_model->update_module($id, $data);
+		$this->module_model->update_module($id, $_data);
 	}
 	
 	// ------------------------------------------------------------------------
@@ -260,16 +263,16 @@ class Config extends MX_Controller
 	// ------------------------------------------------------------------------
 	
 	/**
-	 * Update upload_setting
+	 * Update upload_config
 	 *
 	 * @access	public
 	 */
 	
-	function update_upload_setting()
+	function update_upload_config()
 	{
 		$data = $this->input->post();
 				 
-		$this->setting_model->update_upload_setting($data);
+		$this->config_model->update_upload_config($data);
 	}
 	
 	// ------------------------------------------------------------------------

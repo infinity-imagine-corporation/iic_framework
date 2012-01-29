@@ -5,22 +5,17 @@
 	<b>Date : </b><?php echo date('d / m / ').(date('Y')); ?> 
 </div>
 <div id="address">
-	<?php 
-	if($module !=  'Backoffice')
+	<?php
+	$address = anchor('backoffice/', 'หน้าหลัก');
+	
+	if(isset($navigator))
 	{
-		 echo  'Backoffice&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;';
+		foreach($navigator as $data)
+		{
+			$address .= '&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;'.$data['link'];
+		}
 	}
 	
-	if($module !=  $controller)
-	{
-		 echo  $module . '&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;';
-	}
-	
-	if($controller !=  $title)
-	{
-		 echo  $controller . '&nbsp;&nbsp;&#x25B6;&nbsp;&nbsp;';
-	}
-	
-	echo $title 
+	echo $address;
 	?>
 </div>

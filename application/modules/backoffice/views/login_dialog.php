@@ -4,18 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $theme['header_text_1'] . ' - ' . $title ?></title>
 <link rel="shortcut icon" href="../favicon.ico" />
-<?php echo css_asset('iic_layout.css', 'iic_tools'); ?>
-<?php echo css_asset('iic_style.css', 'iic_tools'); ?>
-<?php echo css_asset('aristo/jquery-ui-1.8.7.custom.css', 'iic_tools'); ?>
-
-<?php echo css_asset('backoffice.css', 'backoffice'); ?>
-<?php echo css_asset('backoffice_theme.css', 'backoffice'); ?>
-
-<?php echo js_asset('jquery-1.6.1.min.js', 'backoffice'); ?>
-<?php echo js_asset('jquery-ui-1.8.10.custom.min.js', 'backoffice'); ?>
+<?php $this->load->view('backoffice/asset'); ?>
 <script type="text/javascript">
-$(function() {
-	
+$(function() 
+{
 	$('#dialog').dialog({
 	title		: '<?php echo $theme['header_text_1'] ?>',
 	autoOpen	: true,
@@ -25,20 +17,20 @@ $(function() {
 	height		: 'auto',
 	modal		: false,
 	buttons		: {
-					Login: function() {
+					Login: function() 
+					{
 						$('form').submit();
 					}
 				  }
 	});	
 	
-	$('form').keypress(function(event){
-		
-		if (event.keyCode == '13') 
+	$('form').keypress(function(event)
+	{
+		if(event.keyCode == '13') 
 		{
 			$(this).submit();
 		}
-		
-	})
+	});
 });
 </script>
 <style type="text/css">
