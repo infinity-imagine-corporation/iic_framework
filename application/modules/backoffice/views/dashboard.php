@@ -1,5 +1,5 @@
 <div class="dashboard">
-	<h2>3 Kingdoms Total War</h2>
+	<h2>Backoffice System</h2>
 	<hr />
 	<!--<div class="gadget">
 		<h3>Total</h3>

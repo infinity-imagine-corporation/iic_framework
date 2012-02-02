@@ -6,7 +6,8 @@
 </div>
 <div id="address">
 	<?php
-	$address = anchor('backoffice/', 'หน้าหลัก');
+	//$address = anchor('backoffice/', 'หน้าหลัก');
+	$address = '&nbsp;';
 	
 	if(isset($navigator))
 	{
