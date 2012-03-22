@@ -1,0 +1,314 @@
+/*----------------------------------------------------------------------------------------------------*/
+/* Info */
+/*----------------------------------------------------------------------------------------------------*/
+/*
+	iic_style.css
+		
+	By
+		Warawut Meesupa 
+		
+	For
+		IIC dev Environment
+		
+	Chang Log
+		
+		2010-08-31	ver 0.1.0	first code
+*/
+/*----------------------------------------------------------------------------------------------------*/
+/* Layout */
+/*----------------------------------------------------------------------------------------------------*/
+
+.hide	 	{ display: none; }
+.block		{ display: block; }
+.inline		{ display: inline; }
+.float_l	{ float: left; }
+.float_r	{ float: right; }
+.clear 		{ clear: both; }
+
+.center		{ text-align: center; }  
+.left		{ text-align: left; }  
+.right		{ text-align: right; }
+.justify	{ text-align: justify; }
+
+.w50	{ max-width:50px; min-width: 50px; width: 50px; }
+.w64	{ min-width: 64px; width: 64px; }
+.w120	{ min-width: 120px; width: 120px; }
+.w150	{ min-width: 150px; width: 150px; }
+
+.center_box
+{ 
+	position:absolute;
+	top:25%;
+    right:25%;
+    left:25%;
+	bottom: 25%
+}
+
+.center_box > div
+{
+	margin: auto;
+	min-width: 200px;
+	max-width: 300px;
+	padding: 25px;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+/* Text */
+/*----------------------------------------------------------------------------------------------------*/
+
+.normal		{ font-weight: normal; }  
+.bold		{ font-weight: bold; }  
+.underline	{ text-decoration: underline; } 
+.italic 	{ font-style: italic; } 
+.indent 	{ text-indent: 20px; }
+.nowarp		{ white-space: nowrap; }  
+
+.black		{ color: #000; }
+.white		{ color: #FFF; }
+.red 		{ color: #F00; }
+.green		{ color: #060; }
+.blue		{ color: #09F; }
+.orange		{ color: #F90; }
+.pink		{ color: #F69; }
+.gray		{ color: #666; }
+.lite_gray	{ color: #999; }
+
+.text_64 { font-size: 64px; }
+.text_48 { font-size: 48px; }
+.text_36 { font-size: 36px; }
+.text_24 { font-size: 24px; }
+.text_22 { font-size: 22px; }
+.text_20 { font-size: 20px; }
+.text_18 { font-size: 18px; }
+.text_16 { font-size: 16px; }
+.text_14 { font-size: 14px; }
+.text_12 { font-size: 12px; }
+.text_11 { font-size: 11px; }
+.text_10 { font-size: 10px; }
+.text_9  { font-size: 9px; }
+.text_8  { font-size: 8px; }
+
+/*----------------------------------------------------------------------------------------------------*/
+/* Link */
+/*----------------------------------------------------------------------------------------------------*/
+
+a:link 		{ color: #00F; text-decoration: none; }
+a:visited	{ color: #00F; text-decoration: none; outline:none; }
+a:hover 	{ color: #F00; text-decoration: none; }
+a:active 	{ color: #F90; text-decoration: none; outline:none; }
+
+a.white:link 	{ color: #FFF; text-decoration: none; }
+a.white:visited	{ color: #FFF; text-decoration: none; outline:none; }
+a.white:hover 	{ color: #F90; text-decoration: none; }
+a.white:active 	{ color: #F90; text-decoration: none; outline:none; }
+
+a.link_none:link 	{ text-decoration: none; border: none; }
+a.link_none:visited	{ text-decoration: none; border: none; }
+a.link_none:hover 	{ text-decoration: none; border: none; }
+a.link_none:active 	{ text-decoration: none; border: none; }
+
+/*----------------------------------------------------------------------------------------------------*/
+/* Table */
+/*----------------------------------------------------------------------------------------------------*/
+
+thead th { background-image: url(../img/bg_th.png); }
+
+/*----------------------------------------------------------------------------------------------------*/
+/* Form */
+/*----------------------------------------------------------------------------------------------------*/
+
+.search_left 
+{
+	background: url(../img/icon_seacrh_left.png) left no-repeat;
+	border: 1px solid #AAA;
+	padding: 3px 3px 3px 20px;
+}
+
+.search_right
+{
+	background: url(../img/icon_seacrh_right.png) right no-repeat;
+	border: 1px solid #AAA;
+	padding: 3px 20px 3px 3px;
+}
+
+label b { color: #F00; }
+
+label + span 
+{ 
+	display: block;
+	font-size: 12px; 
+	margin: -5px 0px 10px 0px;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+/* Button */
+/*----------------------------------------------------------------------------------------------------*/
+
+a[class^=button] { color: #4F4F4F }
+a:hover[class^=button] { color: #313131 }
+
+/*------------------------------------------------------------*/
+/* Default */
+/*------------------------------------------------------------*/
+
+input[type=submit].iic_button, input[type=reset].iic_button, button.iic_button, a.iic_button, input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="text"]):not([type="password"]).iic_button
+{
+	background: url(../img/bg_button.png) repeat-x;
+	border: 1px solid #B8B8B8;
+	color: #4F4F4F;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	height: 28px;
+	line-height: 28px;
+	margin: auto;
+	outline: none;
+	padding: 0px 28px;
+	text-align: center;
+	text-shadow: 0px 1px 0px white;
+	
+	/* CSS3 */
+	
+	border-radius: 28px;
+	-moz-border-radius: 28px;
+	-webkit-border-radius: 28px;
+	
+	box-shadow: 0px 0px 1px #999;
+	-moz-box-shadow: 0px 0px 1px #999;
+	-webkit-box-shadow: 0px 0px 1px #999;
+}
+
+input[type=submit].iic_button, input[type=reset].iic_button, button.iic_button, input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="text"]):not([type="password"]).iic_button { height: 30px; }
+
+input[type=submit].iic_button:hover.iic_button, button.iic_button:hover, a.iic_button:hover, input:hover:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="text"]):not([type="password"]).iic_button
+{
+	background-position: center;
+	border-color: #71B7FF;
+	color: #313131;
+	
+	/* CSS3 */
+	
+	box-shadow: 0px 0px 1px #99CBFF;
+	-moz-box-shadow: 0px 0px 1px #99CBFF;
+	-webkit-box-shadow: 0px 0px 1px #99CBFF;
+}
+
+input[type=submit].iic_button:active, button.iic_button:active, a.iic_button:active, input:active:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="text"]):not([type="password"]).iic_button
+{
+	background-position: bottom;
+	border-color: #63B0FF;
+	
+	/* CSS3 */
+	box-shadow: 0px 0px 1px #89C3FF;
+	-moz-box-shadow: 0px 0px 1px #89C3FF;
+	-webkit-box-shadow: 0px 0px 1px #89C3FF;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+/* Pagination */
+/*----------------------------------------------------------------------------------------------------*/
+
+.pagination
+{
+	float: right;
+	margin: 8px 0px;
+	text-align: right;
+}
+
+.pagination a 
+{ 
+	border: 1px solid #DDD;
+	padding: 5px 10px;
+	margin: 0px 1px;
+}
+
+.pagination a:hover
+{ 
+	border: 1px solid #CCC;
+	background-color: #EFEFEF;
+}
+
+.pagination strong, .pagination .current
+{
+	border: 1px solid #CCC;
+	background-color: #EFEFEF;
+	padding: 5px 10px;
+	margin: 0px 3px;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+/* Gadget */
+/*----------------------------------------------------------------------------------------------------*/
+
+.temp_image { background: #AAA; display: inline-block; text-align: center; }
+
+.dashboard 
+{
+	background: #D0D0D0;
+	border: 1px #999 solid;
+	padding: 10px 20px 20px 20px;
+	margin: 10px 0px;
+	
+	/* CSS3 */
+	
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	
+	box-shadow: 0px 0px 2px #999, 0px 0px 5px #999 inset;
+	-moz-box-shadow: 0px 0px 2px #999, 0px 0px 5px #999 inset;
+	-webkit-box-shadow: 0px 0px 2px #999, 0px 0px 5px #999 inset;
+}
+
+.dashboard h2 
+{ 
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.dashboard h2 span
+{
+	font-size: 14px;
+	font-weight: normal;	
+}
+
+.dashboard hr 
+{ 
+
+	border-color: #999;
+	border-style: dashed;
+	margin: 5px 0px; 
+}
+
+.gadget
+{
+	background: #F3F3F3 url(../img/bg_gadget.png) top repeat-x;
+	border: 1px solid #CCC;
+	padding: 2px;
+	
+	/* CSS3 */
+	
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	
+	box-shadow: 0px 0px 3px #999;
+	-moz-box-shadow: 0px 0px 3px #999;
+	-webkit-box-shadow: 0px 0px 3px #999;
+}
+
+.gadget h3
+{
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+.gadget table tr td
+{
+	padding: 5px;	
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+/* End */
+/*----------------------------------------------------------------------------------------------------*/

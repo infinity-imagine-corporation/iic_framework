@@ -1,0 +1,16 @@
+
+.selectlist-list
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.selectlist-item
+{
+	background: #fff url(../img/icon_close.png) no-repeat right center;
+	border: solid 1px #DDD;
+	cursor: pointer;
+	padding: 0.2em 0.3em;
+	margin: 1px 0;
+}

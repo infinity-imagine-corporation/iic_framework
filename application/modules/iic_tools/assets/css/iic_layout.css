@@ -1,0 +1,164 @@
+/*----------------------------------------------------------------------------------------------------*/
+/* Info */
+/*----------------------------------------------------------------------------------------------------*/
+/*
+	iic_layout.css
+		
+	By
+		Warawut Meesupa 
+		
+	For
+		IIC dev Environment
+		
+	Chang Log
+		
+		2010-08-31	ver 0.5.0	first code
+*/
+/*----------------------------------------------------------------------------------------------------*/
+/* Reset */
+/*----------------------------------------------------------------------------------------------------*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td
+{
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent
+} 
+
+ol, ul { list-style:none }
+
+/*blockquote, q { quotes:none }*/
+
+/*blockquote:before, blockquote:after, q:before, q:after
+{
+	content:'';
+	content:none
+}*/
+
+table
+{
+	border-collapse:collapse;
+	border-spacing:0
+}
+
+:focus { outline: none }
+
+ins { text-decoration:none }
+
+del { text-decoration:line-through }
+
+/*----------------------------------------------------------------------------------------------------*/
+/* Grid */
+/*----------------------------------------------------------------------------------------------------*/
+
+.grid_1 { width:40px; }
+.grid_2 { width:100px; }
+.grid_3 { width:160px; }
+.grid_4 { width:220px; }
+.grid_5 { width:280px; }
+.grid_6 { width:340px; }
+.grid_7 { width:400px; }
+.grid_8 { width:460px; }
+.grid_9 { width:520px; }
+.grid_10 { width:580px; }
+.grid_11 { width:640px; }
+.grid_12 { width:700px; }
+.grid_13 { width:760px; }
+.grid_14 { width:820px; }
+.grid_15 { width:880px; }
+.grid_16 { width:940px; }
+
+.column 
+{
+	display: inline;
+	float: left;
+	margin: 0 10px;
+	/*overflow: hidden;*/
+}
+
+.row 
+{
+	/*overflow: hidden;*/
+	clear: both;
+	margin: 0 auto;
+	padding: 0px 10px;
+	width: 960px;
+}
+
+.row .row 
+{
+	display: inline-block;
+	margin: 0 -20px;
+	width: auto;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+/* Typography */
+/*----------------------------------------------------------------------------------------------------*/
+
+body { font: 14px/1.5 'Microsoft Sans Serif', 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif }
+
+hr
+{
+	border:0 #ccc solid;
+	border-top-width:1px;
+	clear:both;
+	height:0
+}
+
+h1 { font-size:25px }
+
+h2 { font-size:23px }
+
+h3 { font-size:21px }
+
+h4 { font-size:19px }
+
+h5 { font-size:17px }
+
+h6 { font-size:15px }
+
+h6 { font-size:14px }
+
+
+/*ol { list-style:decimal }*/
+
+/*ul { list-style:disc }*/
+
+li { margin-left:30px }
+
+p, dl, hr, h1, h2, h3, h4, h5, h6, h7, ol, ul, pre, table, address, fieldset { margin-bottom:20px }
+
+/*----------------------------------------------------------------------------------------------------*/
+/* From */
+/*----------------------------------------------------------------------------------------------------*/
+
+label
+{
+	display: block;
+	font-weight: bold;
+	margin: 10px 0px 5px 0px;
+	text-shadow:0 1px 0 white;
+	/*letter-spacing: 1px;*/
+}
+
+form input[type=text], form input[type=password], form textarea, form select
+{
+	padding: 5px;
+	font-size: 14px;
+}
+
+form input[type=submit], form input[type=reset], form input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="text"]):not([type="password"])
+{
+	margin: 25px auto 0px auto;
+}
+
+select option { padding: 2px; }
+
+/*----------------------------------------------------------------------------------------------------*/
+/* End */
+/*----------------------------------------------------------------------------------------------------*/
