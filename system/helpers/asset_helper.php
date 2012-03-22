@@ -45,10 +45,10 @@ function other_asset_url($asset_name, $module_name = NULL, $asset_type = NULL)
 	$obj =& get_instance();
 	$base_url = $obj->config->item('base_url');
 
-	$asset_location = $base_url.'assets/';
+	$asset_location = $base_url.'application/';
 
 	if(!empty($module_name)):
-		$asset_location .= 'modules/'.$module_name.'/';
+		$asset_location .= 'modules/'.$module_name.'/assets/';
 	endif;
 
 	$asset_location .= $asset_type.'/'.$asset_name;
