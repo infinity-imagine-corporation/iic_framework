@@ -28,7 +28,6 @@
 <!--Backoffice assets-->
 <?php echo css_asset('backoffice.css', 'backoffice');?>
 <?php echo css_asset('backoffice_theme.css', 'backoffice');?>
-<?php echo js_asset('ajax.config.js', 'backoffice');?>
 <?php echo js_asset('main.js', 'backoffice');?>
 
 <!--Module assets-->

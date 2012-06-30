@@ -10,6 +10,7 @@
 $(function() 
 {
 	$("input[type=submit]").button();
+	$('#username').focus();
 });
 </script>
 
@@ -38,7 +39,7 @@ input[type=text], input[type=password] { width: 100%; }
 </style>
 </head>
 
-<body onload="document.getElementById('username').focus();">
+<body>
 <div class="center_box">
 	<div class="gadget">
 		<div id="header">

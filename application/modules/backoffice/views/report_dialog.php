@@ -1,5 +1,5 @@
 <?php 
-	$button_text = ($button_text == '') ? 'OK' : $button_text;
+$button_text = (isset($button_text) && $button_text != '') ? $button_text : 'OK';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -29,7 +29,8 @@ $(function() {
 				  }
 	});	
 	
-	$('body').keypress(function(event){
+	$('body').keypress(function(event)
+	{
 		
 		if (event.keyCode == '13') 
 		{

@@ -1,5 +1,6 @@
 <ul class="menu_main">
 	<li id="home"><?php echo anchor('backoffice', 'Home') ?></li>
+	<li id="news"><?php echo anchor('backoffice/news', 'News / Promotion') ?></li>
 	
 	<!-- Another modules -->
 	<!--<li id="kingdom"><a href="#">อาณาจักร<span class="text_9">&#x25BC;</span></a>
@@ -11,7 +12,7 @@
 	
 	<!-- Backoffice module -->
 	<li id="logout" class="float_r"><?php echo anchor('backoffice/module/backoffice/login/logout', 'Logout') ?></li>
-	<li id="option" class="float_r"><a href="#">Option<span class="text_9">&#x25BC;</span></a>
+	<li id="option" class="float_r"><a href="#">Advance Option<span class="text_9">&#x25BC;</span></a>
 		<ul>
 			<li><?php echo anchor('backoffice/user', 'User') ?></li>
 			<li><?php echo anchor('backoffice/user/group', 'User Group') ?></li>

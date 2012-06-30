@@ -141,8 +141,8 @@ class User extends MX_Controller
 		// Set module
 		$_data['module']		= 'backoffice';
 		$_data['controller']	= 'User';
-		$_data['page']		= 'user_log_index';
-		$_data['title']		= 'บันทึกการใช้งานระบบ (Site log)';
+		$_data['page']			= 'user_log_index';
+		$_data['title']			= 'บันทึกการใช้งานระบบ (Site log)';
 		
 		// Set table haed
 		$_data['th'] = array();

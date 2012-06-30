@@ -8,6 +8,8 @@
 <script type="text/javascript">
 $(function() 
 {
+	$('#username').focus();
+	
 	$('#dialog').dialog({
 	title		: '<?php echo $theme['header_text_1'] ?>',
 	autoOpen	: true,
@@ -39,7 +41,7 @@ div.ui-dialog a.ui-dialog-titlebar-close { display: none; }
 </style>
 </head>
 
-<body onload="document.getElementById('username').focus();">
+<body>
 <div id="dialog" class="dialog">
 	<p id="error_msg" class="center red text_12 bold"><?php echo $error_msg ?></p>
 	<?php echo form_open('backoffice/login/validate'); ?>
