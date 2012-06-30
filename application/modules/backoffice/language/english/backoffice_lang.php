@@ -1,25 +1,22 @@
 <?php
 /*
 | -------------------------------------------------------------------
-| BUTTON
+| GENERAL WORD
 | -------------------------------------------------------------------
-|
-| -------------------------------------------------------------------
-| EXPLANATION OF VARIABLES
-| -------------------------------------------------------------------
-| 
 */
-$lang['button_ok'] = 'OK';
+$lang['administration'] = 'Administration';
+$lang['create'] = 'Create';
+$lang['delete'] = 'Delete';
+$lang['home'] = 'Home';
+$lang['in'] = 'in';
+$lang['login'] = 'Login';
+$lang['logout'] = 'Logout';
+$lang['no_result_found'] = 'No result found';
 
 /*
 | -------------------------------------------------------------------
 | DIALOG
 | -------------------------------------------------------------------
-|
-| -------------------------------------------------------------------
-| EXPLANATION OF VARIABLES
-| -------------------------------------------------------------------
-| 
 */
 $lang['dialog_access_denied'] = 'Access denide';
 $lang['dialog_confirm_delete'] = 'The selected item(s) will delete permanently and cannot restore, Confirm deletion?';

@@ -2,11 +2,28 @@
 /* Container */
 /*------------------------------------------------------------*/
 
-body { background-color: #666; }
+body 
+{ 
+	display: table;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	
+	background-color: rgba(128, 128, 128, 0.9);
+	
+	/* Gradient */
+	background-image: radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
+	background-image: -ms-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
+	background-image: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
+	background-image: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
+	background-image: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 0.5) 10%, rgba(128, 128, 128, 0.9) 100%); 
+}
 
 #container
 {
 	background-color: #FFF; 
+	/*margin: 50px;*/
 }
 
 .dialog { display: none; }
@@ -117,6 +134,9 @@ body#Category .menu_main li#Category a
 	box-shadow: 1px 1px 3px #333;
 	-moz-box-shadow: 1px 1px 3px #333;
 	-webkit-box-shadow: 1px 1px 3px #333;
+	
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
 .menu_main > li:hover > ul { display: inherit; }
@@ -229,7 +249,7 @@ body#Category .menu_main li#Category a
 
 #content
 {
-	margin: 15px	
+	margin: 15px;
 }
 
 #content h1 { text-shadow: 0px 0px 2px #999; }

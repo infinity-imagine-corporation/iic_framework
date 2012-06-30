@@ -4,10 +4,13 @@
 | Default Language
 |--------------------------------------------------------------------------
 |
-| Now support only 'en' and 'th'
+| Now support only
+|
+| - english
+| - thai
 |
 */
-$config['backoffice_language']	= 'english';
+$config['backoffice_language']	= 'thai';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

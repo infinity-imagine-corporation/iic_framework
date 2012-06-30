@@ -3,18 +3,21 @@
 <input type="hidden" id="config_uri_delete" value="<?php echo $module ?>/<?php echo $controller ?>/delete_<?php echo $ajax_uri; ?>" />
 <input type="hidden" id="config_uri_search" value="<?php echo $module ?>/<?php echo $controller ?>/search_<?php echo $ajax_uri; ?>" />
 <input type="hidden" id="config_uri_form" value="<?php echo $module ?>/<?php echo $controller ?>/get_<?php echo $ajax_uri; ?>_form" />
-<input type="hidden" id="config_uri_list" value="<?php echo $module ?>/<?php echo $controller ?>/get_<?php echo $ajax_uri; ?>_list" />
+<input type="hidden" id="config_uri_list" value="<?php echo $module ?>/<?php echo $controller ?>/list_<?php echo $ajax_uri; ?>" />
 
 <div id="content_top">
-	<button class="button_create">Create</button>
+	<button class="button_create"><?php echo $this->lang->line('create') ?></button>
 	<div id="search_section">
 		<input type="text" name="keyword" id="keyword" class="search_left" />
-		<label class="inline" for="criteria">in</label>
+		<label class="inline" for="criteria"><?php echo $this->lang->line('in') ?></label>
 		<select name="criteria" id="criteria">
 			<?php			
 			foreach($th as $data)
 			{
-				echo '<option value="'.$data['axis'].'">'.$data['label'].'</option>';
+				if($data['is_criteria'])
+				{
+					echo '<option value="'.$data['axis'].'">'.$data['label'].'</option>';
+				}
 			}
 			?>
 		</select>
@@ -33,12 +36,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php echo'<tr><td colspan="'.(count($th) + 1).'" class="center">No result found.</td></tr>'; ?>
+		<?php echo'<tr><td colspan="'.(count($th) + 1).'" class="center">'.$this->lang->line('no_result_found').'</td></tr>'; ?>
 	</tbody>
 </table>
 <div id="content_bottom">
 	<?php if(isset($pagination)): ?>
 	<div class="pagination"><?php echo $pagination; ?></div>
 	<?php endif; ?>
-	<button class="button_delete">Delete</button>
+	<button class="button_delete"><?php echo $this->lang->line('delete') ?></button>
 </div>

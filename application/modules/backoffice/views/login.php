@@ -15,13 +15,39 @@ $(function()
 </script>
 
 <style type="text/css">
-.center_box div.gadget 
+
+div.gadget 
 { 
-	padding: 2px; 
+	padding: 0px; 
 	max-width: 350px; 
+	margin: auto;
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
 }
 
-#form_section { padding: 20px; }
+#header
+{
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#form_section 
+{ 
+	background: #FFF; 
+	padding: 20px;
+}
+
+#form_section label
+{
+	font-size: 14px;
+}
+
+#footer
+{
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+p { margin: 0px; }
 
 form 
 { 
@@ -36,11 +62,25 @@ input[type=text], input[type=password] { width: 100%; }
 	position: relative;
 	margin-right: -10px; 
 }
+
+.table
+{
+	display: table;
+	height: 100%;
+	position: absolute;
+	top: 0;
+}
+
+.table_cell 
+{ 
+	display: table-cell; 
+	vertical-align: middle;
+}
 </style>
 </head>
 
-<body>
-<div class="center_box">
+<body class="table">
+<div class="table_cell">
 	<div class="gadget">
 		<div id="header">
 			<h2><?php echo $theme['header_text_1'] ?></h2>
@@ -48,14 +88,14 @@ input[type=text], input[type=password] { width: 100%; }
 			<h3><?php echo $theme['header_text_2'] ?></h3>
 		</div>
 		<div id="form_section">
-			<p id="error_msg" class="center red text_12 bold"><?php echo $error_msg ?></p>
-			<?php echo form_open('backoffice/login/validate'); ?>
-				<label for="username">Username</label>
+			<p id="error_msg" class="center red text_12"><?php echo $error_msg ?></p>
+			<?php echo form_open($form_target); ?>
+				<label for="username"><?php echo $this->lang->line('username') ?></label>
 				<input type="text" name="username" id="username" value="" />
-				<label for="password">Password</label>
+				<label for="password"><?php echo $this->lang->line('password') ?></label>
 				<input type="password" name="password" id="password" />
 				<div class="right">
-					<input name="Submit" id="submit" type="submit" value="Login" />
+					<input name="Submit" id="submit" type="submit" value="<?php echo $this->lang->line('login') ?>" />
 				</div>
 			<?php echo form_close() ?>
 		</div>

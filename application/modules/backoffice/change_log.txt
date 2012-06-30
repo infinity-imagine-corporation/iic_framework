@@ -1,0 +1,11 @@
+Backoffice Module
+=================
+
+2012-07-01	v.0.2.0	
+-------------------
+
+- Added config setting
+- Added language settin
+- Added IIC_Controller
+- Added IIC_Module
+- Refatored all controllers and models

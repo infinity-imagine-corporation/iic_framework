@@ -1,3 +1,17 @@
+<!--Global JS variable-->
+<script type="text/javascript">
+URL_SERVER = '<?php echo site_url() ?>/';
+URL_IMAGE = URL_SERVER + 'assets/modules/backoffice/img/';
+
+LANG_ALERT = '<?php echo $this->lang->line('alert') ?>';
+LANG_CREATE = '<?php echo $this->lang->line('create') ?>';
+LANG_LOGIN = '<?php echo $this->lang->line('login') ?>';
+LANG_OK = '<?php echo $this->lang->line('ok') ?>';
+LANG_SAVE = '<?php echo $this->lang->line('save') ?>';
+LANG_USERNAME = '<?php echo $this->lang->line('username') ?>';
+LANG_PASSWORD = '<?php echo $this->lang->line('password') ?>';
+</script>
+
 <!--jQuery-->
 <?php echo js_asset('jquery-1.6.1.min.js', 'backoffice');?>
 
@@ -35,5 +49,10 @@
 <?php echo js_asset($module.'.js', $module);?>
 
 <!--Page assets-->
-<?php echo css_asset($page.'.css', $module);?>
-<?php echo js_asset($page.'.js', $module);?>
+<?php 
+if($page != '')
+{
+	echo css_asset($page.'.css', $module);
+	echo js_asset($page.'.js', $module);
+}
+?>

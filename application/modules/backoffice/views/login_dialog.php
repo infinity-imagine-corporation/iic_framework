@@ -18,12 +18,15 @@ $(function()
 	width		: 300,
 	height		: 'auto',
 	modal		: false,
-	buttons		: {
-					Login: function() 
+	buttons		: [
 					{
-						$('form').submit();
+						text	: LANG_LOGIN,
+						click	: function() 
+								  {
+									  $('form').submit();
+								  }
 					}
-				  }
+				  ]
 	});	
 	
 	$('form').keypress(function(event)
@@ -44,10 +47,10 @@ div.ui-dialog a.ui-dialog-titlebar-close { display: none; }
 <body>
 <div id="dialog" class="dialog">
 	<p id="error_msg" class="center red text_12 bold"><?php echo $error_msg ?></p>
-	<?php echo form_open('backoffice/login/validate'); ?>
-		<label for="username">Username</label>
+	<?php echo form_open($form_target); ?>
+		<label for="username"><?php echo $this->lang->line('username') ?></label>
 		<input type="text" name="username" id="username" value="" />
-		<label for="password">Password</label>
+		<label for="password"><?php echo $this->lang->line('password') ?></label>
 		<input type="password" name="password" id="password" />
 	<?php echo form_close() ?> </div>
 </body>
